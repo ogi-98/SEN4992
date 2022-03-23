@@ -13,6 +13,7 @@
 		B4DD68EA27EB24DF002CACDF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4DD68E927EB24DF002CACDF /* Preview Assets.xcassets */; };
 		B4DD68EC27EB24DF002CACDF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68EB27EB24DF002CACDF /* Persistence.swift */; };
 		B4DD68EF27EB24DF002CACDF /* SEN4992.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68ED27EB24DF002CACDF /* SEN4992.xcdatamodeld */; };
+		B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68F527EB27B3002CACDF /* LogInPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		B4DD68E927EB24DF002CACDF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B4DD68EB27EB24DF002CACDF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B4DD68EE27EB24DF002CACDF /* SEN4992.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SEN4992.xcdatamodel; sourceTree = "<group>"; };
+		B4DD68F527EB27B3002CACDF /* LogInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				B4DD68E227EB24DD002CACDF /* SEN4992App.swift */,
 				B4DD68E427EB24DD002CACDF /* ContentView.swift */,
+				B4DD68F727EB27BA002CACDF /* Pages */,
 				B4DD68E627EB24DF002CACDF /* Assets.xcassets */,
 				B4DD68EB27EB24DF002CACDF /* Persistence.swift */,
 				B4DD68ED27EB24DF002CACDF /* SEN4992.xcdatamodeld */,
@@ -71,6 +74,14 @@
 				B4DD68E927EB24DF002CACDF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B4DD68F727EB27BA002CACDF /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				B4DD68F527EB27B3002CACDF /* LogInPage.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */,
 				B4DD68EC27EB24DF002CACDF /* Persistence.swift in Sources */,
 				B4DD68E527EB24DD002CACDF /* ContentView.swift in Sources */,
 				B4DD68EF27EB24DF002CACDF /* SEN4992.xcdatamodeld in Sources */,
