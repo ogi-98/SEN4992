@@ -24,7 +24,7 @@ struct WelcomePage: View {
                         Text("Get Started")
                             .font(.title3)
                             .fontWeight(.bold)
-                            .foregroundColor(Color(uiColor: .systemBackground))
+                            .foregroundColor(Color(uiColor: .white))
                             .frame(maxWidth:.infinity)
                             .padding()
                             .background(Color.green)
@@ -32,7 +32,7 @@ struct WelcomePage: View {
                     })
                 
                 NavigationLink(
-                    destination: LogInPage(),
+                    destination: LogInPage().navigationBarHidden(true),
                     label: {
                         Text("Log In")
                             .font(.title3)
