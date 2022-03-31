@@ -13,7 +13,7 @@ struct SEN4992App: App {
 
     var body: some Scene {
         WindowGroup {
-            LogInPage()
+            WelcomePage()
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
