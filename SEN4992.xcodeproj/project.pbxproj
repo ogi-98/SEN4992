@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B404716B27F1A69B00875833 /* WelcomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B404716A27F1A69B00875833 /* WelcomePage.swift */; };
+		B485859727F9DA45007A4593 /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */; };
+		B485859927F9ED8A007A4593 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859827F9ED8A007A4593 /* Extensions.swift */; };
+		B485859B27FB17A1007A4593 /* EmailUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859A27FB17A1007A4593 /* EmailUI.swift */; };
 		B4DD68E327EB24DD002CACDF /* SEN4992App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68E227EB24DD002CACDF /* SEN4992App.swift */; };
 		B4DD68E527EB24DD002CACDF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68E427EB24DD002CACDF /* ContentView.swift */; };
 		B4DD68E727EB24DF002CACDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4DD68E627EB24DF002CACDF /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 
 /* Begin PBXFileReference section */
 		B404716A27F1A69B00875833 /* WelcomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePage.swift; sourceTree = "<group>"; };
+		B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
+		B485859827F9ED8A007A4593 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B485859A27FB17A1007A4593 /* EmailUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailUI.swift; sourceTree = "<group>"; };
 		B4DD68DF27EB24DD002CACDF /* SEN4992.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEN4992.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4DD68E227EB24DD002CACDF /* SEN4992App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEN4992App.swift; sourceTree = "<group>"; };
 		B4DD68E427EB24DD002CACDF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,11 +67,13 @@
 			children = (
 				B4DD68E227EB24DD002CACDF /* SEN4992App.swift */,
 				B4DD68E427EB24DD002CACDF /* ContentView.swift */,
+				B485859827F9ED8A007A4593 /* Extensions.swift */,
 				B4DD68F727EB27BA002CACDF /* Pages */,
 				B4DD68E627EB24DF002CACDF /* Assets.xcassets */,
 				B4DD68EB27EB24DF002CACDF /* Persistence.swift */,
 				B4DD68ED27EB24DF002CACDF /* SEN4992.xcdatamodeld */,
 				B4DD68E827EB24DF002CACDF /* Preview Content */,
+				B485859A27FB17A1007A4593 /* EmailUI.swift */,
 			);
 			path = SEN4992;
 			sourceTree = "<group>";
@@ -83,6 +91,7 @@
 			children = (
 				B4DD68F527EB27B3002CACDF /* LogInPage.swift */,
 				B404716A27F1A69B00875833 /* WelcomePage.swift */,
+				B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -160,6 +169,9 @@
 				B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */,
 				B4DD68EC27EB24DF002CACDF /* Persistence.swift in Sources */,
 				B4DD68E527EB24DD002CACDF /* ContentView.swift in Sources */,
+				B485859B27FB17A1007A4593 /* EmailUI.swift in Sources */,
+				B485859927F9ED8A007A4593 /* Extensions.swift in Sources */,
+				B485859727F9DA45007A4593 /* ForgotPasswordPage.swift in Sources */,
 				B404716B27F1A69B00875833 /* WelcomePage.swift in Sources */,
 				B4DD68EF27EB24DF002CACDF /* SEN4992.xcdatamodeld in Sources */,
 				B4DD68E327EB24DD002CACDF /* SEN4992App.swift in Sources */,

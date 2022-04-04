@@ -23,6 +23,8 @@ struct LogInPage: View {
     @State private var alertTitle = ""
     @State private var alertShow = false
     
+    @State private var forgotShow = false
+    
     @FocusState private var focusedField: Fields?
     
     
@@ -98,14 +100,17 @@ struct LogInPage: View {
                 .cornerRadius(12)
                 
                 Button {
-                    
                     //TODO: Password forgot navigate
+                    forgotBttnTouch()
                 } label: {
                     Text("Recovery Password")
                         .font(.footnote)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .foregroundColor(Color(uiColor: .secondaryLabel))
                 }//: forgot buton
+                .sheet(isPresented: $forgotShow, content: {
+                    ForgotPasswordPage()
+                })
                 .padding(.top,4)
             }//: vstak textfields
             .padding(30)
@@ -121,13 +126,17 @@ struct LogInPage: View {
             }
             .toolbar {
                 ToolbarItem(placement: .keyboard ) {
-                    HStack {
-                        Spacer()
-                        Button {
-                            focusedField = nil
-                        } label: {
-                            Text("Done")
+                    if !forgotShow {
+                        HStack {
+                            Spacer()
+                            Button {
+                                focusedField = nil
+                            } label: {
+                                Text("Done")
+                            }
                         }
+                    } else {
+                        EmptyView()
                     }
                 }
             }//: toolbar
@@ -185,6 +194,10 @@ struct LogInPage: View {
     
     
     //MARK: - Funcs
+    private func forgotBttnTouch(){
+        focusedField = nil
+        forgotShow.toggle()
+    }
     private func showAlert(title: String,message:String){
         alertTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
         alertMessage = message.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -199,7 +212,7 @@ struct LogInPage: View {
         
         if sendingEmail != "" && sendingPassword != "" {
             if !isValidEmail(email){
-                showAlert(title: "Error!", message: "gecersiz mail")
+                showAlert(title: "Invalid!", message: "Invalid Email")
                 print("gecersiz mail")
                 return
             }
@@ -207,18 +220,11 @@ struct LogInPage: View {
             showAlert(title: "Success!", message: "suanlik isteklerimizi karsiliyor ilerde password lenght check koyariz")
             
         }else{
-            showAlert(title: "Error!", message: "make sure all fields are not empty")
+            showAlert(title: "Empty Fields!", message: "Make sure all fields are not empty")
             print("make sure all fields are not empty")
         }
         
     }
-    
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
     
     
     
