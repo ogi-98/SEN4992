@@ -28,10 +28,6 @@ struct ForgotPasswordPage: View {
     //MARK: - Body
     var body: some View {
         fetchView()
-            
-//        emailView
-//        sendedView
-        
         .background(Color(uiColor: .systemGroupedBackground))
         .onTapGesture {
             if focusedFieldForgot != nil {
@@ -44,7 +40,6 @@ struct ForgotPasswordPage: View {
         let sendEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
         if isValidEmail(sendEmail) {
             sendSuccessful()
-            
         }else{
             //alert
             showAlert(title: "Invalid Email!", message: "Check the validity of the Email")
@@ -109,28 +104,10 @@ struct ForgotPasswordPage: View {
             .padding(.horizontal,70)
             
             VStack(alignment:.center,spacing:15){
-//                EmailUI(email: $email)
-//                    .focused($focusedFieldForgot,equals: .email)
-//                    .submitLabel(.send)
-//                    .onSubmit {
-//                        switch focusedFieldForgot {
-//                        case .email:
-//                            sendTouch()
-//                        default:
-//                            break
-//                        }
-//                    }
-                
-                TextField("Email", text: $email)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(false)
-                    .padding()
-                    .focused($focusedFieldForgot, equals: .email)
+                EmailTextFieldCustomUI(email: $email)
                     .submitLabel(.send)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
-                    .background(Color(uiColor: .tertiarySystemBackground))
-                    .cornerRadius(12)
+                    .focused($focusedFieldForgot,equals: .email)
+                    .submitLabel(.send)
                     .onSubmit {
                         switch focusedFieldForgot {
                         case .email:
@@ -140,43 +117,20 @@ struct ForgotPasswordPage: View {
                         }
                     }
                 
-                HStack(spacing:5) {
-                    Text("Remember password?")
-                        .foregroundColor(Color(uiColor: .secondaryLabel))
-                    Button {
-                        //TODO: login back buton
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Text("Login")
-                            .fontWeight(.bold)
-                            .foregroundColor(.green)
-                    }
-
-                }//: regiter buton
-                .font(.footnote)
+                CustomTextButtonUI(text: "Remember password?", bttnText: "Login") {
+                    presentationMode.wrappedValue.dismiss()
+                }//: remember password buton
+                
             }
             .padding(.horizontal,30)
             
             
-            Button {
-                //TODO: sendFunc
-                sendTouch()
-            } label: {
-                Text("Send")
-                    .foregroundColor(.white)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity,alignment: .center)
-                    .padding()
-                    .background(.green)
-                    .cornerRadius(12)
-                    .padding(.horizontal,30)
-                
-            }//: send buton
-            .alert(isPresented: $alertShow){
-                Alert(title: Text("\(alertTitle)"), message: Text("\(alertMessage)"), dismissButton: .cancel())
-            }
-
+            CustomButtonUI(function: sendTouch, title: "Send")
+                .padding(.horizontal,30)
+                .alert(isPresented: $alertShow){
+                    Alert(title: Text("\(alertTitle)"), message: Text("\(alertMessage)"), dismissButton: .cancel())
+                }
+            
             Spacer()
             Spacer()
         }//: vstack background
@@ -213,37 +167,15 @@ struct ForgotPasswordPage: View {
             }
             .padding(.horizontal,70)
             
-            Button {
-                //TODO: Login back Func
+            CustomButtonUI(function: {
                 presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text("Login")
-                    .foregroundColor(.white)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity,alignment: .center)
-                    .padding()
-                    .background(.green)
-                    .cornerRadius(12)
-                    .padding(.horizontal,30)
-                
-            }//: login buton
+            }, title: "Login")
+            .padding(.horizontal, 30)
+            //: login button
             
-            HStack(spacing:5) {
-                Text("Didn't receive the link?")
-                    .foregroundColor(Color(uiColor: .secondaryLabel))
-                Button {
-                    //TODO: login back buton
-                    goToResendView()
-                } label: {
-                    Text("Resend")
-                        .fontWeight(.bold)
-                        .foregroundColor(.green)
-                }
-
-            }//: regiter buton
-            .font(.footnote)
-            
+            CustomTextButtonUI(text: "Didn't receive the link?", bttnText: "Resend", function: goToResendView)
+            //: resend button
+                    
             Spacer()
         }//: vstack background
     }

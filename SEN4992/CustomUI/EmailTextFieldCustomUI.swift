@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmailUI: View {
+struct EmailTextFieldCustomUI: View {
     @State var email: Binding<String>
     var body: some View {
         TextField("Email", text: email)
@@ -17,14 +17,14 @@ struct EmailUI: View {
             .textContentType(.emailAddress)
             .keyboardType(.emailAddress)
             .background(Color(uiColor: .tertiarySystemBackground))
-            .cornerRadius(13)
+            .cornerRadius(12)
     }
 }
 
 struct EmailUI_Previews: PreviewProvider {
     
     static var previews: some View {
-        EmailUI(email: .constant(""))
+        EmailTextFieldCustomUI(email: .constant(""))
     }
 }
 

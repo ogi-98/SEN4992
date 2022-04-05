@@ -18,7 +18,6 @@ struct LogInPage: View {
     
     @State private var email = ""
     @State private var pass = ""
-    @State private var visible = false
     @State private var alertMessage = ""
     @State private var alertTitle = ""
     @State private var alertShow = false
@@ -50,57 +49,16 @@ struct LogInPage: View {
             
             VStack(alignment: .center, spacing: 10.0) {
                 
-                TextField("Email", text: $email)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(false)
-                    .padding()
-                    .focused($focusedField, equals: .email)
+                
+                EmailTextFieldCustomUI(email: $email)
+                    .focused($focusedField,equals: .email)
                     .submitLabel(.next)
-                    .textContentType(.emailAddress)
-                    .keyboardType(.emailAddress)
-                    .background(Color(uiColor: .tertiarySystemBackground))
-                    .cornerRadius(12)
                 
-                
-                HStack(alignment: .center, spacing: 2.0){
-                    
-                        
-                        if self.visible{
-                            TextField("Password", text: $pass)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(false)
-                            .padding()
-                            .focused($focusedField, equals: .password)
-                            .submitLabel(.go)
-                            .textContentType(.password)
-                            .keyboardType(.default)
-                        }
-                        else{
-                            SecureField("Password", text: $pass)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(false)
-                            .padding()
-                            .focused($focusedField, equals: .password)
-                            .submitLabel(.go)
-                            .textContentType(.password)
-                            .keyboardType(.default)
-                        }
-                    
-                    Button(action: {
-                        self.visible.toggle()
-                    }) {
-                        Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
-                            .foregroundColor(Color(uiColor: .secondaryLabel))
-                        
-                    }//: visible buton
-                    .padding(8)
-                    
-                }//:  password hstack
-                .background(Color(uiColor: .tertiarySystemBackground))
-                .cornerRadius(12)
+                PasswordTextfieldCustomUI(pass: $pass)
+                    .submitLabel(.go)
+                    .focused($focusedField,equals: .password)
                 
                 Button {
-                    //TODO: Password forgot navigate
                     forgotBttnTouch()
                 } label: {
                     Text("Recovery Password")
@@ -141,42 +99,18 @@ struct LogInPage: View {
                 }
             }//: toolbar
             
-            Button {
-                LoginBttnTouch()
-            } label: {
-                Text("Log In")
-                    .foregroundColor(.white)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity,alignment: .center)
-                    .padding()
-                    .background(.green)
-                    .cornerRadius(12)
-                    .padding(.horizontal,30)
-                
-            }//: login buton
-            .alert(isPresented: $alertShow) {
-                
-                Alert(title: Text("\(alertTitle)"), message: Text("\(alertMessage)"), dismissButton: .cancel())
-                
-            }
+            CustomButtonUI(function: LoginBttnTouch, title: "Log In")
+                .padding(.horizontal,30)
+                .alert(isPresented: $alertShow) {
+                    
+                    Alert(title: Text("\(alertTitle)"), message: Text("\(alertMessage)"), dismissButton: .cancel())
+                    
+                }
             
             Spacer()
             Spacer()
                         
-            HStack(spacing:5) {
-                Text("Not a member?")
-                    .foregroundColor(Color(uiColor: .secondaryLabel))
-                Button {
-                    //TODO: create user navigate
-                } label: {
-                    Text("Register now")
-                        .fontWeight(.bold)
-                        .foregroundColor(.green)
-                }
-
-            }//: regiter buton
-            .font(.footnote)
+            NavigateTextButtonUI(text: "Not a member?", bttnText: "Register now",destination: AnyView(SignUpPage().navigationBarHidden(true)))
             .padding(.bottom)
                         
         }//: vstack
@@ -211,7 +145,7 @@ struct LogInPage: View {
         let sendingPassword = pass.trimmingCharacters(in: .whitespacesAndNewlines)
         
         if sendingEmail != "" && sendingPassword != "" {
-            if !isValidEmail(email){
+            if !isValidEmail(sendingEmail){
                 showAlert(title: "Invalid!", message: "Invalid Email")
                 print("gecersiz mail")
                 return

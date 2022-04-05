@@ -10,7 +10,12 @@
 		B404716B27F1A69B00875833 /* WelcomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B404716A27F1A69B00875833 /* WelcomePage.swift */; };
 		B485859727F9DA45007A4593 /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */; };
 		B485859927F9ED8A007A4593 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859827F9ED8A007A4593 /* Extensions.swift */; };
-		B485859B27FB17A1007A4593 /* EmailUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859A27FB17A1007A4593 /* EmailUI.swift */; };
+		B485859B27FB17A1007A4593 /* EmailTextFieldCustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */; };
+		B48585A027FB238E007A4593 /* CustomButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859F27FB238E007A4593 /* CustomButtonUI.swift */; };
+		B48585A227FC7F09007A4593 /* CustomTextButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48585A127FC7F09007A4593 /* CustomTextButtonUI.swift */; };
+		B48585A427FC8414007A4593 /* PasswordTextfieldCustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48585A327FC8414007A4593 /* PasswordTextfieldCustomUI.swift */; };
+		B48585A627FC8B1D007A4593 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48585A527FC8B1D007A4593 /* SignUpPage.swift */; };
+		B48585A827FC9ED3007A4593 /* NavigateTextButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48585A727FC9ED3007A4593 /* NavigateTextButtonUI.swift */; };
 		B4DD68E327EB24DD002CACDF /* SEN4992App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68E227EB24DD002CACDF /* SEN4992App.swift */; };
 		B4DD68E527EB24DD002CACDF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68E427EB24DD002CACDF /* ContentView.swift */; };
 		B4DD68E727EB24DF002CACDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4DD68E627EB24DF002CACDF /* Assets.xcassets */; };
@@ -24,7 +29,12 @@
 		B404716A27F1A69B00875833 /* WelcomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePage.swift; sourceTree = "<group>"; };
 		B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
 		B485859827F9ED8A007A4593 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		B485859A27FB17A1007A4593 /* EmailUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailUI.swift; sourceTree = "<group>"; };
+		B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldCustomUI.swift; sourceTree = "<group>"; };
+		B485859F27FB238E007A4593 /* CustomButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonUI.swift; sourceTree = "<group>"; };
+		B48585A127FC7F09007A4593 /* CustomTextButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextButtonUI.swift; sourceTree = "<group>"; };
+		B48585A327FC8414007A4593 /* PasswordTextfieldCustomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextfieldCustomUI.swift; sourceTree = "<group>"; };
+		B48585A527FC8B1D007A4593 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
+		B48585A727FC9ED3007A4593 /* NavigateTextButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateTextButtonUI.swift; sourceTree = "<group>"; };
 		B4DD68DF27EB24DD002CACDF /* SEN4992.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEN4992.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4DD68E227EB24DD002CACDF /* SEN4992App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEN4992App.swift; sourceTree = "<group>"; };
 		B4DD68E427EB24DD002CACDF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +56,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B485859E27FB213E007A4593 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */,
+				B485859F27FB238E007A4593 /* CustomButtonUI.swift */,
+				B48585A127FC7F09007A4593 /* CustomTextButtonUI.swift */,
+				B48585A327FC8414007A4593 /* PasswordTextfieldCustomUI.swift */,
+				B48585A727FC9ED3007A4593 /* NavigateTextButtonUI.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
 		B4DD68D627EB24DD002CACDF = {
 			isa = PBXGroup;
 			children = (
@@ -69,11 +91,11 @@
 				B4DD68E427EB24DD002CACDF /* ContentView.swift */,
 				B485859827F9ED8A007A4593 /* Extensions.swift */,
 				B4DD68F727EB27BA002CACDF /* Pages */,
+				B485859E27FB213E007A4593 /* CustomUI */,
 				B4DD68E627EB24DF002CACDF /* Assets.xcassets */,
 				B4DD68EB27EB24DF002CACDF /* Persistence.swift */,
 				B4DD68ED27EB24DF002CACDF /* SEN4992.xcdatamodeld */,
 				B4DD68E827EB24DF002CACDF /* Preview Content */,
-				B485859A27FB17A1007A4593 /* EmailUI.swift */,
 			);
 			path = SEN4992;
 			sourceTree = "<group>";
@@ -92,6 +114,7 @@
 				B4DD68F527EB27B3002CACDF /* LogInPage.swift */,
 				B404716A27F1A69B00875833 /* WelcomePage.swift */,
 				B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */,
+				B48585A527FC8B1D007A4593 /* SignUpPage.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -166,14 +189,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B48585A627FC8B1D007A4593 /* SignUpPage.swift in Sources */,
+				B48585A027FB238E007A4593 /* CustomButtonUI.swift in Sources */,
 				B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */,
 				B4DD68EC27EB24DF002CACDF /* Persistence.swift in Sources */,
+				B48585A427FC8414007A4593 /* PasswordTextfieldCustomUI.swift in Sources */,
 				B4DD68E527EB24DD002CACDF /* ContentView.swift in Sources */,
-				B485859B27FB17A1007A4593 /* EmailUI.swift in Sources */,
+				B485859B27FB17A1007A4593 /* EmailTextFieldCustomUI.swift in Sources */,
+				B48585A827FC9ED3007A4593 /* NavigateTextButtonUI.swift in Sources */,
 				B485859927F9ED8A007A4593 /* Extensions.swift in Sources */,
 				B485859727F9DA45007A4593 /* ForgotPasswordPage.swift in Sources */,
 				B404716B27F1A69B00875833 /* WelcomePage.swift in Sources */,
 				B4DD68EF27EB24DF002CACDF /* SEN4992.xcdatamodeld in Sources */,
+				B48585A227FC7F09007A4593 /* CustomTextButtonUI.swift in Sources */,
 				B4DD68E327EB24DD002CACDF /* SEN4992App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
