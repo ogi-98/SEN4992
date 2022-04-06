@@ -14,6 +14,7 @@ struct SEN4992App: App {
     var body: some Scene {
         WindowGroup {
             WelcomePage()
+//            ForgotPasswordPage()
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

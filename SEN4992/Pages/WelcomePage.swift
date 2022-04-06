@@ -19,7 +19,7 @@ struct WelcomePage: View {
                     .padding()
                 
                 NavigationLink(
-                    destination: LogInPage(),
+                    destination: SignUpPage().navigationBarHidden(true),
                     label: {
                         Text("Get Started")
                             .font(.title3)
