@@ -12,12 +12,14 @@ struct SignUpPage: View {
     @Environment(\.presentationMode) private var presentationMode
     //MARK: - Properties
     enum Fields {
+        case name
         case email
         case password
         case rePassword
     }
     @FocusState private var focusedField: Fields?
     
+    @State private var name = ""
     @State private var email = ""
     @State private var pass = ""
     @State private var rePass = ""
@@ -26,7 +28,8 @@ struct SignUpPage: View {
     @State private var alertMessage = ""
     @State private var alertShow = false
     
-    private var loginPage = LogInPage()
+//    private var loginPage = LogInPage()
+    private let userApi = UserApi()
     
     
     
@@ -51,7 +54,9 @@ struct SignUpPage: View {
             
             VStack(alignment: .center, spacing: 10.0) {
                 
-                
+                NameTextFieldCustomUI(name: $name)
+                    .focused($focusedField, equals: .name)
+                    .submitLabel(.next)
                 EmailTextFieldCustomUI(email: $email)
                     .focused($focusedField,equals: .email)
                     .submitLabel(.next)
@@ -69,6 +74,8 @@ struct SignUpPage: View {
             .padding(.vertical,30)
             .onSubmit {
                 switch focusedField {
+                case .name:
+                    focusedField = .email
                 case .email:
                     focusedField = .password
                 case .password:
@@ -126,6 +133,7 @@ struct SignUpPage: View {
     private func SignUpBttnTouch(){
         focusedField = nil
         
+        let sendingName = name.trimmingCharacters(in: .whitespacesAndNewlines)
         let sendingEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
         let sendingPassword = pass.trimmingCharacters(in: .whitespacesAndNewlines)
         let rePassword = rePass.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -142,7 +150,12 @@ struct SignUpPage: View {
                 return
             }
             
-            showAlert(title: "Success!", message: "suanlik isteklerimizi karsiliyor ilerde password lenght check koyariz")
+            userApi.createUser(name: sendingName, mail: sendingEmail, password: sendingPassword) {
+                userApi.userLoginPageCheck()
+            } onError: { errorMessage in
+                showAlert(title: "Error!", message: errorMessage)
+            }
+
             
         }else{
             showAlert(title: "Empty Fields!", message: "Make sure all fields are not empty")

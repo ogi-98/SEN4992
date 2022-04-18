@@ -25,6 +25,7 @@ struct LogInPage: View {
     @State private var forgotShow = false
     
     @FocusState private var focusedField: Fields?
+    private let userApi = UserApi()
     
     
     
@@ -150,8 +151,11 @@ struct LogInPage: View {
                 print("gecersiz mail")
                 return
             }
-            
-            showAlert(title: "Success!", message: "suanlik isteklerimizi karsiliyor ilerde password lenght check koyariz")
+            userApi.userLogin(mail: sendingEmail, password: sendingPassword) {
+                userApi.userLoginPageCheck()
+            } onError: { errorMessage in
+                showAlert(title: "Error!", message: errorMessage)
+            }
             
         }else{
             showAlert(title: "Empty Fields!", message: "Make sure all fields are not empty")

@@ -23,23 +23,24 @@ struct ForgotPasswordPage: View {
     @State private var alertMessage = ""
     @State private var alertTitle = ""
     @State private var alertShow = false
+    private let userApi = UserApi()
     
     
     //MARK: - Body
     var body: some View {
         fetchView()
-        .background(Color(uiColor: .systemGroupedBackground))
-        .onTapGesture {
-            if focusedFieldForgot != nil {
-                focusedFieldForgot = nil
+            .background(Color(uiColor: .systemGroupedBackground))
+            .onTapGesture {
+                if focusedFieldForgot != nil {
+                    focusedFieldForgot = nil
+                }
             }
-        }
     }
     
     private func sendTouch(){
         let sendEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
         if isValidEmail(sendEmail) {
-            sendSuccessful()
+            sendSuccessful(sendEmail: sendEmail)
         }else{
             //alert
             showAlert(title: "Invalid Email!", message: "Check the validity of the Email")
@@ -51,10 +52,19 @@ struct ForgotPasswordPage: View {
         alertShow = true
     }
     
-    private func sendSuccessful(){
-        withAnimation {
-            didSend = true
+    private func sendSuccessful(sendEmail:String){
+        userApi.sendPasswordReset(mail: sendEmail) {
+            withAnimation {
+                didSend = true
+            }
+        } onError: { errorMessage in
+            print(errorMessage)
+            withAnimation {
+                didSend = true
+            }
         }
+        
+        
     }
     private func goToResendView(){
         withAnimation {
@@ -175,7 +185,7 @@ struct ForgotPasswordPage: View {
             
             CustomTextButtonUI(text: "Didn't receive the link?", bttnText: "Resend", function: goToResendView)
             //: resend button
-                    
+            
             Spacer()
         }//: vstack background
     }
