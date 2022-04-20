@@ -53,6 +53,7 @@
 		B4DD68EC27EB24DF002CACDF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68EB27EB24DF002CACDF /* Persistence.swift */; };
 		B4DD68EF27EB24DF002CACDF /* SEN4992.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68ED27EB24DF002CACDF /* SEN4992.xcdatamodeld */; };
 		B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD68F527EB27B3002CACDF /* LogInPage.swift */; };
+		B4E55ADE280FEA4D008E36CB /* CustomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E55ADD280FEA4D008E36CB /* CustomSpinner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		B4DD68EB27EB24DF002CACDF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B4DD68EE27EB24DF002CACDF /* SEN4992.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SEN4992.xcdatamodel; sourceTree = "<group>"; };
 		B4DD68F527EB27B3002CACDF /* LogInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInPage.swift; sourceTree = "<group>"; };
+		B4E55ADD280FEA4D008E36CB /* CustomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSpinner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4489C60281017E000B03771 /* Auth Pages */ = {
+			isa = PBXGroup;
+			children = (
+				B4DD68F527EB27B3002CACDF /* LogInPage.swift */,
+				B404716A27F1A69B00875833 /* WelcomePage.swift */,
+				B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */,
+				B48585A527FC8B1D007A4593 /* SignUpPage.swift */,
+			);
+			path = "Auth Pages";
+			sourceTree = "<group>";
+		};
 		B485859E27FB213E007A4593 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +138,7 @@
 				B48585A327FC8414007A4593 /* PasswordTextfieldCustomUI.swift */,
 				B48585A727FC9ED3007A4593 /* NavigateTextButtonUI.swift */,
 				B40C031B280DA4090048839C /* NameTextFieldCustomUI.swift */,
+				B4E55ADD280FEA4D008E36CB /* CustomSpinner.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -183,10 +197,7 @@
 		B4DD68F727EB27BA002CACDF /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				B4DD68F527EB27B3002CACDF /* LogInPage.swift */,
-				B404716A27F1A69B00875833 /* WelcomePage.swift */,
-				B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */,
-				B48585A527FC8B1D007A4593 /* SignUpPage.swift */,
+				B4489C60281017E000B03771 /* Auth Pages */,
 				B40C0319280D95390048839C /* MainView.swift */,
 			);
 			path = Pages;
@@ -296,6 +307,7 @@
 				B48585A627FC8B1D007A4593 /* SignUpPage.swift in Sources */,
 				B4D84975280C6BE100423CBB /* Ref.swift in Sources */,
 				B48585A027FB238E007A4593 /* CustomButtonUI.swift in Sources */,
+				B4E55ADE280FEA4D008E36CB /* CustomSpinner.swift in Sources */,
 				B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */,
 				B4DD68EC27EB24DF002CACDF /* Persistence.swift in Sources */,
 				B48585A427FC8414007A4593 /* PasswordTextfieldCustomUI.swift in Sources */,

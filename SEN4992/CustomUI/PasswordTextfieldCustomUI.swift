@@ -11,9 +11,11 @@ struct PasswordTextfieldCustomUI: View {
     
     var placeholder: String?
     @Binding var pass: String
-    init(pass: Binding<String> = .constant(""), plcholder: String = "Password") {
+    @State var textContentType: UITextContentType
+    init(pass: Binding<String> = .constant(""), plcholder: String = "Password", textContentType: UITextContentType = .password) {
         _pass = pass
         self.placeholder = plcholder
+        self.textContentType = textContentType
     }
     @State private var secure = false
     
@@ -28,7 +30,7 @@ struct PasswordTextfieldCustomUI: View {
                     .autocapitalization(.none)
                     .disableAutocorrection(false)
                     .padding()
-                    .textContentType(.password)
+                    .textContentType(textContentType)
                     .keyboardType(.default)
                 }
                 else{
@@ -36,7 +38,7 @@ struct PasswordTextfieldCustomUI: View {
                     .autocapitalization(.none)
                     .disableAutocorrection(false)
                     .padding()
-                    .textContentType(.password)
+                    .textContentType(textContentType)
                     .keyboardType(.default)
                 }
 
