@@ -10,6 +10,9 @@
 		B404716B27F1A69B00875833 /* WelcomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B404716A27F1A69B00875833 /* WelcomePage.swift */; };
 		B40C031A280D95390048839C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40C0319280D95390048839C /* MainView.swift */; };
 		B40C031C280DA4090048839C /* NameTextFieldCustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40C031B280DA4090048839C /* NameTextFieldCustomUI.swift */; };
+		B4489C62281028B800B03771 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C61281028B800B03771 /* TodayView.swift */; };
+		B4489C642810290700B03771 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C632810290700B03771 /* AddView.swift */; };
+		B4489C662810293600B03771 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C652810293600B03771 /* HistoryView.swift */; };
 		B485859727F9DA45007A4593 /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */; };
 		B485859927F9ED8A007A4593 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859827F9ED8A007A4593 /* Extensions.swift */; };
 		B485859B27FB17A1007A4593 /* EmailTextFieldCustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */; };
@@ -60,6 +63,9 @@
 		B404716A27F1A69B00875833 /* WelcomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePage.swift; sourceTree = "<group>"; };
 		B40C0319280D95390048839C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B40C031B280DA4090048839C /* NameTextFieldCustomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTextFieldCustomUI.swift; sourceTree = "<group>"; };
+		B4489C61281028B800B03771 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		B4489C632810290700B03771 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		B4489C652810293600B03771 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
 		B485859827F9ED8A007A4593 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldCustomUI.swift; sourceTree = "<group>"; };
@@ -197,8 +203,11 @@
 		B4DD68F727EB27BA002CACDF /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				B4489C60281017E000B03771 /* Auth Pages */,
 				B40C0319280D95390048839C /* MainView.swift */,
+				B4489C60281017E000B03771 /* Auth Pages */,
+				B4489C61281028B800B03771 /* TodayView.swift */,
+				B4489C632810290700B03771 /* AddView.swift */,
+				B4489C652810293600B03771 /* HistoryView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -309,6 +318,7 @@
 				B48585A027FB238E007A4593 /* CustomButtonUI.swift in Sources */,
 				B4E55ADE280FEA4D008E36CB /* CustomSpinner.swift in Sources */,
 				B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */,
+				B4489C662810293600B03771 /* HistoryView.swift in Sources */,
 				B4DD68EC27EB24DF002CACDF /* Persistence.swift in Sources */,
 				B48585A427FC8414007A4593 /* PasswordTextfieldCustomUI.swift in Sources */,
 				B4DD68E527EB24DD002CACDF /* ContentView.swift in Sources */,
@@ -318,10 +328,12 @@
 				B48585A827FC9ED3007A4593 /* NavigateTextButtonUI.swift in Sources */,
 				B485859927F9ED8A007A4593 /* Extensions.swift in Sources */,
 				B40C031A280D95390048839C /* MainView.swift in Sources */,
+				B4489C642810290700B03771 /* AddView.swift in Sources */,
 				B485859727F9DA45007A4593 /* ForgotPasswordPage.swift in Sources */,
 				B404716B27F1A69B00875833 /* WelcomePage.swift in Sources */,
 				B4DD68EF27EB24DF002CACDF /* SEN4992.xcdatamodeld in Sources */,
 				B48585A227FC7F09007A4593 /* CustomTextButtonUI.swift in Sources */,
+				B4489C62281028B800B03771 /* TodayView.swift in Sources */,
 				B4DD68E327EB24DD002CACDF /* SEN4992App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
