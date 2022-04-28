@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     //MARK: - PROPERTIES
     
-    
+    private var userCo2State: Co2State = Co2State(currentCo2State: 20.0)
     
     init() {
     }
@@ -18,6 +18,7 @@ struct MainView: View {
     var body: some View {
         TabView {
                 TodayView()
+                .environmentObject(userCo2State)
                     .tabItem {
                         Image(systemName: "house")
                         Text("Today")
