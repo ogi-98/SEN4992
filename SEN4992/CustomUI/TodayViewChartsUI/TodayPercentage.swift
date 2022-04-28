@@ -8,33 +8,32 @@
 import SwiftUI
 
 struct TodayPercentage: View {
+    //MARK: - PROPERTIES
     @EnvironmentObject var co2State: Co2State
     
-//    var co2progress = 2.5
-//    @State var cappedCo2progress = 3.5
+    var co2progress = 0.5
+    @State var cappedCo2progress = 0.5
+    
+    //
+    //    private var co2progress: Double {
+    //        get {return Double(self.co2State.currentCo2State/self.co2State.co2max)}
+    //    }
+    
+    //    private var cappedCo2progress: Double {
+    //        get {
+    //            return min(co2progress, 1.0)
+    //        }
+    //    }
     
     
-    private var co2progress: Double {
-        get {return Double(self.co2State.currentCo2State/self.co2State.co2max)}
-    }
-
-    private var cappedCo2progress: Double {
-        get {
-            return min(co2progress, 1.0)
-        }
-    }
-    
-    
-    
-    
+    //MARK: - BODY    
     var body: some View {
         
         VStack {
-            HStack {
-                Text("Todays Footprint")
-                    .font(.title3)
-                    .fontWeight(.bold)
-            }
+            Text("Todays Footprint")
+                .font(.headline)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
             
             ZStack {
                 Image("earth-green")
@@ -44,12 +43,9 @@ struct TodayPercentage: View {
                     .resizable()
                     .scaledToFit()
                     .aspectRatio(contentMode: .fill)
-                    .opacity(Double(CGFloat(cappedCo2progress)))
-//                    .frame(height: CGFloat(100*cappedCo2progress), alignment: .bottomLeading)
-                    .clipped()
-//                    .offset(y: CGFloat(100-cappedCo2progress*100 - 100))
+                    .opacity(cappedCo2progress)
             }
-            .frame(width: 100.0, height: 100.0)
+            .padding()
             .shadow(radius: 15)
             HStack {
                 Text(String(Int(co2progress*100)) + " %")
@@ -64,11 +60,10 @@ struct TodayPercentage: View {
             .padding(5)
             .font(.headline)
         }
-        .padding(10)
-//        .padding(.horizontal,50)
+        .padding(8)
         .background(Color(uiColor: .secondarySystemGroupedBackground))
         .cornerRadius(20)
-        .shadow(radius: 10)
+        .shadow(color: Color.gray, radius: 3)
         
         
     }
@@ -76,9 +71,9 @@ struct TodayPercentage: View {
 
 struct TodayPercentage_Previews: PreviewProvider {
     static var previews: some View {
-//        TodayPercentage()
-//            .environmentObject(Co2State(currentCo2State: 30))
-//            .preferredColorScheme(.light)
+        //        TodayPercentage()
+        //            .environmentObject(Co2State(currentCo2State: 30))
+        //            .preferredColorScheme(.light)
         TodayView()
             .environmentObject(Co2State(currentCo2State: 30))
             .preferredColorScheme(.light)

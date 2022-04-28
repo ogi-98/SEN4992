@@ -177,8 +177,8 @@ public class ChartStyle {
         self.backgroundColor = Color.white
         self.accentColor = Colors.OrangeStart
         self.gradientColor = GradientColors.orange
-        self.legendTextColor = Color.gray
-        self.textColor = Color.black
+        self.legendTextColor = Color(uiColor: .secondaryLabel)
+        self.textColor = Color(uiColor: .label)
         self.dropShadowColor = Color.gray
     }
 }

@@ -38,7 +38,7 @@ struct TodayView: View {
                     
                 } label: {
                     Image(systemName: "line.3.horizontal")
-                        .font(.title2)
+                        .font(.title3)
                         .foregroundColor(Color(uiColor: .label))
                 }
                 .padding()
@@ -46,25 +46,25 @@ struct TodayView: View {
                 .cornerRadius(15)
 
             }//: hstack
-            .padding()
+            .padding(.horizontal)
             
-//            TodayPercentage()
             DailyGraphUI()
                 .padding()
             
             HStack {
-//                DailyGraphUI()
-//                DailyGraphUI()
                 TodayPercentage()
-                TodayPercentage()
+                    .frame(maxHeight:.infinity)
+//                TodayPercentage()
+                CategoryView()
+                    .frame(maxHeight:.infinity)
+
                     
             }
-            .padding(.top)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding()
             
-            
-//            Text("Hello, World!\nToday View")
         }
-        .frame(maxWidth:.infinity,maxHeight: .infinity, alignment: .top)
+        .frame(maxWidth:.infinity,maxHeight: .infinity,alignment: .top)
     }
 }
 

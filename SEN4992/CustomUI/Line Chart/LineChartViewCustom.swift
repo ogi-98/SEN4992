@@ -58,10 +58,6 @@ public struct LineChartViewCustom: View {
 
     public var body: some View {
         ZStack(alignment: .center) {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(self.colorScheme == .dark ? self.darkModeStyle.backgroundColor : self.style.backgroundColor)
-                .frame(width: frame.width + 20, height: 240 + 20, alignment: .center)
-                .shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 8 : 0)
             VStack(alignment: .leading) {
                 if !self.showIndicatorDot {
                     
@@ -72,16 +68,14 @@ public struct LineChartViewCustom: View {
                         Spacer()
                         VStack {
                             Text("\(self.currentValue, specifier: self.valueSpecifier) kg Co2")
-                                .font(.system(size: 41, weight: .bold, design: .default))
-                                .offset(x: 0, y: 30)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
                         }
                         Spacer()
                     }
+                    .padding(.top)
                     .transition(.scale)
-                    Spacer()
-                    Spacer()
                 }
-                Spacer()
                 GeometryReader { geometry in
                     Line(data: self.data,
                          frame: .constant(geometry.frame(in: .local)),
@@ -91,10 +85,6 @@ public struct LineChartViewCustom: View {
                          maxDataValue: .constant(nil)
                     )
                 }
-                .frame(width: frame.width, height: frame.height + 30)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .offset(x: 0, y: 0)
-
                 // X AXIS
 
                 HStack {
@@ -106,9 +96,13 @@ public struct LineChartViewCustom: View {
                 }
                 .font(.system(size: 12))
                 .foregroundColor(.gray)
-                .frame(width: frame.width, height: 10, alignment: .center)
-
-            }.frame(width: self.formSize.width, height: self.formSize.height)
+            }
+            .padding()
+            .background(
+                Color(uiColor: .secondarySystemGroupedBackground)
+            )
+            .cornerRadius(20)
+            .shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 5 : 0)
         }
         .gesture(DragGesture()
         .onChanged({ value in
@@ -173,11 +167,12 @@ struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LineChartViewCustom(data: [8, 23, 54, 32, 12, 37, 7, 23, 43], title: "Line chart",legend: "Basic", form: ChartForm.large)
-//                .preferredColorScheme(.dark)
+                .preferredColorScheme(.dark)
 //                .environment(\.colorScheme, .light)
 
             LineChartViewCustom(data: [282.502, 284.495, 283.51, 285.019, 285.197, 286.118, 288.737, 288.455, 289.391, 287.691, 285.878, 286.46, 286.252, 284.652, 284.129, 284.188], title: "Line chart", legend: "Basic")
 //            .environment(\.colorScheme, .light)
         }
+        .previewLayout(.sizeThatFits)
     }
 }
