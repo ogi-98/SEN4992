@@ -17,7 +17,7 @@ struct CategoryView: View {
     //MARK: - BODY
     var body: some View {
         let data = categories.map { (cat) -> Double in
-            return co2State.co2categoryTotal[cat] ?? 30.0
+            return co2State.co2categoryTotal[cat] ?? 0.0
         }
 
 //        PieChartView(labels: categories, data: data, title: "Total CO2 per Categories", legend: "KG CO2", form: ChartForm.medium, dropShadow: true)

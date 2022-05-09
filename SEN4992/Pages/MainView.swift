@@ -24,6 +24,7 @@ struct MainView: View {
                         Text("Today")
                 }
                 AddView()
+                .environmentObject(userCo2State)
                     .tabItem {
                         Image(systemName: "plus.circle")
                         Text("Add")

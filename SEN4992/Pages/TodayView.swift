@@ -19,7 +19,7 @@ struct TodayView: View {
     
     //MARK: - BODY
     var body: some View {
-        VStack {
+        VStack(spacing:0){
             
             HStack{
                 VStack(alignment: .leading){
@@ -41,9 +41,9 @@ struct TodayView: View {
                         .font(.title3)
                         .foregroundColor(Color(uiColor: .label))
                 }
-                .padding()
+                .padding(10)
                 .background(Color.blue)
-                .cornerRadius(15)
+                .cornerRadius(8)
 
             }//: hstack
             .padding(.horizontal)
@@ -61,7 +61,8 @@ struct TodayView: View {
                     
             }
             .fixedSize(horizontal: false, vertical: true)
-            .padding()
+            .padding(.horizontal)
+            .padding(.bottom)
             
         }
         .frame(maxWidth:.infinity,maxHeight: .infinity,alignment: .top)

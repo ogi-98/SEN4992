@@ -11,19 +11,19 @@ struct TodayPercentage: View {
     //MARK: - PROPERTIES
     @EnvironmentObject var co2State: Co2State
     
-    var co2progress = 0.5
-    @State var cappedCo2progress = 0.5
+//    var co2progress = 0.5
+//    @State var cappedCo2progress = 0.5
     
-    //
-    //    private var co2progress: Double {
-    //        get {return Double(self.co2State.currentCo2State/self.co2State.co2max)}
-    //    }
     
-    //    private var cappedCo2progress: Double {
-    //        get {
-    //            return min(co2progress, 1.0)
-    //        }
-    //    }
+        private var co2progress: Double {
+            get {return Double(self.co2State.currentCo2State/self.co2State.co2max)}
+        }
+    
+        private var cappedCo2progress: Double {
+            get {
+                return min(co2progress, 1.0)
+            }
+        }
     
     
     //MARK: - BODY    
@@ -45,7 +45,7 @@ struct TodayPercentage: View {
                     .aspectRatio(contentMode: .fill)
                     .opacity(cappedCo2progress)
             }
-            .padding()
+            .padding(8)
             .shadow(radius: 15)
             HStack {
                 Text(String(Int(co2progress*100)) + " %")
@@ -57,10 +57,11 @@ struct TodayPercentage: View {
                         .colorInvert()
                 }
             }
-            .padding(5)
+//            .padding(5)
             .font(.headline)
         }
-        .padding(8)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 3)
         .background(Color(uiColor: .secondarySystemGroupedBackground))
         .cornerRadius(20)
         .shadow(color: Color.gray, radius: 3)

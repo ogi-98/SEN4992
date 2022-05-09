@@ -65,7 +65,7 @@ public struct PieChartView : View {
                     .imageScale(.large)
                     .foregroundColor(Color(uiColor: .secondaryLabel))
             }
-            .padding()
+
             HStack {
                 PieChartRow(data: data, backgroundColor: Color(uiColor: .secondarySystemGroupedBackground), accentColor: self.style.accentColor, colors: colors, labels: labels, showValue: $showValue, currentValue: $currentValue, currentLabel: $currentLabel)
                     .foregroundColor(self.style.accentColor)
