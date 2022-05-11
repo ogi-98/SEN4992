@@ -29,7 +29,7 @@ struct ForgotPasswordPage: View {
     //MARK: - Body
     var body: some View {
         fetchView()
-            .background(Color(uiColor: .systemGroupedBackground))
+            .background(Color(uiColor: .systemBackground))
             .onTapGesture {
                 if focusedFieldForgot != nil {
                     focusedFieldForgot = nil

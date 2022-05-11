@@ -16,7 +16,8 @@ struct EmailTextFieldCustomUI: View {
             .disableAutocorrection(false)
             .textContentType(.emailAddress)
             .keyboardType(.emailAddress)
-            .background(Color(uiColor: .tertiarySystemBackground))
+            .background(Color("customTextFieldGreen"))
+//            .background(Color(uiColor: .tertiarySystemBackground))
             .cornerRadius(12)
     }
 }
