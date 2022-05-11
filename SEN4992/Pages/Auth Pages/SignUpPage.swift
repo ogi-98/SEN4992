@@ -116,7 +116,8 @@ struct SignUpPage: View {
             }//: VStack
             .padding(.horizontal,30)
             .background(
-                Color(uiColor: .systemGroupedBackground)
+                Color(uiColor: .systemBackground)
+//                Color(uiColor: .systemGroupedBackground)
             )
             .onTapGesture {
                 if focusedField != nil {

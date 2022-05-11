@@ -52,7 +52,8 @@ struct PasswordTextfieldCustomUI: View {
             .padding(8)
 
         }//:  password hstack
-        .background(Color(uiColor: .tertiarySystemBackground))
+//        .background(Color(uiColor: .tertiarySystemBackground))
+        .background(Color("customTextFieldGreen"))
         .cornerRadius(12)
         
     }
