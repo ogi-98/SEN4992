@@ -12,3 +12,48 @@ func isValidEmail(_ email: String) -> Bool {
     let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
     return emailPred.evaluate(with: email)
 }
+
+
+var customAnimationDuration = false
+
+
+extension Date {
+    func dayDiff(_ date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
+    }
+}
+
+
+extension String {
+    func numericString(allowDecimalSeparator: Bool) -> String {
+        // sanitize inputs removes non nubers and all decimal separators after the first
+        let sep: String = Locale.current.decimalSeparator ?? "."
+        var hasFoundDecimal = false
+        return self.filter {
+            if $0.isWholeNumber {
+                return true
+            } else if allowDecimalSeparator && String($0) == sep {
+                defer { hasFoundDecimal = true }
+                return !hasFoundDecimal
+            }
+            return false
+        }
+            
+    }
+    
+    func parseDouble() -> Double {
+        let formatter = NumberFormatter()
+        return Double(truncating: formatter.number(from: self) ?? 0)
+    }
+
+}
+
+extension Double {
+    func getFormatted(digits: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 1
+        formatter.minimumFractionDigits = digits
+        formatter.maximumFractionDigits = digits
+        return formatter.string(from: NSNumber(value: self) ) ?? (formatter.string(from: 0.0)!)
+    }
+}

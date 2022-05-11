@@ -8,25 +8,40 @@
 import SwiftUI
 
 struct MainView: View {
-    let userApi = UserApi()
+    //MARK: - PROPERTIES
     
+    private var userCo2State: Co2State = Co2State(currentCo2State: 20.0)
+    
+    init() {
+        UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance()
+    }
+    //MARK: - BODY
     var body: some View {
-                VStack {
-                    Text("Hello, World!\nuser id:  \(userApi.currentUserId)\nname: \(userApi.currentUserName)")
-                    CustomButtonUI(function: {
-                        userApi.logOut {
-                            userApi.userLoginPageCheck()
-                        } onError: { err in
-                            print(err)
-                        }
-        
-                    }, title: "LogOut")
+        TabView {
+                TodayView()
+                .environmentObject(userCo2State)
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Today")
                 }
+                AddView()
+                .environmentObject(userCo2State)
+                    .tabItem {
+                        Image(systemName: "plus.circle")
+                        Text("Add")
+                }
+                HistoryView()
+                    .tabItem {
+                        Image(systemName: "list.bullet.rectangle")
+                        Text("History")
+                }
+            }//: tabview
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .preferredColorScheme(.light)
     }
 }
