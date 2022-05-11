@@ -15,7 +15,8 @@ struct NameTextFieldCustomUI: View {
             .autocapitalization(.words)
             .disableAutocorrection(false)
             .textContentType(.name)
-            .background(Color(uiColor: .tertiarySystemBackground))
+//            .background(Color(uiColor: .tertiarySystemBackground))
+            .background(Color("customTextFieldGreen"))
             .cornerRadius(12)
     }
 }
