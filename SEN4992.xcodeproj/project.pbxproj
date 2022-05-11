@@ -37,6 +37,8 @@
 		B4489C8F2810487700B03771 /* Co2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C8E2810487700B03771 /* Co2Model.swift */; };
 		B4489C91281048B100B03771 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C90281048B100B03771 /* Entry.swift */; };
 		B4489C932810494400B03771 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C922810494400B03771 /* ListItem.swift */; };
+		B44DEAC5282906B70001337F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44DEAC4282906B70001337F /* SearchBar.swift */; };
+		B44DEAC72829311A0001337F /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44DEAC62829311A0001337F /* AddListView.swift */; };
 		B485859727F9DA45007A4593 /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */; };
 		B485859927F9ED8A007A4593 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859827F9ED8A007A4593 /* Extensions.swift */; };
 		B485859B27FB17A1007A4593 /* EmailTextFieldCustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */; };
@@ -114,6 +116,8 @@
 		B4489C8E2810487700B03771 /* Co2Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Co2Model.swift; sourceTree = "<group>"; };
 		B4489C90281048B100B03771 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		B4489C922810494400B03771 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		B44DEAC4282906B70001337F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		B44DEAC62829311A0001337F /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
 		B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
 		B485859827F9ED8A007A4593 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldCustomUI.swift; sourceTree = "<group>"; };
@@ -227,9 +231,19 @@
 			path = "Line Chart";
 			sourceTree = "<group>";
 		};
+		B44DEAC32829069D0001337F /* SearchUI */ = {
+			isa = PBXGroup;
+			children = (
+				B44DEAC4282906B70001337F /* SearchBar.swift */,
+				B44DEAC62829311A0001337F /* AddListView.swift */,
+			);
+			path = SearchUI;
+			sourceTree = "<group>";
+		};
 		B485859E27FB213E007A4593 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				B44DEAC32829069D0001337F /* SearchUI */,
 				B4462E2F281ACB1800EECE42 /* TodayViewChartsUI */,
 				B4489C692810443B00B03771 /* Line Chart */,
 				B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */,
@@ -421,6 +435,7 @@
 				B4489C832810456000B03771 /* LabelView.swift in Sources */,
 				B4489C842810456000B03771 /* MagnifierRect.swift in Sources */,
 				B4E55ADE280FEA4D008E36CB /* CustomSpinner.swift in Sources */,
+				B44DEAC72829311A0001337F /* AddListView.swift in Sources */,
 				B4489C862810456000B03771 /* Helpers.swift in Sources */,
 				B4489C812810456000B03771 /* PieChartRow.swift in Sources */,
 				B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */,
@@ -449,6 +464,7 @@
 				B404716B27F1A69B00875833 /* WelcomePage.swift in Sources */,
 				B4489C882810456000B03771 /* Line.swift in Sources */,
 				B4DD68EF27EB24DF002CACDF /* SEN4992.xcdatamodeld in Sources */,
+				B44DEAC5282906B70001337F /* SearchBar.swift in Sources */,
 				B48585A227FC7F09007A4593 /* CustomTextButtonUI.swift in Sources */,
 				B4489C872810456000B03771 /* LineView.swift in Sources */,
 				B4489C62281028B800B03771 /* TodayView.swift in Sources */,

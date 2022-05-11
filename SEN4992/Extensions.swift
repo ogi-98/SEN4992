@@ -47,3 +47,13 @@ extension String {
     }
 
 }
+
+extension Double {
+    func getFormatted(digits: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 1
+        formatter.minimumFractionDigits = digits
+        formatter.maximumFractionDigits = digits
+        return formatter.string(from: NSNumber(value: self) ) ?? (formatter.string(from: 0.0)!)
+    }
+}

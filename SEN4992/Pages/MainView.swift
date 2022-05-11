@@ -13,6 +13,7 @@ struct MainView: View {
     private var userCo2State: Co2State = Co2State(currentCo2State: 20.0)
     
     init() {
+        UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance()
     }
     //MARK: - BODY
     var body: some View {

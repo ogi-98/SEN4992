@@ -27,6 +27,8 @@ final class Co2State: ObservableObject {
     var co2data: [String: Any]
     var listItems: [ListItem] = []
     var listItemsDict: [String: ListItem] = [:]
+    
+    // Top categories: Food Home Transport Home
 
     func loadItems() {
         // MARK: New Items to add to our Data
@@ -46,14 +48,14 @@ final class Co2State: ObservableObject {
         listItems.append(ListItem(description: "⚡️🇮🇹 IT Electricity", category: "Power", CO2eqkg: 0.350, topCategory: "Home", unit: "kwH", sourceId: 1))
         
         // MARK: Clothing
-        listItems.append(ListItem(description: "👕  Polyester T-shirt", category: "Clothing", CO2eqkg: 20, topCategory: "Clothing", unit: "item"))
-        listItems.append(ListItem(description: "👕  Cotton T-shirt", category: "Clothing", CO2eqkg: 10, topCategory: "Clothing", unit: "item"))
-        listItems.append(ListItem(description: "👕  Organic Cotton T-shirt", category: "Clothing", CO2eqkg: 4, topCategory: "Clothing", unit: "item"))
-        listItems.append(ListItem(description: "👟  Sport Shoe", category: "Clothing", CO2eqkg: 15, topCategory: "Clothing", unit: "item"))
-        listItems.append(ListItem(description: "👞  Shoe", category: "Clothing", CO2eqkg: 10, topCategory: "Clothing", unit: "item"))
-        listItems.append(ListItem(description: "🩳  Short Cotton Pants", category: "Clothing", CO2eqkg: 10, topCategory: "Clothing", unit: "item"))
-        listItems.append(ListItem(description: "🩳  Short Polyester Pants", category: "Clothing", CO2eqkg: 4, topCategory: "Clothing", unit: "item"))
-        listItems.append(ListItem(description: "👖  Jeans", category: "Clothing", CO2eqkg: 34, topCategory: "Clothing", unit: "item"))
+        listItems.append(ListItem(description: "👕  Polyester T-shirt", category: "Clothes", CO2eqkg: 20, topCategory: "Clothes", unit: "item"))
+        listItems.append(ListItem(description: "👕  Cotton T-shirt", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
+        listItems.append(ListItem(description: "👕  Organic Cotton T-shirt", category: "Clothes", CO2eqkg: 4, topCategory: "Clothes", unit: "item"))
+        listItems.append(ListItem(description: "👟  Sport Shoe", category: "Clothes", CO2eqkg: 15, topCategory: "Clothes", unit: "item"))
+        listItems.append(ListItem(description: "👞  Shoe", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
+        listItems.append(ListItem(description: "🩳  Short Cotton Pants", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
+        listItems.append(ListItem(description: "🩳  Short Polyester Pants", category: "Clothes", CO2eqkg: 4, topCategory: "Clothes", unit: "item"))
+        listItems.append(ListItem(description: "👖  Jeans", category: "Clothes", CO2eqkg: 34, topCategory: "Clothes", unit: "item"))
         
         for item in listItems {
             listItemsDict[item.description] = item
@@ -180,7 +182,7 @@ final class Co2State: ObservableObject {
     }
 
     func getCo2CategoryTotal() -> [String: Double] {
-        var catTotal: [String: Double] = ["Food": 0, "Transport": 0, "Clothing": 0, "Home": 0]
+        var catTotal: [String: Double] = ["Food": 0, "Transport": 0, "Clothes": 0, "Home": 0]
         for entry in addedItems {
             let item = listItemsDict[entry.type]!
             let cat = item.topCategory
@@ -295,20 +297,27 @@ final class Co2State: ObservableObject {
         return json
     }
 
-//    func getSearchResults(query: String?, category: String) -> [ListItem] {
-//        var items: [ListItem] = listItems
-//
-//        // only filter when not searching
-//        if query == nil && category != "" {
-//            items = items.filter({ (item) -> Bool in
-//                item.topCategory == category
-//            })
-//        }
-//
-//        if query == nil {
-//            return items
-//        }
-//
+    func getSearchResults(query: String?, category: String) -> [ListItem] {
+        var items: [ListItem] = listItems
+
+        // only filter when not searching
+        if query == nil && category != "" {
+            items = items.filter({ (item) -> Bool in
+                item.topCategory == category
+            })
+        }
+
+        if query == nil {
+            return items
+        }
+        
+        var filteredArray = items
+        if let searchQuery = query {
+            filteredArray = filteredArray.filter { $0.description.localizedCaseInsensitiveContains(searchQuery)}
+        }        
+        return filteredArray
+        
+
 //        let fuse = Fuse()
 //        for item in items {
 //            let result = fuse.search(query!, in: item.description)
@@ -322,7 +331,7 @@ final class Co2State: ObservableObject {
 //        return results.filter { (item) -> Bool in
 //            return item.searchScore <= 0.5
 //        }
-//    }
+    }
 }
 
 
