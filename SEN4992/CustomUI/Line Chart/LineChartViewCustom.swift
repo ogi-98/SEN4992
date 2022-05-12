@@ -90,7 +90,7 @@ public struct LineChartViewCustom: View {
                 HStack {
                     Text("last week")
                     Spacer()
-                    Text("yesteray")
+                    Text("yesterday")
                     Spacer()
                     Text("today")
                 }
