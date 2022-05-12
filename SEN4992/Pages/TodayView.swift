@@ -27,7 +27,7 @@ struct TodayView: View {
                         .foregroundColor(.secondary)
                         .font(.callout)
                     
-                    Text("Good Aftornoon, (isim)")
+                    Text("Good Afternoon, (isim)")
                         .foregroundColor(Color(uiColor: .label))
                         .font(.headline)
                 }
