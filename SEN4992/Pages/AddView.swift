@@ -27,13 +27,12 @@ struct AddView: View {
     //MARK: - BODY
     var body: some View {
         VStack {
-            
-            Text("Add Emission")
+            Text("Calculate CO2 Emission")
                 .font(.largeTitle)
-                .padding(.top)
+                .padding(.top,30)
             HStack{
                 SearchBar(text: $searchText, selectedItem: $selectedItem)
-                    .padding()
+                    .padding(.horizontal)
                 
                 if selectedItem != nil || selectedCategory != "" || searchText != "" {
                     Button {
@@ -166,22 +165,6 @@ struct AddView: View {
     private var categoryView: some View {
         VStack {
             HStack {
-                Button {
-                    withAnimation {
-                        self.selectedCategory = "Transport"
-                    }
-                } label: {
-                    VStack {
-                        Text("🚘")
-                            .font(.system(size: 70))
-                        Text("Transportation")
-                            .fontWeight(.bold)
-                    }
-                    .foregroundColor(Color(uiColor: .label))
-                    .frame(maxWidth:.infinity)
-                }//: bttn
-//                    .tint(.blue)
-                .buttonStyle(.bordered)
                 
                 Button {
                     withAnimation {
@@ -195,11 +178,29 @@ struct AddView: View {
                             .fontWeight(.bold)
                     }
                     .foregroundColor(Color(uiColor: .label))
-                    .frame(maxWidth:.infinity)
+                    .frame(maxWidth:.infinity, maxHeight:.infinity)
                 }//: bttn
 //                    .tint(.blue)
                 .buttonStyle(.bordered)
 
+                Button {
+                    withAnimation {
+                        self.selectedCategory = "Transport"
+                    }
+                } label: {
+                    VStack {
+                        Text("🚘")
+                            .font(.system(size: 70))
+                        Text("Transportation")
+                            .fontWeight(.bold)
+                    }
+                    .foregroundColor(Color(uiColor: .label))
+                    .frame(maxWidth:.infinity, maxHeight:.infinity)
+                }//: bttn
+//                    .tint(.blue)
+                .buttonStyle(.bordered)
+                
+                
             }
             .fixedSize(horizontal: false, vertical: true)
             
@@ -209,34 +210,60 @@ struct AddView: View {
                         self.selectedCategory = "Food"
                     }
                 } label: {
-                    VStack {
-                        Text("🍔")
-                            .font(.system(size: 70))
-                        Text("Food")
+                    ZStack {
+                        VStack {
+                            Text("🍔")
+                                .font(.system(size: 70))
+                            Text("Food")
+                                .fontWeight(.bold)
+                        }
+//                      .foregroundColor(Color(uiColor: .label))
+                        .frame(maxWidth:.infinity, maxHeight:.infinity)
+                        
+                        Text("Coming Soon")
+                            .font(.title3)
                             .fontWeight(.bold)
+                            .padding(7)
+                            .foregroundColor(Color(uiColor: .label))
+                            .background(Color(uiColor: .systemBackground))
+                            .cornerRadius(10)
+                            .rotationEffect(.degrees(-20))
+
                     }
-                    .foregroundColor(Color(uiColor: .label))
-                    .frame(maxWidth:.infinity)
                 }//: bttn
 //                    .tint(.blue)
                 .buttonStyle(.bordered)
+                .disabled(true)
                 
                 Button {
                     withAnimation {
                         self.selectedCategory = "Clothes"
                     }
                 } label: {
-                    VStack {
-                        Text("👙")
-                            .font(.system(size: 70))
-                        Text("Clothes")
+                    ZStack {
+                        VStack {
+                            Text("👔")
+                                .font(.system(size: 70))
+                            Text("Clothes")
+                                .fontWeight(.bold)
+                        }
+    //                  .foregroundColor(Color(uiColor: .label))
+                        .frame(maxWidth:.infinity, maxHeight:.infinity)
+                        
+                        Text("Coming soon")
+                            .font(.title3)
                             .fontWeight(.bold)
+                            .padding(7)
+                            .foregroundColor(Color(uiColor: .label))
+                            .background(Color(uiColor: .systemBackground))
+                            .cornerRadius(10)
+                            .rotationEffect(.degrees(-20))
+
                     }
-                    .foregroundColor(Color(uiColor: .label))
-                    .frame(maxWidth:.infinity)
                 }//: bttn
 //                    .tint(.blue)
                 .buttonStyle(.bordered)
+                .disabled(true)
 
             }
             .fixedSize(horizontal: false, vertical: true)
