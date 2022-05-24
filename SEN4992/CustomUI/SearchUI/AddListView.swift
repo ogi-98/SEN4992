@@ -14,7 +14,9 @@ struct AddListView: View {
     var body: some View {
         List(items) { item in
             Button {
-                
+                withAnimation {
+                    self.selectedItem = item
+                }
             } label: {
                 VStack(alignment: .leading) {
                     Text(item.description)
