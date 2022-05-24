@@ -27,10 +27,10 @@ struct AddView: View {
         VStack {
             Text("Calculate CO2 Emission")
                 .font(.largeTitle)
-                .padding(.top)
+                .padding(.top,30)
             HStack{
                 SearchBar(text: $searchText, selectedItem: $selectedItem)
-                    .padding()
+                    .padding(.horizontal)
                 
                 if selectedItem != nil || selectedCategory != "" || searchText != "" {
                     Button {
@@ -76,22 +76,6 @@ struct AddView: View {
     private var categoryView: some View {
         VStack {
             HStack {
-                Button {
-                    withAnimation {
-                        self.selectedCategory = "Transport"
-                    }
-                } label: {
-                    VStack {
-                        Text("🚘")
-                            .font(.system(size: 70))
-                        Text("Transportation")
-                            .fontWeight(.bold)
-                    }
-                    .foregroundColor(Color(uiColor: .label))
-                    .frame(maxWidth:.infinity, maxHeight:.infinity)
-                }//: bttn
-//                    .tint(.blue)
-                .buttonStyle(.bordered)
                 
                 Button {
                     withAnimation {
@@ -110,6 +94,24 @@ struct AddView: View {
 //                    .tint(.blue)
                 .buttonStyle(.bordered)
 
+                Button {
+                    withAnimation {
+                        self.selectedCategory = "Transport"
+                    }
+                } label: {
+                    VStack {
+                        Text("🚘")
+                            .font(.system(size: 70))
+                        Text("Transportation")
+                            .fontWeight(.bold)
+                    }
+                    .foregroundColor(Color(uiColor: .label))
+                    .frame(maxWidth:.infinity, maxHeight:.infinity)
+                }//: bttn
+//                    .tint(.blue)
+                .buttonStyle(.bordered)
+                
+                
             }
             .fixedSize(horizontal: false, vertical: true)
             
@@ -135,6 +137,8 @@ struct AddView: View {
                             .padding(7)
                             .foregroundColor(Color(uiColor: .label))
                             .background(Color(uiColor: .systemBackground))
+                            .cornerRadius(10)
+                            .rotationEffect(.degrees(-20))
 
                     }
                 }//: bttn
@@ -163,6 +167,8 @@ struct AddView: View {
                             .padding(7)
                             .foregroundColor(Color(uiColor: .label))
                             .background(Color(uiColor: .systemBackground))
+                            .cornerRadius(10)
+                            .rotationEffect(.degrees(-20))
 
                     }
                 }//: bttn
