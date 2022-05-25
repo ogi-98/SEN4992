@@ -21,7 +21,10 @@ struct AddView: View {
     
     @EnvironmentObject var co2State: Co2State
     
-    
+    enum Fields {
+        case amount
+    }
+    @FocusState private var focusedField: Fields?
     
     
     //MARK: - BODY
@@ -41,8 +44,8 @@ struct AddView: View {
                             selectedItem = nil
                             searchText = ""
                             enteredCo2 = ""
+                            focusedField = nil
                         }
-                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     } label: {
                         Text("Back")
                     }
@@ -50,7 +53,6 @@ struct AddView: View {
                     //.padding(.trailing, 20)
                     .transition(.move(edge: .trailing))
                     .animation(.default)
-
                 }
             }//: hstack
             if !(selectedItem != nil || selectedCategory != "" || searchText != "") {
@@ -81,88 +83,94 @@ struct AddView: View {
     
     
     private var addView: some View {
-            VStack(alignment: .center, spacing: 20) {
-                Text("Electricity")
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-                    .padding(.top)
-                
-                HStack {
-                    TextField("Amount", text: $enteredCo2)
-                        .keyboardType(.decimalPad)
-                        .padding()
-                        .background(Color(uiColor: .secondarySystemBackground))
-                        .cornerRadius(10.0)
-                        .onReceive(Just(enteredCo2)) { (newValue: String) in
-                            self.enteredCo2 = newValue.numericString(allowDecimalSeparator: true)
-                        }
-                    
-                    Text("kwH")
-                        .font(.title2)
-                }//: hstack
+        VStack(alignment: .center, spacing: 20) {
+            Text("Electricity")
+                .font(.title)
+                .multilineTextAlignment(.center)
                 .padding(.top)
-                
-                let co2Amount: Double = self.enteredCo2.parseDouble()
-    //                    let fotmattedCO2: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg).getFormatted(digits: 3)
-                let fotmattedCO2: String = "10.0"
-    //                    let formattedPercent: String = (co2amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg / co2State.co2max * 100).getFormatted(digits: 1)
-                let formattedPercent: String = "50"
-                
-                Text("\(fotmattedCO2) kg CO2 (\(formattedPercent)%)")
-                    .foregroundColor(Color(uiColor: .systemGray2))
-                
-                DatePicker("Date:", selection: $selectedDate, in: ...Date(), displayedComponents: .date)
-                    .labelsHidden()
-                    .padding(.top)
-                
-                Picker(selection: $selectedRecurrence, label: Text("Recurrence:")) {
-                    Text("once").tag("1")
-                    Text("daily").tag("d")
-                    Text("weekly").tag("w")
-                    Text("month").tag("m")
-                    Text("yearly").tag("y")
-                }
-                .pickerStyle(.segmented)
-                
-                HStack {
-                    
-                    let paddingVal: CGFloat = 10
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("Add")
-                            .padding(paddingVal)
-                            .frame(maxWidth: .infinity)
+            
+            HStack {
+                TextField("Amount", text: $enteredCo2)
+                    .focused($focusedField,equals: .amount)
+                    .keyboardType(.decimalPad)
+                    .padding()
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .cornerRadius(10.0)
+                    .onReceive(Just(enteredCo2)) { (newValue: String) in
+                        self.enteredCo2 = newValue.numericString(allowDecimalSeparator: true)
                     }
-                    .buttonStyle(.borderedProminent)
-                    
-                    
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("Cancel")
-                            .padding(paddingVal)
-                            .foregroundColor(.red)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.bordered)
-                    .tint(.red)
-
-                    
-                }
+                
+                Text("kwH")
+                    .font(.title2)
+            }//: hstack
+            .padding(.top)
+            
+            let co2Amount: Double = self.enteredCo2.parseDouble()
+            let fotmattedCO2: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg).getFormatted(digits: 3)
+            //            let fotmattedCO2: String = "10.0"
+            let formattedPercent: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg / co2State.co2max * 100).getFormatted(digits: 1)
+            //            let formattedPercent: String = "50"
+            
+            Text("\(fotmattedCO2) kg CO2 (\(formattedPercent)%)")
+                .foregroundColor(Color(uiColor: .systemGray2))
+            
+            DatePicker("Date:", selection: $selectedDate, in: ...Date(), displayedComponents: .date)
+                .labelsHidden()
                 .padding(.top)
-                .fixedSize(horizontal: false, vertical: true)
+            
+            Picker(selection: $selectedRecurrence, label: Text("Recurrence:")) {
+                Text("once").tag("1")
+                Text("daily").tag("d")
+                Text("weekly").tag("w")
+                Text("month").tag("m")
+                Text("yearly").tag("y")
+            }
+            .pickerStyle(.segmented)
+            
+            HStack {
+                
+                let paddingVal: CGFloat = 10
+                
+                Button {
+                    
+                } label: {
+                    Text("Add")
+                        .padding(paddingVal)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
                 
                 
-            }//: Vstack
-            .padding()
-            .background(Color(uiColor: .secondarySystemGroupedBackground))
-            .cornerRadius(16)
-            .shadow(color: .gray, radius: 3, x: 0, y: 0)
-            .padding(.horizontal, 28)
-        }
+                
+                Button {
+                    
+                } label: {
+                    Text("Cancel")
+                        .padding(paddingVal)
+                        .foregroundColor(.red)
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .tint(.red)
+                
+                
+            }
+            .padding(.top)
+            .fixedSize(horizontal: false, vertical: true)
+            
+            
+        }//: Vstack
+        .padding()
+        .background(
+            Color(uiColor: .secondarySystemGroupedBackground)
+                .onTapGesture {
+                    focusedField = nil
+                }
+        )
+        .cornerRadius(16)
+        .shadow(color: .gray, radius: 3, x: 0, y: 0)
+        .padding(.horizontal, 28)
+    }
     
     private var categoryView: some View {
         VStack {
@@ -182,9 +190,8 @@ struct AddView: View {
                     .foregroundColor(Color(uiColor: .label))
                     .frame(maxWidth:.infinity, maxHeight:.infinity)
                 }//: bttn
-//                    .tint(.blue)
                 .buttonStyle(.bordered)
-
+                
                 Button {
                     withAnimation {
                         self.selectedCategory = "Transport"
@@ -199,7 +206,6 @@ struct AddView: View {
                     .foregroundColor(Color(uiColor: .label))
                     .frame(maxWidth:.infinity, maxHeight:.infinity)
                 }//: bttn
-//                    .tint(.blue)
                 .buttonStyle(.bordered)
                 
                 
@@ -219,7 +225,6 @@ struct AddView: View {
                             Text("Food")
                                 .fontWeight(.bold)
                         }
-//                      .foregroundColor(Color(uiColor: .label))
                         .frame(maxWidth:.infinity, maxHeight:.infinity)
                         
                         Text("Coming Soon")
@@ -230,10 +235,9 @@ struct AddView: View {
                             .background(Color(uiColor: .systemBackground))
                             .cornerRadius(10)
                             .rotationEffect(.degrees(-20))
-
+                        
                     }
                 }//: bttn
-//                    .tint(.blue)
                 .buttonStyle(.bordered)
                 .disabled(true)
                 
@@ -249,7 +253,6 @@ struct AddView: View {
                             Text("Clothes")
                                 .fontWeight(.bold)
                         }
-    //                  .foregroundColor(Color(uiColor: .label))
                         .frame(maxWidth:.infinity, maxHeight:.infinity)
                         
                         Text("Coming soon")
@@ -260,13 +263,12 @@ struct AddView: View {
                             .background(Color(uiColor: .systemBackground))
                             .cornerRadius(10)
                             .rotationEffect(.degrees(-20))
-
+                        
                     }
                 }//: bttn
-//                    .tint(.blue)
                 .buttonStyle(.bordered)
                 .disabled(true)
-
+                
             }
             .fixedSize(horizontal: false, vertical: true)
             
