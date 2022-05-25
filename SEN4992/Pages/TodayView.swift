@@ -16,56 +16,60 @@ struct TodayView: View {
     
     
     
-    
     //MARK: - BODY
     var body: some View {
-        VStack(spacing:0){
-            
-            HStack{
-                VStack(alignment: .leading){
-                    Text("20.03.2022")
-                        .foregroundColor(.secondary)
-                        .font(.callout)
-                    
-                    Text("Good Afternoon, (isim)")
-                        .foregroundColor(Color(uiColor: .label))
-                        .font(.headline)
-                }
-                .frame(maxWidth:.infinity,alignment: .leading)
+        NavigationView {
+            VStack(spacing:0){
                 
+                HStack{
+                    VStack(alignment: .leading){
+                        Text("20.03.2022")
+                            .foregroundColor(.secondary)
+                            .font(.callout)
+                        
+                        Text("Good Afternoon, (isim)")
+                            .foregroundColor(Color(uiColor: .label))
+                            .font(.headline)
+                    }
+                    .frame(maxWidth:.infinity,alignment: .leading)
+                    
+                    
+                    NavigationLink {
+                        UserSettings()
+                            .navigationBarTitleDisplayMode(.inline)
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                            .font(.title3)
+                            .foregroundColor(Color(uiColor: .label))
+                            .padding(10)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    }
+
+
+                }//: hstack
+                .padding(.horizontal)
                 
-                Button {
-                    
-                } label: {
-                    Image(systemName: "line.3.horizontal")
-                        .font(.title3)
-                        .foregroundColor(Color(uiColor: .label))
+                DailyGraphUI()
+                    .padding()
+                
+                HStack {
+                    TodayPercentage()
+                        .frame(maxHeight:.infinity)
+    //                TodayPercentage()
+                    CategoryView()
+                        .frame(maxHeight:.infinity)
+
+                        
                 }
-                .padding(10)
-                .background(Color.blue)
-                .cornerRadius(8)
-
-            }//: hstack
-            .padding(.horizontal)
-            
-            DailyGraphUI()
-                .padding()
-            
-            HStack {
-                TodayPercentage()
-                    .frame(maxHeight:.infinity)
-//                TodayPercentage()
-                CategoryView()
-                    .frame(maxHeight:.infinity)
-
-                    
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.horizontal)
+                .padding(.bottom)
+                
             }
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(.horizontal)
-            .padding(.bottom)
-            
+            .frame(maxWidth:.infinity,maxHeight: .infinity,alignment: .top)
+            .navigationBarHidden(true)
         }
-        .frame(maxWidth:.infinity,maxHeight: .infinity,alignment: .top)
     }
 }
 
