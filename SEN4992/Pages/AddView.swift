@@ -92,7 +92,7 @@ struct AddView: View {
             HStack {
                 TextField("Amount", text: $enteredCo2)
                     .focused($focusedField,equals: .amount)
-                    .keyboardType(.default)
+                    .keyboardType(.decimalPad)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(10.0)
