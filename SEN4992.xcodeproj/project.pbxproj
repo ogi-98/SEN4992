@@ -39,6 +39,7 @@
 		B4489C932810494400B03771 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C922810494400B03771 /* ListItem.swift */; };
 		B44DEAC5282906B70001337F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44DEAC4282906B70001337F /* SearchBar.swift */; };
 		B44DEAC72829311A0001337F /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44DEAC62829311A0001337F /* AddListView.swift */; };
+		B47C75CD283E6C0800E9F401 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47C75CC283E6C0800E9F401 /* UserSettings.swift */; };
 		B485859727F9DA45007A4593 /* ForgotPasswordPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */; };
 		B485859927F9ED8A007A4593 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859827F9ED8A007A4593 /* Extensions.swift */; };
 		B485859B27FB17A1007A4593 /* EmailTextFieldCustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */; };
@@ -118,6 +119,7 @@
 		B4489C922810494400B03771 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		B44DEAC4282906B70001337F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B44DEAC62829311A0001337F /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
+		B47C75CC283E6C0800E9F401 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		B485859627F9DA45007A4593 /* ForgotPasswordPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPage.swift; sourceTree = "<group>"; };
 		B485859827F9ED8A007A4593 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B485859A27FB17A1007A4593 /* EmailTextFieldCustomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldCustomUI.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				B4489C61281028B800B03771 /* TodayView.swift */,
 				B4489C632810290700B03771 /* AddView.swift */,
 				B4489C652810293600B03771 /* HistoryView.swift */,
+				B47C75CC283E6C0800E9F401 /* UserSettings.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				B4E55ADE280FEA4D008E36CB /* CustomSpinner.swift in Sources */,
 				B44DEAC72829311A0001337F /* AddListView.swift in Sources */,
 				B4489C862810456000B03771 /* Helpers.swift in Sources */,
+				B47C75CD283E6C0800E9F401 /* UserSettings.swift in Sources */,
 				B4489C812810456000B03771 /* PieChartRow.swift in Sources */,
 				B4DD68F627EB27B3002CACDF /* LogInPage.swift in Sources */,
 				B4489C662810293600B03771 /* HistoryView.swift in Sources */,
