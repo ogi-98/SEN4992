@@ -198,9 +198,9 @@ struct AddView: View {
                     }
                 } label: {
                     VStack {
-                        Text("🚘")
+                        Text("🏭")
                             .font(.system(size: 70))
-                        Text("Transportation")
+                        Text("Natural Gas")
                             .fontWeight(.bold)
                     }
                     .foregroundColor(Color(uiColor: .label))
