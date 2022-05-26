@@ -144,6 +144,11 @@ struct AddView: View {
                 
                 
                 Button {
+                    withAnimation {
+                        selectedItem = nil
+                        searchText = ""
+                        enteredCo2 = ""
+                    }
                     
                 } label: {
                     Text("Cancel")
