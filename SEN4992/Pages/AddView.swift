@@ -63,6 +63,7 @@ struct AddView: View {
             if selectedItem != nil {
                 
                 addView
+                    .padding(.top)
                 
                 
             }else if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
