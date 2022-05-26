@@ -18,7 +18,7 @@ class UserApi: ObservableObject {
     }//: currentUserId Var
     
     var currentUserName: String {
-        return Auth.auth().currentUser != nil ? Auth.auth().currentUser!.displayName ?? "isim yok" : ""
+        return Auth.auth().currentUser != nil ? Auth.auth().currentUser!.displayName ?? "" : ""
     }
     
     func createUser(name: String = "", mail: String, password: String, onSuccess: @escaping() -> Void,onError: @escaping(_ errorMessage: String) -> Void) {
