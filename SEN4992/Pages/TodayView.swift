@@ -11,10 +11,12 @@ struct TodayView: View {
     //MARK: - PROPERTIES
     @EnvironmentObject var co2State: Co2State
     @State private var name = ""
+    @State private var timeMessage = ""
     private var userApi = UserApi()
     @State private var date = Date()
+    let hour = Calendar.current.component(.hour, from: Date())
+    @Environment(\.scenePhase) var scenePhase
     
-
     
     
     
@@ -31,7 +33,7 @@ struct TodayView: View {
                             .foregroundColor(.secondary)
                             .font(.callout)
                         
-                        Text("Good Afternoon\(name)")
+                        Text("\(timeMessage)\(name)")
                             .foregroundColor(Color(uiColor: .label))
                             .font(.headline)
                     }
@@ -49,8 +51,8 @@ struct TodayView: View {
                             .background()
                             .cornerRadius(8)
                     }
-
-
+                    
+                    
                 }//: hstack
                 .padding(.horizontal)
                 
@@ -60,11 +62,11 @@ struct TodayView: View {
                 HStack {
                     TodayPercentage()
                         .frame(maxHeight:.infinity)
-    //                TodayPercentage()
+                    //                TodayPercentage()
                     CategoryView()
                         .frame(maxHeight:.infinity)
-
-                        
+                    
+                    
                 }
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal)
@@ -74,6 +76,9 @@ struct TodayView: View {
             .frame(maxWidth:.infinity,maxHeight: .infinity,alignment: .top)
             .navigationBarHidden(true)
             .onAppear {
+                
+                timeMessage = hourCheck()
+                
                 let dbName = userApi.currentUserName
                 var displayName = ""
                 if dbName != "" {
@@ -83,8 +88,33 @@ struct TodayView: View {
                 }
                 name = displayName
             }
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .active {
+                    print("Active")
+                    timeMessage = hourCheck()
+                } else if newPhase == .inactive {
+                    print("Inactive")
+                } else if newPhase == .background {
+                    print("Background")
+                }
+            }
+            
         }
     }
+    
+    private func hourCheck() -> String {
+        switch hour {
+        case 7..<12:
+            return "Good Morning"
+        case 12..<17:
+            return "Good Afternoon"
+        case 17..<22:
+            return "Good Evening"
+        default:
+            return "Good Night"
+        }
+    }
+    
 }
 
 struct TodayView_Previews: PreviewProvider {
