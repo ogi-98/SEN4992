@@ -9,12 +9,22 @@ import SwiftUI
 
 struct HistoryView: View {
     //MARK: - PROPERTIES
+    @EnvironmentObject var co2State : Co2State
     
+    @State var selectedItem: Entry?
+    @State var co2entered: String = ""
+    @State var selectedRecurrence: String = "1"
+    @State var selectedDate: Date = Date()
     
     //MARK: - Body
     var body: some View {
         VStack {
-            Text("Hello, World!")
+            Text("Emission History")
+                .font(.largeTitle)
+                .padding(.top)
+            
+            HistoryListView(items: co2State.addedItems.reversed(), selectedItem: $selectedItem, co2entered: $co2entered, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
+                .environmentObject(co2State)
         }
     }
 }

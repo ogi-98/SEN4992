@@ -63,6 +63,7 @@ struct AddView: View {
             if selectedItem != nil {
                 
                 addView
+                    .padding(.top)
                 
                 
             }else if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -132,6 +133,11 @@ struct AddView: View {
                 let paddingVal: CGFloat = 10
                 
                 Button {
+                    guard let addingItem = selectedItem else {
+                        return
+                    }
+                    addCo2Entry(entryItem: addingItem)
+                    closeAddingView()
                     
                 } label: {
                     Text("Add")
@@ -143,6 +149,7 @@ struct AddView: View {
                 
                 
                 Button {
+                    closeAddingView()
                     
                 } label: {
                     Text("Cancel")
@@ -277,6 +284,20 @@ struct AddView: View {
     }
     
     
+    private func addCo2Entry(entryItem: ListItem) {
+        co2State.addEntry(
+            item: entryItem,
+            amount: enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(),
+            dateAdded: selectedDate,
+            recurrence: selectedRecurrence)
+    }
+    private func closeAddingView() {
+        withAnimation {
+            searchText = ""
+            enteredCo2 = ""
+            selectedItem = nil
+        }
+    }
     
     
 }

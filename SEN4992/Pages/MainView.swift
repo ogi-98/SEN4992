@@ -31,6 +31,7 @@ struct MainView: View {
                         Text("Add")
                 }
                 HistoryView()
+                .environmentObject(userCo2State)
                     .tabItem {
                         Image(systemName: "list.bullet.rectangle")
                         Text("History")
