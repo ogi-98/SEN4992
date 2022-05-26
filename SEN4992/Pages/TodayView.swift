@@ -10,6 +10,8 @@ import SwiftUI
 struct TodayView: View {
     //MARK: - PROPERTIES
     @EnvironmentObject var co2State: Co2State
+    @State private var name = ""
+    private var userApi = UserApi()
 
     
     
@@ -27,7 +29,7 @@ struct TodayView: View {
                             .foregroundColor(.secondary)
                             .font(.callout)
                         
-                        Text("Good Afternoon, (isim)")
+                        Text("Good Afternoon\(name)")
                             .foregroundColor(Color(uiColor: .label))
                             .font(.headline)
                     }
@@ -39,10 +41,10 @@ struct TodayView: View {
                             .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Image(systemName: "line.3.horizontal")
-                            .font(.title3)
+                            .font(.title)
                             .foregroundColor(Color(uiColor: .label))
                             .padding(10)
-                            .background(Color.blue)
+                            .background()
                             .cornerRadius(8)
                     }
 
@@ -69,6 +71,16 @@ struct TodayView: View {
             }
             .frame(maxWidth:.infinity,maxHeight: .infinity,alignment: .top)
             .navigationBarHidden(true)
+            .onAppear {
+                let dbName = userApi.currentUserName
+                var displayName = ""
+                if dbName != "" {
+                    displayName = ", \(dbName)"
+                }else {
+                    displayName = ""
+                }
+                name = displayName
+            }
         }
     }
 }
