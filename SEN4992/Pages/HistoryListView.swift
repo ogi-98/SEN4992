@@ -11,7 +11,7 @@ struct HistoryListView: View {
     //MARK: - PROPERTIES
     @EnvironmentObject var co2State : Co2State
     
-    @State var items: [Entry]
+    var items: [Entry]
     @Binding var selectedItem: Entry?
     @Binding var co2entered: String
     @Binding var selectedRecurrence: String
