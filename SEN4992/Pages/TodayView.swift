@@ -14,7 +14,7 @@ struct TodayView: View {
     @State private var timeMessage = ""
     private var userApi = UserApi()
     @State private var date = Date()
-    let hour = Calendar.current.component(.hour, from: Date())
+    @State private var hour = Calendar.current.component(.hour, from: Date())
     @Environment(\.scenePhase) var scenePhase
     
     
@@ -91,7 +91,10 @@ struct TodayView: View {
             .onChange(of: scenePhase) { newPhase in
                 if newPhase == .active {
                     print("Active")
-                    timeMessage = hourCheck()
+                    self.hour = Calendar.current.component(.hour, from: Date())
+                    withAnimation {
+                        timeMessage = hourCheck()
+                    }
                 } else if newPhase == .inactive {
                     print("Inactive")
                 } else if newPhase == .background {
