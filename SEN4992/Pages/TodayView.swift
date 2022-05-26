@@ -78,15 +78,7 @@ struct TodayView: View {
             .onAppear {
                 
                 timeMessage = hourCheck()
-                
-                let dbName = userApi.currentUserName
-                var displayName = ""
-                if dbName != "" {
-                    displayName = ", \(dbName)"
-                }else {
-                    displayName = ""
-                }
-                name = displayName
+                name = userNameDisplay()
             }
             .onChange(of: scenePhase) { newPhase in
                 if newPhase == .active {
@@ -103,6 +95,11 @@ struct TodayView: View {
             }
             
         }
+    }
+        
+    private func userNameDisplay() -> String {
+        let dbName = userApi.currentUserName
+        return dbName != "" ? ", \(dbName)" : ""
     }
     
     private func hourCheck() -> String {
