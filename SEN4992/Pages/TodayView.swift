@@ -12,6 +12,8 @@ struct TodayView: View {
     @EnvironmentObject var co2State: Co2State
     @State private var name = ""
     private var userApi = UserApi()
+    @State private var date = Date()
+    
 
     
     
@@ -25,7 +27,7 @@ struct TodayView: View {
                 
                 HStack{
                     VStack(alignment: .leading){
-                        Text("20.03.2022")
+                        Text(date, style: Text.DateStyle.date)
                             .foregroundColor(.secondary)
                             .font(.callout)
                         
