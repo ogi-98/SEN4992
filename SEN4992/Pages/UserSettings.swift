@@ -17,6 +17,7 @@ struct UserSettings: View {
         case main, settings
     }
     @State private var selectedPage: Pages = .main
+    @State private var showingDialog = false
     
     //MARK: - Body
     var body: some View {
@@ -32,6 +33,7 @@ struct UserSettings: View {
                 .font(.footnote)
                 .frame(maxWidth:.infinity,alignment: .leading)
             }
+            .foregroundColor(.white)
             .padding(.horizontal)
             GeometryReader { geo in
                 
@@ -65,7 +67,7 @@ struct UserSettings: View {
             }
         }
         .frame(maxWidth:.infinity,maxHeight: .infinity, alignment: .top)
-        .background(.green)
+        .background(Color("MainColor"))
     }
     
     @ViewBuilder private func fetchView() -> some View {
@@ -159,12 +161,7 @@ struct UserSettings: View {
             .padding(.horizontal)
             
             Button {                
-                userApi.logOut {
-                        userApi.userLoginPageCheck()
-                    
-                } onError: { errorMessage in
-                    print(errorMessage)
-                }
+                showingDialog = true
                 
             } label: {
                 HStack{
@@ -184,6 +181,19 @@ struct UserSettings: View {
             }
             .padding(.top)
             .padding(.horizontal)
+            .confirmationDialog("Are you sure to LogOut", isPresented: $showingDialog,titleVisibility: .visible) {
+                
+                Button("LogOut",role: .destructive) {
+                    userApi.logOut {
+                        showingDialog = false
+                            userApi.userLoginPageCheck()
+                        
+                    } onError: { errorMessage in
+                        print(errorMessage)
+                    }
+                }
+                
+            }
             
             Spacer()
         }
