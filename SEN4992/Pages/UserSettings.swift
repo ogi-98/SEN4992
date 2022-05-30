@@ -96,8 +96,8 @@ struct UserSettings: View {
             
             CustomLabelUI(title: "Email", selectedText: .email)
             
-            Button {
-                
+            NavigationLink {
+                Text("Hello password")
             } label: {
                 HStack{
                     Text("Change Password")
@@ -105,9 +105,10 @@ struct UserSettings: View {
                     Image(systemName: "chevron.forward")
                 }
             }
-            .tint(Color(uiColor: .label))
+            .foregroundColor(Color(uiColor: .label))
             .padding(.vertical,10)
             .padding(.horizontal)
+            
             Divider()
                 .padding(.horizontal)
             

@@ -20,7 +20,6 @@ struct CustomLabelUI: View {
                 Text(title)
                 Spacer()
                 buildSelectedText()
-                    .background(.orange)
             }
             .padding(.vertical,15)
             .padding(.horizontal)
