@@ -95,6 +95,7 @@ struct TodayView: View {
             }
             
         }
+        .accentColor(.white)
     }
         
     private func userNameDisplay() -> String {

@@ -20,6 +20,12 @@ class UserApi: ObservableObject {
     var currentUserName: String {
         return Auth.auth().currentUser != nil ? Auth.auth().currentUser!.displayName ?? "" : ""
     }
+    var currentUserCreatedDate: Date {
+        return Auth.auth().currentUser != nil ? Auth.auth().currentUser!.metadata.creationDate ?? Date() : Date()
+    }
+    var currentUserMail: String {
+        return Auth.auth().currentUser != nil ? Auth.auth().currentUser!.email ?? "" : ""
+    }
     
     func createUser(name: String = "", mail: String, password: String, onSuccess: @escaping() -> Void,onError: @escaping(_ errorMessage: String) -> Void) {
         Auth.auth().createUser(withEmail: mail, password: password) { authResult, err in
