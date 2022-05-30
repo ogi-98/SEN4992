@@ -41,10 +41,7 @@ struct UserSettings: View {
                             .frame(maxHeight:geo.size.height * 0.24)
                         VStack {
                             
-                            
-                            //                            userSettingsUI
                             fetchView()
-                            
                             
                         }//: Carview background
                         .frame(maxWidth:.infinity,alignment: .center)
@@ -75,7 +72,7 @@ struct UserSettings: View {
         switch selectedPage {
         case .main:
             settingsMainUI
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
         case .settings:
             userSettingsUI
                 .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
