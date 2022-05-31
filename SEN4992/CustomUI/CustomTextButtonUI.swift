@@ -12,6 +12,7 @@ struct CustomTextButtonUI: View {
     @State var text: String? = ""
     @State var bttnText: String? = ""
     @State var function: () -> Void? = {return}
+    @State var color: Color = Color("AlternateButtonColor")
     
     
     var body: some View {
@@ -24,7 +25,7 @@ struct CustomTextButtonUI: View {
             } label: {
                 Text(bttnText ?? "")
                     .fontWeight(.bold)
-                    .foregroundColor(.green)
+                    .foregroundColor(color)
             }
         }
         .font(.footnote)

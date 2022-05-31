@@ -11,6 +11,7 @@ struct CustomButtonUI: View {
     
     @State var function: () -> Void? = {return}
     @State var title: String? = "Log In"
+    @State var color: Color = Color("MainButtonColor")
     
     var body: some View {
         Button {
@@ -22,7 +23,7 @@ struct CustomButtonUI: View {
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity,alignment: .center)
                 .padding()
-                .background(.green)
+                .background(color)
                 .cornerRadius(12)
             
         }//: login buton

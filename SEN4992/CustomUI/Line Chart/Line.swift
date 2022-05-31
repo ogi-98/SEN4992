@@ -29,6 +29,7 @@ public struct Line: View {
     }
 
     var gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
+    @State var gradientBottomColor: Color = Color.white
     var index: Int = 0
     let padding: CGFloat = 30
     var curvedLines: Bool = true
@@ -73,7 +74,7 @@ public struct Line: View {
         ZStack {
             if self.showFull && self.showBackground {
                 self.closedPath
-                    .fill(LinearGradient(gradient: Gradient(colors: [Colors.GradientUpperBlue, .white]), startPoint: .bottom, endPoint: .top))
+                    .fill(LinearGradient(gradient: Gradient(colors: [Colors.GradientUpperBlue, gradientBottomColor]), startPoint: .bottom, endPoint: .top))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                     .transition(.opacity)

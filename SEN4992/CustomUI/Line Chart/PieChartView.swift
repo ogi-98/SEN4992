@@ -54,35 +54,36 @@ public struct PieChartView : View {
                 if(!showValue){
                     Text(self.title)
                         .font(.headline)
-                        .foregroundColor(Color(uiColor: .label))
+                        .foregroundColor(style.textColor)
                 }else{
                     Text("\(self.currentValue, specifier: self.valueSpecifier)")
                         .font(.headline)
-                        .foregroundColor(Color(uiColor: .label))
+                        .foregroundColor(style.textColor)
                 }
                 Spacer()
                 Image(systemName: "chart.pie.fill")
                     .imageScale(.large)
-                    .foregroundColor(Color(uiColor: .secondaryLabel))
+                    .foregroundColor(style.legendTextColor)
             }
 
             HStack {
-                PieChartRow(data: data, backgroundColor: Color(uiColor: .secondarySystemGroupedBackground), accentColor: self.style.accentColor, colors: colors, labels: labels, showValue: $showValue, currentValue: $currentValue, currentLabel: $currentLabel)
+                PieChartRow(data: data, backgroundColor: style.backgroundColor, accentColor: self.style.accentColor, colors: colors, labels: labels, showValue: $showValue, currentValue: $currentValue, currentLabel: $currentLabel)
                     .foregroundColor(self.style.accentColor)
                 //                        .padding(self.legend != nil ? 0 : 12)
                 //                        .offset(y:self.legend != nil ? 0 : -10)
                 
                 VStack(alignment: .leading) {
                     ForEach((0..<data.count), id: \.self) {
-                        let x = $0
+                        let i = $0
                         let size: CGFloat = 5
-                        if data[x] > 0 {
+                        if data[i] > 0 {
                             HStack {
                                 Circle()
-                                    .foregroundColor(colors[labels[x]])
+                                    .foregroundColor(colors[labels[i]])
                                     .frame(width: size, height: size)
-                                Text("\(labels[x]) (\(Int(round(data[x] / data.reduce(0, +) * 100)))%)")
+                                Text("\(labels[i]) (\(Int(round(data[i] / data.reduce(0, +) * 100)))%)")
                                     .font(Font.footnote)
+                                    .foregroundColor(style.legendTextColor)
                             }
                         }
                     }
@@ -100,7 +101,8 @@ public struct PieChartView : View {
         }
         .padding()
         .background(
-            Color(uiColor: .secondarySystemGroupedBackground)
+            style.backgroundColor
+//            Color(uiColor: .secondarySystemGroupedBackground)
         )
         .cornerRadius(20)
         .shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 4 : 0)

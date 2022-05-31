@@ -30,11 +30,12 @@ struct TodayView: View {
                 HStack{
                     VStack(alignment: .leading){
                         Text(date, style: Text.DateStyle.date)
-                            .foregroundColor(.secondary)
-                            .font(.callout)
+                            .foregroundColor(Color.white)
+                            .font(.footnote)
+                            .fontWeight(.light)
                         
                         Text("\(timeMessage)\(name)")
-                            .foregroundColor(Color(uiColor: .label))
+                            .foregroundColor(Color.white)
                             .font(.headline)
                     }
                     .frame(maxWidth:.infinity,alignment: .leading)
@@ -46,9 +47,8 @@ struct TodayView: View {
                     } label: {
                         Image(systemName: "line.3.horizontal")
                             .font(.title)
-                            .foregroundColor(Color(uiColor: .label))
+                            .foregroundColor(Color.white)
                             .padding(10)
-                            .background()
                             .cornerRadius(8)
                     }
                     
@@ -75,6 +75,7 @@ struct TodayView: View {
             }
             .frame(maxWidth:.infinity,maxHeight: .infinity,alignment: .top)
             .navigationBarHidden(true)
+            .background(Color("customDynamicDarkBlue"))
             .onAppear {
                 
                 timeMessage = hourCheck()
@@ -95,6 +96,7 @@ struct TodayView: View {
             }
             
         }
+        .accentColor(.white)
     }
         
     private func userNameDisplay() -> String {

@@ -18,43 +18,52 @@ struct PasswordTextfieldCustomUI: View {
         self.textContentType = textContentType
     }
     @State private var secure = false
+    @State var color: Color = Color.blue
     
     
     var body: some View {
         
-        HStack(alignment: .center, spacing: 2.0){
+        VStack(spacing: 0) {
+            HStack(alignment: .center, spacing: 2.0){
 
 
-                if self.secure{
-                    TextField(placeholder ?? "Password", text: $pass)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(false)
-                    .padding()
-                    .textContentType(textContentType)
-                    .keyboardType(.default)
-                }
-                else{
-                    SecureField(placeholder ?? "Password", text: $pass)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(false)
-                    .padding()
-                    .textContentType(textContentType)
-                    .keyboardType(.default)
-                }
+                    if self.secure{
+                        TextField(placeholder ?? "Password", text: $pass)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(false)
+                        .padding()
+                        .textContentType(textContentType)
+                        .keyboardType(.default)
+                    }
+                    else{
+                        SecureField(placeholder ?? "Password", text: $pass)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(false)
+                        .padding()
+                        .textContentType(textContentType)
+                        .keyboardType(.default)
+                    }
 
-            Button(action: {
-                self.secure.toggle()
-            }) {
-                Image(systemName: self.secure ? "eye.slash.fill" : "eye.fill")
-                    .foregroundColor(Color(uiColor: .secondaryLabel))
+                Button(action: {
+                    self.secure.toggle()
+                }) {
+                    Image(systemName: self.secure ? "eye.slash.fill" : "eye.fill")
+                        .foregroundColor(Color(uiColor: .secondaryLabel))
 
-            }//: visible buton
-            .padding(8)
+                }//: visible buton
+                .padding(8)
+                
 
-        }//:  password hstack
-//        .background(Color(uiColor: .tertiarySystemBackground))
-        .background(Color("customTextFieldGreen"))
-        .cornerRadius(12)
+            }//:  password hstack
+    //        .background(Color(uiColor: .tertiarySystemBackground))
+    //        .background(Color("customTextFieldGreen"))
+            .cornerRadius(12)
+            
+            Rectangle()
+                .fill(color)
+                .frame(height: 2)
+                .edgesIgnoringSafeArea(.horizontal)
+        }
         
     }
 }

@@ -103,7 +103,7 @@ struct ForgotPasswordPage: View {
                     Image(systemName: "paperplane.fill")
                         .font(.title)
                         .padding()
-                        .background(Color("customLigthGreen"))
+                        .background(Color("customStaticLigthBlue"))
                         .clipShape(Circle())
                         .foregroundColor(.white)
                         .scaledToFit()
@@ -168,7 +168,7 @@ struct ForgotPasswordPage: View {
                     Image(systemName: "checkmark")
                         .font(.title)
                         .padding()
-                        .background(Color("customLigthGreen"))
+                        .background(Color("customStaticLigthBlue"))
                         .clipShape(Circle())
                         .foregroundColor(.white)
                     

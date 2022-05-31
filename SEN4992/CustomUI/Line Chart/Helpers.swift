@@ -64,6 +64,14 @@ public struct Styles {
         textColor: Color.black,
         legendTextColor: Color.gray,
         dropShadowColor: Color.gray)
+    
+    public static let lineChartStyleMain = ChartStyle(
+        backgroundColor: Color("customDynamicLigthBlue"),
+        accentColor: Color.green,
+        secondGradientColor: Color.red,
+        textColor: Color.white,
+        legendTextColor: Color.white,
+        dropShadowColor: Color.white)
 
     public static let barChartStyleOrangeLight = ChartStyle(
         backgroundColor: Color.white,
@@ -120,6 +128,14 @@ public struct Styles {
         textColor: Color.black,
         legendTextColor: Color.gray,
         dropShadowColor: Color.gray)
+    
+    public static let pieChartStyleMain = ChartStyle(
+        backgroundColor: Color("customDynamicLigthBlue"),
+        accentColor: Colors.DarkPurple,
+        secondGradientColor: Colors.OrangeStart,
+        textColor: Color.white,
+        legendTextColor: Color.white,
+        dropShadowColor: Color.white)
 
     public static let lineViewDarkMode = ChartStyle(
         backgroundColor: Color.black,
