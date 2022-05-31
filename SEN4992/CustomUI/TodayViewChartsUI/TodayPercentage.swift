@@ -13,7 +13,7 @@ struct TodayPercentage: View {
     
 //    var co2progress = 0.5
 //    @State var cappedCo2progress = 0.5
-    
+    @State var style: ChartStyle = Styles.lineChartStyleMain
     
         private var co2progress: Double {
             get {return Double(self.co2State.currentCo2State/self.co2State.co2max)}
@@ -62,9 +62,10 @@ struct TodayPercentage: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 3)
-        .background(Color(uiColor: .secondarySystemGroupedBackground))
+        .background(style.backgroundColor)
+        .foregroundColor(style.textColor)
         .cornerRadius(20)
-        .shadow(color: Color.gray, radius: 3)
+        .shadow(color: style.dropShadowColor, radius: 3)
         
         
     }

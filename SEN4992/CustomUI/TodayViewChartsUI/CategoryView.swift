@@ -21,7 +21,7 @@ struct CategoryView: View {
         }
 
 //        PieChartView(labels: categories, data: data, title: "Total CO2 per Categories", legend: "KG CO2", form: ChartForm.medium, dropShadow: true)
-        PieChartView(labels: categories, data: data, title: "Category")
+        PieChartView(labels: categories, data: data, title: "Category", style: Styles.pieChartStyleMain)
     }
 }
 

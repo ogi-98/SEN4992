@@ -15,7 +15,7 @@ struct DailyGraphUI: View {
     //MARK: - BODY
     var body: some View {
         VStack {
-            LineChartViewCustom(data: co2State.co2HistoryData, title: "Your History",legend: "Basic", style: Styles.lineChartStyleOne, form: ChartForm.large, rateValue: Int(co2State.currentCo2State))
+            LineChartViewCustom(data: co2State.co2HistoryData, title: "Your History",legend: "Basic", style: Styles.lineChartStyleMain, form: ChartForm.large, rateValue: Int(co2State.currentCo2State))
         }
     }
 }

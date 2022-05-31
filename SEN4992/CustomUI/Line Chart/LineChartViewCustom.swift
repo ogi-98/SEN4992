@@ -36,7 +36,7 @@ public struct LineChartViewCustom: View {
     public init(data: [Double],
                 title: String,
                 legend: String? = nil,
-                style: ChartStyle = Styles.lineChartStyleOne,
+                style: ChartStyle = Styles.lineChartStyleMain,
                 form: CGSize? = ChartForm.large,
                 rateValue: Int? = 14,
                 dropShadow: Bool? = true,
@@ -70,6 +70,7 @@ public struct LineChartViewCustom: View {
                             Text("\(self.currentValue, specifier: self.valueSpecifier) kg Co2")
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
+                                .foregroundColor(self.style.textColor)
                         }
                         Spacer()
                     }
@@ -82,7 +83,7 @@ public struct LineChartViewCustom: View {
                          touchLocation: self.$touchLocation,
                          showIndicator: self.$showIndicatorDot,
                          minDataValue: .constant(nil),
-                         maxDataValue: .constant(nil)
+                         maxDataValue: .constant(nil),gradientBottomColor: Color("customDynamicLigthBlue")
                     )
                 }
                 // X AXIS
@@ -95,11 +96,12 @@ public struct LineChartViewCustom: View {
                     Text("today")
                 }
                 .font(.system(size: 12))
-                .foregroundColor(.gray)
+                .foregroundColor(self.style.textColor)
             }
             .padding()
             .background(
-                Color(uiColor: .secondarySystemGroupedBackground)
+                self.style.backgroundColor
+//                Color(uiColor: .secondarySystemGroupedBackground)
             )
             .cornerRadius(20)
             .shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 5 : 0)
@@ -136,9 +138,12 @@ public struct LineChartViewCustom: View {
                     }else{
                         Image(systemName: "arrow.down")
                     }
-                    Text("\(self.rateValue!) kg CO2 today").font(.system(.callout)).foregroundColor(.gray)
+                    Text("\(self.rateValue!) kg CO2 today")
+                        .font(.system(.callout))
+//                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
                 }
             }
+            .foregroundColor(self.style.textColor)
         }
         .transition(.opacity)
         .animation(.easeIn(duration: 0.1), value: customAnimationDuration)
