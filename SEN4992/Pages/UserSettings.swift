@@ -97,7 +97,7 @@ struct UserSettings: View {
             CustomLabelUI(title: "Email", selectedText: .email)
             
             NavigationLink {
-                Text("Hello password")
+                PasswordChange()
             } label: {
                 HStack{
                     Text("Change Password")
