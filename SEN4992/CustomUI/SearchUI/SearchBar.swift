@@ -21,14 +21,16 @@ struct SearchBar: View {
             TextField("Search", text: $text)
                 .padding(5)
                 .padding(.horizontal,20)
+                .foregroundColor(.white)
                 .background(
-                    Color(uiColor: .systemGray6)
+//                    Color(uiColor: .systemGray6)
+                    Color("customDynamicLigthBlue")
                 )
                 .cornerRadius(8)
                 .overlay {
                     HStack{
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading,4)
                         if !text.isEmpty {
@@ -38,7 +40,10 @@ struct SearchBar: View {
                                 }
                             } label: {
                                 Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(Color(uiColor: .opaqueSeparator))
+                                    .foregroundColor(
+                                        Color.white
+//                                        Color(uiColor: .opaqueSeparator)
+                                    )
                                     .padding(.trailing, 8)
                             }
 
@@ -68,7 +73,8 @@ struct SearchBar: View {
             }
 
             
-        }
+        }//MARK: - hstack
+        
     }
 }
 
