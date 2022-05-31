@@ -23,27 +23,27 @@ struct HistoryListView: View {
     var body: some View {
         List {
             let groupItems = Dictionary(grouping: self.items) {
-                Date.getFormattedDate(date: $0.dateAdded, format: .long)
+                Date.getFormattedDate(date: $0.dateAdded, format: "YYYYMMdd")
             }.map {
                 ($0.key,$0.value)
             }.sorted {
                 $0.0 > $1.0
             }
-            
+
             ForEach(groupItems,id: \.self.0) { group in
-                
+
                 Section {
                     ForEach(group.1) { item in
-                        
+
                         Button {
-                            
+
                         } label: {
                             VStack {
                                 HStack{
                                     Text(item.type)
-                                    
+
                                     Spacer()
-                                    
+
                                     VStack(alignment: .trailing) {
                                         Text(item.amount.getFormatted(digits: 1) + " \(co2State.listItemsDict[item.type]!.unit)")
                                         Text((item.amount * co2State.listItemsDict[item.type]!.CO2eqkg / co2State.listItemsDict[item.type]!.unitPerKg).getFormatted(digits: 1) + " kg Co2")
@@ -53,16 +53,16 @@ struct HistoryListView: View {
                                 RecommendLabel(userkWh: item.amount, category: item.category)
                             }
                         }//: buttonLabel
-                        
+
                     }//: foreach for items
-                    
+
                 } header: {
-                    Text(Date.getFormattedDate(date: group.1[0].dateAdded, format: .long))
+                    Text(Date.getFormattedDateStyle(date: group.1[0].dateAdded, format: .medium))
                 }
-                
+
             }//: group foreach
-            
-            
+
+
         }//: List
     }
 }

@@ -22,10 +22,12 @@ struct HistoryView: View {
             Text("Emission History")
                 .font(.largeTitle)
                 .padding(.top)
+                .foregroundColor(.white)
             
             HistoryListView(items: co2State.addedItems.reversed(), selectedItem: $selectedItem, co2entered: $co2entered, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
                 .environmentObject(co2State)
         }
+        .background(Color("customDynamicDarkBlue"))
     }
 }
 
