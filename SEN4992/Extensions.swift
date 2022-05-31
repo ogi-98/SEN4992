@@ -21,11 +21,16 @@ extension Date {
     func dayDiff(_ date: Date) -> Int {
         return Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
     }
-     static func getFormattedDate(date: Date, format: DateFormatter.Style) -> String {
+     static func getFormattedDate(date: Date, format: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = format
+         dateFormatter.dateFormat = format
         return dateFormatter.string(from: date)
     }
+    static func getFormattedDateStyle(date: Date, format: DateFormatter.Style) -> String {
+       let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = format
+       return dateFormatter.string(from: date)
+   }
 }
 
 
