@@ -306,7 +306,7 @@ struct AddView: View {
         if amount > 0.0 && !amount.isFinite {
             co2State.addEntry(
                 item: entryItem,
-                amount: enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(),
+                amount: amount,
                 dateAdded: selectedDate,
                 recurrence: selectedRecurrence)
         }
