@@ -18,6 +18,7 @@ struct PasswordTextfieldCustomUI: View {
         self.textContentType = textContentType
     }
     @State private var secure = false
+    @State var color: Color = Color.blue
     
     
     var body: some View {
@@ -59,7 +60,7 @@ struct PasswordTextfieldCustomUI: View {
             .cornerRadius(12)
             
             Rectangle()
-                .fill(.blue)
+                .fill(color)
                 .frame(height: 2)
                 .edgesIgnoringSafeArea(.horizontal)
         }

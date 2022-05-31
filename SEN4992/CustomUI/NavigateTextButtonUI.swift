@@ -12,6 +12,7 @@ struct NavigateTextButtonUI: View {
     @State var text: String? = ""
     @State var bttnText: String? = ""
     @State var destination: AnyView?
+    @State var color: Color = Color("AlternateButtonColor")
 //    AnyView = {Text("Fail")}()
     var body: some View {
         
@@ -24,12 +25,12 @@ struct NavigateTextButtonUI: View {
                 } label: {
                     Text(bttnText ?? "")
                         .fontWeight(.bold)
-                        .foregroundColor(.green)
+                        .foregroundColor(color)
                 }
             }else {
                 Text(bttnText ?? "")
                     .fontWeight(.bold)
-                    .foregroundColor(.green)
+                    .foregroundColor(color)
             }
             
         }

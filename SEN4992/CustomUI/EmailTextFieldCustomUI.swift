@@ -9,16 +9,23 @@ import SwiftUI
 
 struct EmailTextFieldCustomUI: View {
     @State var email: Binding<String>
+    @State var color: Color = Color.blue
     var body: some View {
-        TextField("Email", text: email)
-            .padding()
-            .autocapitalization(.none)
-            .disableAutocorrection(false)
-            .textContentType(.emailAddress)
-            .keyboardType(.emailAddress)
-            .background(Color("customTextFieldGreen"))
-//            .background(Color(uiColor: .tertiarySystemBackground))
-            .cornerRadius(12)
+        VStack(spacing: 0) {
+            TextField("Email", text: email)
+                .padding()
+                .autocapitalization(.none)
+                .disableAutocorrection(false)
+                .textContentType(.emailAddress)
+                .keyboardType(.emailAddress)
+                .cornerRadius(12)
+            
+            Rectangle()
+                .fill(color)
+                .frame(height: 2)
+                .edgesIgnoringSafeArea(.horizontal)
+            
+        }
     }
 }
 

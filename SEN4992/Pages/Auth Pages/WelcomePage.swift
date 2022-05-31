@@ -27,7 +27,7 @@ struct WelcomePage: View {
                             .foregroundColor(Color(uiColor: .white))
                             .frame(maxWidth:.infinity)
                             .padding()
-                            .background(Color.green)
+                            .background(Color("MainButtonColor"))
                             .cornerRadius(15)
                     })
                 
@@ -37,7 +37,7 @@ struct WelcomePage: View {
                         Text("Log In")
                             .font(.title3)
                             .fontWeight(.bold)
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color("AlternateButtonColor"))
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(Color(uiColor: .secondarySystemBackground))

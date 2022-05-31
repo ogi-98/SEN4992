@@ -9,15 +9,20 @@ import SwiftUI
 
 struct NameTextFieldCustomUI: View {
     @State var name: Binding<String>
+    @State var color: Color = Color.blue
     var body: some View {
-        TextField("Name *Optional", text: name)
-            .padding()
-            .autocapitalization(.words)
-            .disableAutocorrection(false)
-            .textContentType(.name)
-//            .background(Color(uiColor: .tertiarySystemBackground))
-            .background(Color("customTextFieldGreen"))
-            .cornerRadius(12)
+        VStack(spacing: 0) {
+            TextField("Name *Optional", text: name)
+                .padding()
+                .autocapitalization(.words)
+                .disableAutocorrection(false)
+                .textContentType(.name)
+                .cornerRadius(12)
+            Rectangle()
+                .fill(color)
+                .frame(height: 2)
+                .edgesIgnoringSafeArea(.horizontal)
+        }
     }
 }
 
