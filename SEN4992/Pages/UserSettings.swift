@@ -125,7 +125,7 @@ struct UserSettings: View {
                 .frame(maxWidth: .infinity)
                 .padding(7)
             }
-            .tint(.green)
+            .tint(.blue)
             .buttonStyle(.bordered)
             .padding(.top)
             .padding(.horizontal)
