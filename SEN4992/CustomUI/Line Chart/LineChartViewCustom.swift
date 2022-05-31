@@ -83,7 +83,7 @@ public struct LineChartViewCustom: View {
                          touchLocation: self.$touchLocation,
                          showIndicator: self.$showIndicatorDot,
                          minDataValue: .constant(nil),
-                         maxDataValue: .constant(nil),gradientBottomColor: Color("customDynamicLigthBlue")
+                         maxDataValue: .constant(nil),gradientBottomColor: Color("customDynamicLightBlue")
                     )
                 }
                 // X AXIS

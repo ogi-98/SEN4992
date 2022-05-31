@@ -66,7 +66,7 @@ public struct Styles {
         dropShadowColor: Color.gray)
     
     public static let lineChartStyleMain = ChartStyle(
-        backgroundColor: Color("customDynamicLigthBlue"),
+        backgroundColor: Color("customDynamicLightBlue"),
         accentColor: Color.green,
         secondGradientColor: Color.red,
         textColor: Color.white,
@@ -130,7 +130,7 @@ public struct Styles {
         dropShadowColor: Color.gray)
     
     public static let pieChartStyleMain = ChartStyle(
-        backgroundColor: Color("customDynamicLigthBlue"),
+        backgroundColor: Color("customDynamicLightBlue"),
         accentColor: Colors.DarkPurple,
         secondGradientColor: Colors.OrangeStart,
         textColor: Color.white,

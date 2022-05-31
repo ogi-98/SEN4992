@@ -24,7 +24,7 @@ struct SearchBar: View {
                 .foregroundColor(.white)
                 .background(
 //                    Color(uiColor: .systemGray6)
-                    Color("customDynamicLigthBlue")
+                    Color("customDynamicLightBlue")
                 )
                 .cornerRadius(8)
                 .overlay {

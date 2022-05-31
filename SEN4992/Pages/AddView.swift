@@ -127,7 +127,7 @@ struct AddView: View {
                 Text("once").tag("1")
                 Text("daily").tag("d")
                 Text("weekly").tag("w")
-                Text("month").tag("m")
+                Text("monthly").tag("m")
                 Text("yearly").tag("y")
             }
             .pickerStyle(.segmented)
@@ -202,7 +202,7 @@ struct AddView: View {
                     .frame(maxWidth:.infinity, maxHeight:.infinity)
                 }//: bttn
                 .padding(.vertical,10)
-                .background(Color("customDynamicLigthBlue"))
+                .background(Color("customDynamicLightBlue"))
                 .cornerRadius(15)
 //                .buttonStyle(.bordered)
                 
@@ -221,7 +221,7 @@ struct AddView: View {
                     .frame(maxWidth:.infinity, maxHeight:.infinity)
                 }//: bttn
                 .padding(.vertical,10)
-                .background(Color("customDynamicLigthBlue"))
+                .background(Color("customDynamicLightBlue"))
                 .cornerRadius(15)
 //                .buttonStyle(.bordered)
                 
@@ -244,19 +244,19 @@ struct AddView: View {
                         }
                         .frame(maxWidth:.infinity, maxHeight:.infinity)
                         
-                        Text("Coming Soon")
+                        Text("Coming soon")
                             .font(.title3)
                             .fontWeight(.bold)
                             .padding(7)
                             .foregroundColor(Color(uiColor: .label))
-                            .background(Color(uiColor: .systemBackground))
+                            .background(Color(uiColor: .secondarySystemBackground).opacity(0.7))
                             .cornerRadius(10)
                             .rotationEffect(.degrees(-20))
                         
                     }
                 }//: bttn
                 .padding(.vertical,10)
-                .background(Color("customDynamicLigthBlue"))
+                .background(Color("customDynamicLightBlue"))
                 .cornerRadius(15)
 //                .buttonStyle(.bordered)
                 .disabled(true)
@@ -280,14 +280,14 @@ struct AddView: View {
                             .fontWeight(.bold)
                             .padding(7)
                             .foregroundColor(Color(uiColor: .label))
-                            .background(Color(uiColor: .systemBackground))
+                            .background(Color(uiColor: .secondarySystemBackground).opacity(0.7))
                             .cornerRadius(10)
                             .rotationEffect(.degrees(-20))
                         
                     }
                 }//: bttn
                 .padding(.vertical,10)
-                .background(Color("customDynamicLigthBlue"))
+                .background(Color("customDynamicLightBlue"))
                 .cornerRadius(15)
 //                .buttonStyle(.bordered)
                 .disabled(true)
