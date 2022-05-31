@@ -32,6 +32,7 @@ struct AddView: View {
         VStack {
             Text("Calculate CO2 Emission")
                 .font(.largeTitle)
+                .foregroundColor(.white)
                 .padding(.top,30)
             HStack{
                 SearchBar(text: $searchText, selectedItem: $selectedItem)
@@ -50,6 +51,7 @@ struct AddView: View {
                         Text("Back")
                     }
                     .offset(x: -20)
+                    .tint(.white)
                     //.padding(.trailing, 20)
                     .transition(.move(edge: .trailing))
                     .animation(.default)
@@ -64,7 +66,7 @@ struct AddView: View {
                 
                 addView
                     .padding(.top)
-                
+                Spacer()
                 
             }else if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 AddListView(items: co2State.getSearchResults(query: self.searchText.trimmingCharacters(in: .whitespacesAndNewlines), category: self.selectedCategory), selectedItem: $selectedItem)
@@ -73,12 +75,14 @@ struct AddView: View {
                     .environmentObject(co2State)
             }else{
                 categoryView
+                Spacer()
             }
             
             
             
             
         }
+        .background(Color("customDynamicDarkBlue"))
         .frame(maxWidth:.infinity,maxHeight:.infinity,alignment: .top)
     }
     
@@ -197,7 +201,10 @@ struct AddView: View {
                     .foregroundColor(Color(uiColor: .label))
                     .frame(maxWidth:.infinity, maxHeight:.infinity)
                 }//: bttn
-                .buttonStyle(.bordered)
+                .padding(.vertical,10)
+                .background(Color("customDynamicLigthBlue"))
+                .cornerRadius(15)
+//                .buttonStyle(.bordered)
                 
                 Button {
                     withAnimation {
@@ -213,7 +220,10 @@ struct AddView: View {
                     .foregroundColor(Color(uiColor: .label))
                     .frame(maxWidth:.infinity, maxHeight:.infinity)
                 }//: bttn
-                .buttonStyle(.bordered)
+                .padding(.vertical,10)
+                .background(Color("customDynamicLigthBlue"))
+                .cornerRadius(15)
+//                .buttonStyle(.bordered)
                 
                 
             }
@@ -245,7 +255,10 @@ struct AddView: View {
                         
                     }
                 }//: bttn
-                .buttonStyle(.bordered)
+                .padding(.vertical,10)
+                .background(Color("customDynamicLigthBlue"))
+                .cornerRadius(15)
+//                .buttonStyle(.bordered)
                 .disabled(true)
                 
                 Button {
@@ -273,7 +286,10 @@ struct AddView: View {
                         
                     }
                 }//: bttn
-                .buttonStyle(.bordered)
+                .padding(.vertical,10)
+                .background(Color("customDynamicLigthBlue"))
+                .cornerRadius(15)
+//                .buttonStyle(.bordered)
                 .disabled(true)
                 
             }
@@ -285,11 +301,15 @@ struct AddView: View {
     
     
     private func addCo2Entry(entryItem: ListItem) {
-        co2State.addEntry(
-            item: entryItem,
-            amount: enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(),
-            dateAdded: selectedDate,
-            recurrence: selectedRecurrence)
+        let amount = enteredCo2.numericString(allowDecimalSeparator: true).parseDouble()
+        
+        if amount > 0.0 && !amount.isFinite {
+            co2State.addEntry(
+                item: entryItem,
+                amount: enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(),
+                dateAdded: selectedDate,
+                recurrence: selectedRecurrence)
+        }
     }
     private func closeAddingView() {
         withAnimation {
