@@ -24,7 +24,7 @@ struct HistoryView: View {
                 .padding(.top)
                 .foregroundColor(.white)
             
-            HistoryListView(items: co2State.addedItems.reversed(), selectedItem: $selectedItem, co2entered: $co2entered, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
+            HistoryListView(items: co2State.addedItems.reversed(), selectedItem: $selectedItem, enteredCo2: $co2entered, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
                 .environmentObject(co2State)
         }
         .background(Color("customDynamicDarkBlue"))

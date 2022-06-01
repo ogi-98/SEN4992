@@ -13,7 +13,7 @@ struct HistoryListView: View {
     
     var items: [Entry]
     @Binding var selectedItem: Entry?
-    @Binding var co2entered: String
+    @Binding var enteredCo2: String
     @Binding var selectedRecurrence: String
     @Binding var selectedDate: Date
     
@@ -36,7 +36,7 @@ struct HistoryListView: View {
                     ForEach(group.1) { item in
 
                         Button {
-
+                            selectedItem(item: item)
                         } label: {
                             VStack {
                                 HStack{
@@ -64,6 +64,22 @@ struct HistoryListView: View {
 
 
         }//: List
+    }
+    //MARK: - Funcs
+    
+    private func selectedItem(item: Entry) {
+        selectedItem = item
+        selectedRecurrence = item.recurrence
+        enteredCo2 = (item.amount * Co2State.recurrenceToDays(item.recurrence)).getFormatted(digits: 1)
+        
+        selectedDate = item.dateAdded
+        if item.recurrence != "1" {
+            for entry in co2State.addedItems {
+                if entry.recurrenceID == item.recurrenceID && entry.dateAdded < selectedDate {
+                    selectedDate = entry.dateAdded
+                }
+            }
+        }
     }
 }
 
