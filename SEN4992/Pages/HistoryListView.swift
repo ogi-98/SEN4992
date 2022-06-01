@@ -22,7 +22,7 @@ struct HistoryListView: View {
     //MARK: - BODY
     var body: some View {
         List {
-            let groupItems = Dictionary(grouping: self.items) {
+            let groupItems = Dictionary(grouping: items) {
                 Date.getFormattedDate(date: $0.dateAdded, format: "YYYYMMdd")
             }.map {
                 ($0.key,$0.value)

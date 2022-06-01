@@ -32,12 +32,16 @@ final class Co2State: ObservableObject {
 
     func loadItems() {
         // MARK: New Items to add to our Data
-        // MARK: TRANSPORT
-        listItems.append(ListItem(description: "🚗 Car", category: "Transport", CO2eqkg: 0.130, topCategory: "Transport", unit: "km"))
-        listItems.append(ListItem(description: "🚌 Bus", category: "Transport", CO2eqkg: 0.068, topCategory: "Transport", unit: "km"))
-        listItems.append(ListItem(description: "🚂 Train", category: "Transport", CO2eqkg: 0.014, topCategory: "Transport", unit: "km"))
-        listItems.append(ListItem(description: "✈️ Plane", category: "Transport", CO2eqkg: 0.285, topCategory: "Transport", unit: "km"))
-        listItems.append(ListItem(description: "🛳 Ship", category: "Transport", CO2eqkg: 0.245, topCategory: "Transport", unit: "km"))
+        
+        //MARK: NATURAL GAS
+        listItems.append(ListItem(description: "🏭🇹🇷 TR Natural Gas", category: "Gas", CO2eqkg: 0.234, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇪🇺 EU Natural Gas", category: "Gas", CO2eqkg: 0.309, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇨🇭 CH Natural Gas", category: "Gas", CO2eqkg: 0.012, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇩🇪 DE Natural Gas", category: "Gas", CO2eqkg: 0.320, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇳🇴 N Natural Gas", category: "Gas", CO2eqkg: 0.004, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇦🇹 Ö Natural Gas", category: "Gas", CO2eqkg: 0.210, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇫🇷 FR Natural Gas", category: "Gas", CO2eqkg: 0.042, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇮🇹 IT Natural Gas", category: "Gas", CO2eqkg: 0.269, topCategory: "Gas", unit: "Sm3"))
         // MARK: HOME
         listItems.append(ListItem(description: "⚡️🇹🇷 TR Electricity", category: "Power", CO2eqkg: 0.555, topCategory: "Home", unit: "kwH", sourceId: 1))
         listItems.append(ListItem(description: "⚡️🇪🇺 EU Electricity", category: "Power", CO2eqkg: 0.300, topCategory: "Home", unit: "kwH", sourceId: 1))
@@ -48,15 +52,7 @@ final class Co2State: ObservableObject {
         listItems.append(ListItem(description: "⚡️🇫🇷 FR Electricity", category: "Power", CO2eqkg: 0.064, topCategory: "Home", unit: "kwH", sourceId: 1))
         listItems.append(ListItem(description: "⚡️🇮🇹 IT Electricity", category: "Power", CO2eqkg: 0.350, topCategory: "Home", unit: "kwH", sourceId: 1))
         
-        // MARK: Clothing
-        listItems.append(ListItem(description: "👕  Polyester T-shirt", category: "Clothes", CO2eqkg: 20, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👕  Cotton T-shirt", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👕  Organic Cotton T-shirt", category: "Clothes", CO2eqkg: 4, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👟  Sport Shoe", category: "Clothes", CO2eqkg: 15, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👞  Shoe", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "🩳  Short Cotton Pants", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "🩳  Short Polyester Pants", category: "Clothes", CO2eqkg: 4, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👖  Jeans", category: "Clothes", CO2eqkg: 34, topCategory: "Clothes", unit: "item"))
+
         
         for item in listItems {
             listItemsDict[item.description] = item
@@ -66,23 +62,23 @@ final class Co2State: ObservableObject {
     init(currentCo2State: Double = 0.0) {
         self.currentCo2State = currentCo2State
         co2data = Co2State.readJSONFromFile(fileName: "Co2_data") as? [String: Any] ?? [:]
-        for x in co2data {
-            // load data
-            let info = x.value as! [String: Any]
-            let category: String = info["category"] as! String
-            let sourceId: Int? = info["sourceID"] as! Int?
-            let CO2eqkg: NSNumber = info["CO2eqkg"]! as! NSNumber
-            let unit: String = info["unit"] as? String ?? "g"
-            
-            var unitsPerKgFromUnit = NSNumber(1000)
-            if unit == "l" {
-                unitsPerKgFromUnit = NSNumber(1)
-            }
-            
-            let unitPerKg: NSNumber = info["unitPerKg"] as? NSNumber ?? unitsPerKgFromUnit
-            
-            listItems.append(ListItem(description: x.key, category: category, CO2eqkg: CO2eqkg.doubleValue, topCategory: "Food", unit: unit, unitPerKg: unitPerKg.doubleValue, sourceId: sourceId))
-        }
+//        for x in co2data {
+//            // load data
+//            let info = x.value as! [String: Any]
+//            let category: String = info["category"] as! String
+//            let sourceId: Int? = info["sourceID"] as! Int?
+//            let CO2eqkg: NSNumber = info["CO2eqkg"]! as! NSNumber
+//            let unit: String = info["unit"] as? String ?? "g"
+//
+//            var unitsPerKgFromUnit = NSNumber(1000)
+//            if unit == "l" {
+//                unitsPerKgFromUnit = NSNumber(1)
+//            }
+//
+//            let unitPerKg: NSNumber = info["unitPerKg"] as? NSNumber ?? unitsPerKgFromUnit
+//
+//            listItems.append(ListItem(description: x.key, category: category, CO2eqkg: CO2eqkg.doubleValue, topCategory: "Food", unit: unit, unitPerKg: unitPerKg.doubleValue, sourceId: sourceId))
+//        }
         // load items
         loadItems()
 
@@ -183,7 +179,7 @@ final class Co2State: ObservableObject {
     }
 
     func getCo2CategoryTotal() -> [String: Double] {
-        var catTotal: [String: Double] = ["Food": 0, "Transport": 0, "Clothes": 0, "Home": 0]
+        var catTotal: [String: Double] = ["Food": 0, "Gas": 0, "Clothes": 0, "Home": 0]
         for entry in addedItems {
             let item = listItemsDict[entry.type]!
             let cat = item.topCategory

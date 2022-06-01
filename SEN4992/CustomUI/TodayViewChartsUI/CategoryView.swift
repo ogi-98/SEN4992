@@ -11,7 +11,7 @@ struct CategoryView: View {
     //MARK: - PROPERTIES
     @EnvironmentObject var co2State: Co2State
     
-    private var categories = ["Home","Food","Clothes","Transportation"]
+    private var categories = ["Home","Food","Clothes","Gas"]
         
     
     //MARK: - BODY

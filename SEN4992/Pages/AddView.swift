@@ -89,7 +89,7 @@ struct AddView: View {
     
     private var addView: some View {
         VStack(alignment: .center, spacing: 20) {
-            Text("Electricity")
+            Text(selectedItem?.description ?? "Empty")
                 .font(.title)
                 .multilineTextAlignment(.center)
                 .padding(.top)
@@ -105,7 +105,7 @@ struct AddView: View {
                         self.enteredCo2 = newValue.numericString(allowDecimalSeparator: true)
                     }
                 
-                Text("kwH")
+                Text(selectedItem?.unit ?? "Unit")
                     .font(.title2)
             }//: hstack
             .padding(.top)
@@ -140,7 +140,8 @@ struct AddView: View {
                     guard let addingItem = selectedItem else {
                         return
                     }
-                    addCo2Entry(entryItem: addingItem)
+                    addCo2Entry(entryItem: addingItem, amountStr: enteredCo2)
+                    
                     closeAddingView()
                     
                 } label: {
@@ -208,7 +209,7 @@ struct AddView: View {
                 
                 Button {
                     withAnimation {
-                        self.selectedCategory = "Transport"
+                        self.selectedCategory = "Gas"
                     }
                 } label: {
                     VStack {
@@ -300,10 +301,12 @@ struct AddView: View {
     }
     
     
-    private func addCo2Entry(entryItem: ListItem) {
-        let amount = enteredCo2.numericString(allowDecimalSeparator: true).parseDouble()
+    private func addCo2Entry(entryItem: ListItem, amountStr: String) {
+        let amount = amountStr.numericString(allowDecimalSeparator: true).parseDouble()
+        print("amount: \(amount)")
         
-        if amount > 0.0 && !amount.isFinite {
+        if amount > 0.0 || !amount.isFinite {
+            print("entry adding...")
             co2State.addEntry(
                 item: entryItem,
                 amount: amount,
@@ -316,6 +319,7 @@ struct AddView: View {
             searchText = ""
             enteredCo2 = ""
             selectedItem = nil
+            focusedField = nil
         }
     }
     

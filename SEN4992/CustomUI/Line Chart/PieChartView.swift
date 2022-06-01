@@ -18,7 +18,7 @@ public struct PieChartView : View {
     
     
     public var labels: [String]
-    public var colors: [String: Color] = ["Food": Color(hexString: "F2B705"), "Transport": Color(hexString: "025E73"), "Clothes": Color(hexString: "037F8C"), "Home": Color(hexString: "F2762E")]
+    public var colors: [String: Color] = ["Food": Color(hexString: "F2B705"), "Gas": Color(hexString: "025E73"), "Clothes": Color(hexString: "037F8C"), "Home": Color(hexString: "F2762E")]
     
     
     
@@ -115,7 +115,7 @@ public struct PieChartView : View {
 #if DEBUG
 struct PieChartView_Previews : PreviewProvider {
     static var previews: some View {
-        PieChartView(labels: ["Home", "Food", "Clothes", "Transport"], data:[56,78,53,65], title: "Title", legend: "Legend")
+        PieChartView(labels: ["Home", "Food", "Clothes", "Gas"], data:[56,78,53,65], title: "Title", legend: "Legend")
             .preferredColorScheme(.dark)
     }
 }
