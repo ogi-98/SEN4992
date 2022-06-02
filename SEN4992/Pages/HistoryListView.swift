@@ -36,7 +36,9 @@ struct HistoryListView: View {
                     ForEach(group.1) { item in
 
                         Button {
-                            selectedItem(item: item)
+                            withAnimation {
+                                selectedItem(item: item)
+                            }
                         } label: {
                             VStack {
                                 HStack{
@@ -51,9 +53,10 @@ struct HistoryListView: View {
                                     }
                                 }
                                 RecommendLabel(userkWh: item.amount, category: item.category)
-                            }
+                            }//: vstack
+                            
                         }//: buttonLabel
-
+                        .listRowBackground(Color("CardViewDynamicColor"))
                     }//: foreach for items
 
                 } header: {
@@ -61,7 +64,6 @@ struct HistoryListView: View {
                 }
 
             }//: group foreach
-
 
         }//: List
     }

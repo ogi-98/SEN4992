@@ -6,30 +6,203 @@
 //
 
 import SwiftUI
+import Combine
 
 struct HistoryView: View {
     //MARK: - PROPERTIES
     @EnvironmentObject var co2State : Co2State
     
     @State var selectedItem: Entry?
-    @State var co2entered: String = ""
+    @State var enteredCo2: String = ""
     @State var selectedRecurrence: String = "1"
     @State var selectedDate: Date = Date()
+    enum Fields {
+        case editAmount
+    }
+    @FocusState private var focusedField: Fields?
+    @State private var showingDialogDelete = false
+    @State private var showingDialogAdd = false
+    
     
     //MARK: - Body
     var body: some View {
         VStack {
-            Text("Emission History")
-                .font(.largeTitle)
-                .padding(.top)
-                .foregroundColor(.white)
-            
-            HistoryListView(items: co2State.addedItems.reversed(), selectedItem: $selectedItem, enteredCo2: $co2entered, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
-                .environmentObject(co2State)
+            if selectedItem != nil {
+                Text("Edit Entry")
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical)
+                    .foregroundColor(.white)
+                editView
+                    .padding(.top)
+                Spacer()
+            }else {
+                Text("Emission History")
+                    .font(.largeTitle)
+                    .padding(.top)
+                    .foregroundColor(.white)
+                
+                HistoryListView(items: co2State.addedItems.reversed(), selectedItem: $selectedItem, enteredCo2: $enteredCo2, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
+                    .environmentObject(co2State)
+                    
+            }
         }
-        .background(Color("customDynamicDarkBlue"))
+        .background(Color("customDynamicDarkBlue").ignoresSafeArea().onTapGesture {
+            if selectedItem != nil {
+                closeEditView()
+            }
+        })
     }
+    
+    private var editView: some View {
+        VStack(alignment: .center, spacing: 20) {
+            Text(selectedItem?.type ?? "Empty")
+                .font(.title)
+                .multilineTextAlignment(.center)
+                .padding(.top)
+            
+            HStack {
+                TextField("Amount", text: $enteredCo2)
+                    .focused($focusedField,equals: .editAmount)
+                    .keyboardType(.decimalPad)
+                    .padding()
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .cornerRadius(10.0)
+                    .onReceive(Just(enteredCo2)) { (newValue: String) in
+                        self.enteredCo2 = newValue.numericString(allowDecimalSeparator: true)
+                    }
+                
+                Text(co2State.listItemsDict[selectedItem!.type]?.unit ?? "Unit")
+                    .font(.title2)
+            }//: hstack
+            .padding(.top)
+            
+            let co2Amount: Double = self.enteredCo2.parseDouble()
+            let fotmattedCO2: String = (co2Amount * (co2State.listItemsDict[selectedItem!.type]!.CO2eqkg) / co2State.listItemsDict[selectedItem!.type]!.unitPerKg).getFormatted(digits: 3)
+            //            let fotmattedCO2: String = "10.0"
+            let formattedPercent: String = (co2Amount * co2State.listItemsDict[selectedItem!.type]!.CO2eqkg / co2State.listItemsDict[selectedItem!.type]!.unitPerKg / co2State.co2max * 100).getFormatted(digits: 1)
+            //            let formattedPercent: String = "50"
+            
+            Text("\(fotmattedCO2) kg CO2 (\(formattedPercent)%)")
+                .foregroundColor(Color(uiColor: .systemGray2))
+            
+            DatePicker("Date:", selection: $selectedDate, in: ...Date(), displayedComponents: .date)
+                .labelsHidden()
+                .padding(.top)
+            
+            Picker(selection: $selectedRecurrence, label: Text("Recurrence:")) {
+                Text("once").tag("1")
+                Text("daily").tag("d")
+                Text("weekly").tag("w")
+                Text("monthly").tag("m")
+                Text("yearly").tag("y")
+            }
+            .pickerStyle(.segmented)
+            
+            HStack {
+                
+                let paddingVal: CGFloat = 10
+                
+                Button {
+                    showingDialogAdd = true
+                } label: {
+                    Text("Save")
+                        .padding(paddingVal)
+                        .frame(maxWidth: .infinity)
+                }
+                .confirmationDialog("Are you sure to Save?", isPresented: $showingDialogAdd,titleVisibility: .visible) {
+                    Button("Save") {
+                        withAnimation {
+                            guard let savingItem = selectedItem else {
+                                return
+                            }
+                            saveItem(item: savingItem)
+                        }
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                
+                
+                
+                Button {
+                    showingDialogDelete = true
+                    
+                } label: {
+                    Text("Delete")
+                        .padding(paddingVal)
+                        .foregroundColor(.red)
+                        .frame(maxWidth: .infinity)
+                }
+                .confirmationDialog("Are you sure?", isPresented: $showingDialogDelete,titleVisibility: .visible) {
+                    
+                    Button("Delete",role: .destructive) {
+                        withAnimation {
+                            guard let deletingItem = selectedItem else {
+                                return
+                            }
+                            deleteItem(item: deletingItem)
+                        }
+                    }
+                    
+                }
+                .buttonStyle(.bordered)
+                .tint(.red)
+                
+                
+            }
+            .padding(.top)
+            .fixedSize(horizontal: false, vertical: true)
+            
+            
+        }//: Vstack
+        .padding()
+        .background(
+            Color("CardViewDynamicColor")
+                .onTapGesture {
+                    focusedField = nil
+                }
+        )
+        .cornerRadius(16)
+        .shadow(color: .white, radius: 3, x: 0, y: 0)
+        .padding(.horizontal, 28)
+    }
+    
+    private func saveItem(item: Entry) {
+        if item.recurrence == "1" {
+            item.amount = self.enteredCo2.numericString(allowDecimalSeparator: true).parseDouble()
+            item.dateAdded = selectedDate
+        } else {
+            // remove all
+            co2State.addedItems.removeAll { (e: Entry) -> Bool in
+                return e.recurrenceID == item.recurrenceID
+            }
+            // add again
+            self.co2State.addEntry(item: self.co2State.listItemsDict[item.type]!, amount: self.enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(), dateAdded: selectedDate, recurrence: selectedRecurrence)
+        }
+        self.selectedItem = nil
+        self.enteredCo2 = ""
+        co2State.update()
+    }
+    
+    private func deleteItem(item: Entry){
+        co2State.addedItems.removeAll { (e: Entry) -> Bool in
+            return e.recurrenceID != -1 ? item.recurrenceID == e.recurrenceID : item.id == e.id
+        }
+        selectedItem = nil
+        self.enteredCo2 = ""
+        co2State.update()
+    }
+    
+    private func closeEditView() {
+        withAnimation {
+            enteredCo2 = ""
+            selectedItem = nil
+            focusedField = nil
+        }
+    }
+    
 }
+
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {

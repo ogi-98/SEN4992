@@ -29,6 +29,7 @@ struct AddListView: View {
                         .multilineTextAlignment(.trailing)
                 }
             }
+            .listRowBackground(Color("CardViewDynamicColor"))
             
         }//: listView
     }

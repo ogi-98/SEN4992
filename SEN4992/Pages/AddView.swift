@@ -174,13 +174,13 @@ struct AddView: View {
         }//: Vstack
         .padding()
         .background(
-            Color(uiColor: .secondarySystemGroupedBackground)
+            Color("CardViewDynamicColor")
                 .onTapGesture {
                     focusedField = nil
                 }
         )
         .cornerRadius(16)
-        .shadow(color: .gray, radius: 3, x: 0, y: 0)
+        .shadow(color: .white, radius: 3, x: 0, y: 0)
         .padding(.horizontal, 28)
     }
     

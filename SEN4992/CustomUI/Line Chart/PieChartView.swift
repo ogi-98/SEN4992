@@ -56,7 +56,7 @@ public struct PieChartView : View {
                         .font(.headline)
                         .foregroundColor(style.textColor)
                 }else{
-                    Text("\(self.currentValue, specifier: self.valueSpecifier)")
+                    Text("\(self.currentValue, specifier: self.valueSpecifier) kgCo2")
                         .font(.headline)
                         .foregroundColor(style.textColor)
                 }
