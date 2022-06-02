@@ -18,7 +18,7 @@ public struct PieChartView : View {
     
     
     public var labels: [String]
-    public var colors: [String: Color] = ["Food": Color(hexString: "F2B705"), "Transport": Color(hexString: "025E73"), "Clothes": Color(hexString: "037F8C"), "Home": Color(hexString: "F2762E")]
+    public var colors: [String: Color] = ["Food": Color(hexString: "F2B705"), "Gas": Color(hexString: "025E73"), "Clothes": Color(hexString: "037F8C"), "Home": Color(hexString: "F2762E")]
     
     
     
@@ -56,7 +56,7 @@ public struct PieChartView : View {
                         .font(.headline)
                         .foregroundColor(style.textColor)
                 }else{
-                    Text("\(self.currentValue, specifier: self.valueSpecifier)")
+                    Text("\(self.currentValue, specifier: self.valueSpecifier) kgCo2")
                         .font(.headline)
                         .foregroundColor(style.textColor)
                 }
@@ -69,8 +69,6 @@ public struct PieChartView : View {
             HStack {
                 PieChartRow(data: data, backgroundColor: style.backgroundColor, accentColor: self.style.accentColor, colors: colors, labels: labels, showValue: $showValue, currentValue: $currentValue, currentLabel: $currentLabel)
                     .foregroundColor(self.style.accentColor)
-                //                        .padding(self.legend != nil ? 0 : 12)
-                //                        .offset(y:self.legend != nil ? 0 : -10)
                 
                 VStack(alignment: .leading) {
                     ForEach((0..<data.count), id: \.self) {
@@ -89,7 +87,6 @@ public struct PieChartView : View {
                     }
                 }
                 Spacer()
-                //.padding()
             }
             if(self.legend != nil) {
                 Text(self.legend!)
@@ -102,20 +99,16 @@ public struct PieChartView : View {
         .padding()
         .background(
             style.backgroundColor
-//            Color(uiColor: .secondarySystemGroupedBackground)
         )
         .cornerRadius(20)
         .shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 4 : 0)
-//        .padding()
-        
-        //        .frame(width: self.formSize.width, height: self.formSize.height)
     }
 }
 
 #if DEBUG
 struct PieChartView_Previews : PreviewProvider {
     static var previews: some View {
-        PieChartView(labels: ["Home", "Food", "Clothes", "Transport"], data:[56,78,53,65], title: "Title", legend: "Legend")
+        PieChartView(labels: ["Home", "Food", "Clothes", "Gas"], data:[56,78,53,65], title: "Title", legend: "Legend")
             .preferredColorScheme(.dark)
     }
 }

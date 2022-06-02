@@ -10,7 +10,7 @@ import SwiftUI
 struct AddListView: View {
     var items: [ListItem]
     @Binding var selectedItem: ListItem?
-    @EnvironmentObject var co2State: Co2State
+    @EnvironmentObject var co2Model: Co2Model
     var body: some View {
         List(items) { item in
             Button {
@@ -25,10 +25,11 @@ struct AddListView: View {
                         .foregroundColor(Color.gray)
                         .multilineTextAlignment(.trailing)
                     Text("\(item.CO2eqkg.getFormatted(digits: 2)) kgCo2/\(item.unit)")
-                        .foregroundColor(co2State.getColorForItem(item: item))
+                        .foregroundColor(co2Model.getColorForItem(item: item))
                         .multilineTextAlignment(.trailing)
                 }
             }
+            .listRowBackground(Color("CardViewDynamicColor"))
             
         }//: listView
     }
@@ -37,6 +38,6 @@ struct AddListView: View {
 struct AddListView_Previews: PreviewProvider {
     static var previews: some View {
         AddView()
-            .environmentObject(Co2State(currentCo2State: 30))
+            .environmentObject(Co2Model(currentCo2State: 30))
     }
 }

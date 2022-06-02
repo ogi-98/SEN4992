@@ -9,14 +9,14 @@ import SwiftUI
 
 struct TodayPercentage: View {
     //MARK: - PROPERTIES
-    @EnvironmentObject var co2State: Co2State
+    @EnvironmentObject var co2Model: Co2Model
     
 //    var co2progress = 0.5
 //    @State var cappedCo2progress = 0.5
     @State var style: ChartStyle = Styles.lineChartStyleMain
     
         private var co2progress: Double {
-            get {return Double(self.co2State.currentCo2State/self.co2State.co2max)}
+            get {return Double(self.co2Model.currentCo2State/self.co2Model.co2max)}
         }
     
         private var cappedCo2progress: Double {
@@ -77,7 +77,7 @@ struct TodayPercentage_Previews: PreviewProvider {
         //            .environmentObject(Co2State(currentCo2State: 30))
         //            .preferredColorScheme(.light)
         TodayView()
-            .environmentObject(Co2State(currentCo2State: 30))
+            .environmentObject(Co2Model(currentCo2State: 30))
             .preferredColorScheme(.light)
     }
 }

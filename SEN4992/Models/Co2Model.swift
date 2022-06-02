@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-final class Co2State: ObservableObject {
+final class Co2Model: ObservableObject {
     // MARK: ONBOARDING
     @Published var onboardingCompleted = false
 
@@ -18,7 +18,7 @@ final class Co2State: ObservableObject {
     @Published var currentCo2State: Double = 10.0
     @Published var co2max = 13.6
     @Published var co2HistoryData: [Double] = [] //[8, 23, 54, 32, 12, 37, 7, 23, 43]
-    @Published var co2categoryTotal: [String: Double] = [:] //["Transport": 8, "Food" :23]
+    @Published var co2categoryTotal: [String: Double] = [:] //["Home": 8, "Gas" :23]
 
     // MARK: History data
     @Published var addedItems: [Entry] = []
@@ -28,16 +28,20 @@ final class Co2State: ObservableObject {
     var listItems: [ListItem] = []
     var listItemsDict: [String: ListItem] = [:]
     
-    // Top categories: Food Home Transport Home
+    // Top categories: Home Gas
 
     func loadItems() {
         // MARK: New Items to add to our Data
-        // MARK: TRANSPORT
-        listItems.append(ListItem(description: "🚗 Car", category: "Transport", CO2eqkg: 0.130, topCategory: "Transport", unit: "km"))
-        listItems.append(ListItem(description: "🚌 Bus", category: "Transport", CO2eqkg: 0.068, topCategory: "Transport", unit: "km"))
-        listItems.append(ListItem(description: "🚂 Train", category: "Transport", CO2eqkg: 0.014, topCategory: "Transport", unit: "km"))
-        listItems.append(ListItem(description: "✈️ Plane", category: "Transport", CO2eqkg: 0.285, topCategory: "Transport", unit: "km"))
-        listItems.append(ListItem(description: "🛳 Ship", category: "Transport", CO2eqkg: 0.245, topCategory: "Transport", unit: "km"))
+        
+        //MARK: NATURAL GAS
+        listItems.append(ListItem(description: "🏭🇹🇷 TR Natural Gas", category: "Gas", CO2eqkg: 0.234, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇪🇺 EU Natural Gas", category: "Gas", CO2eqkg: 0.309, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇨🇭 CH Natural Gas", category: "Gas", CO2eqkg: 0.012, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇩🇪 DE Natural Gas", category: "Gas", CO2eqkg: 0.320, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇳🇴 N Natural Gas", category: "Gas", CO2eqkg: 0.004, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇦🇹 Ö Natural Gas", category: "Gas", CO2eqkg: 0.210, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇫🇷 FR Natural Gas", category: "Gas", CO2eqkg: 0.042, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇮🇹 IT Natural Gas", category: "Gas", CO2eqkg: 0.269, topCategory: "Gas", unit: "Sm3"))
         // MARK: HOME
         listItems.append(ListItem(description: "⚡️🇹🇷 TR Electricity", category: "Power", CO2eqkg: 0.555, topCategory: "Home", unit: "kwH", sourceId: 1))
         listItems.append(ListItem(description: "⚡️🇪🇺 EU Electricity", category: "Power", CO2eqkg: 0.300, topCategory: "Home", unit: "kwH", sourceId: 1))
@@ -48,15 +52,7 @@ final class Co2State: ObservableObject {
         listItems.append(ListItem(description: "⚡️🇫🇷 FR Electricity", category: "Power", CO2eqkg: 0.064, topCategory: "Home", unit: "kwH", sourceId: 1))
         listItems.append(ListItem(description: "⚡️🇮🇹 IT Electricity", category: "Power", CO2eqkg: 0.350, topCategory: "Home", unit: "kwH", sourceId: 1))
         
-        // MARK: Clothing
-        listItems.append(ListItem(description: "👕  Polyester T-shirt", category: "Clothes", CO2eqkg: 20, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👕  Cotton T-shirt", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👕  Organic Cotton T-shirt", category: "Clothes", CO2eqkg: 4, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👟  Sport Shoe", category: "Clothes", CO2eqkg: 15, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👞  Shoe", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "🩳  Short Cotton Pants", category: "Clothes", CO2eqkg: 10, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "🩳  Short Polyester Pants", category: "Clothes", CO2eqkg: 4, topCategory: "Clothes", unit: "item"))
-        listItems.append(ListItem(description: "👖  Jeans", category: "Clothes", CO2eqkg: 34, topCategory: "Clothes", unit: "item"))
+
         
         for item in listItems {
             listItemsDict[item.description] = item
@@ -65,25 +61,7 @@ final class Co2State: ObservableObject {
     
     init(currentCo2State: Double = 0.0) {
         self.currentCo2State = currentCo2State
-        co2data = Co2State.readJSONFromFile(fileName: "Co2_data") as? [String: Any] ?? [:]
-        for x in co2data {
-            // load data
-            let info = x.value as! [String: Any]
-            let category: String = info["category"] as! String
-            let sourceId: Int? = info["sourceID"] as! Int?
-            let CO2eqkg: NSNumber = info["CO2eqkg"]! as! NSNumber
-            let unit: String = info["unit"] as? String ?? "g"
-            
-            var unitsPerKgFromUnit = NSNumber(1000)
-            if unit == "l" {
-                unitsPerKgFromUnit = NSNumber(1)
-            }
-            
-            let unitPerKg: NSNumber = info["unitPerKg"] as? NSNumber ?? unitsPerKgFromUnit
-            
-            listItems.append(ListItem(description: x.key, category: category, CO2eqkg: CO2eqkg.doubleValue, topCategory: "Food", unit: unit, unitPerKg: unitPerKg.doubleValue, sourceId: sourceId))
-        }
-        // load items
+        co2data = Co2Model.readJSONFromFile(fileName: "Co2_data") as? [String: Any] ?? [:]
         loadItems()
 
         // MARK: Load onboardingCompleted
@@ -97,47 +75,6 @@ final class Co2State: ObservableObject {
         if value != nil {
             addedItems = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(value!) as? [Entry] ?? []
         } else {
-//            /// Fill in random items
-//            let foodItems = listItems.filter { (item) -> Bool in
-//                return item.topCategory == "Food"
-//            }
-//            let clothingItems = listItems.filter { (item) -> Bool in
-//                return item.topCategory == "Clothing"
-//            }
-//            let homeItems = listItems.filter { (item) -> Bool in
-//                return item.topCategory == "Home"
-//            }
-//            let homeItem = homeItems[Int.random(in: 0..<homeItems.count)]
-//            for i in 0..<15 {
-//                for _ in 0..<Int.random(in: 3..<6) {
-//                    let item = foodItems[Int.random(in: 0..<foodItems.count)]
-//                    addedItems.append(Entry(category: item.category, type: item.description, amount: round(Double.random(in: 0.05..<0.3)*100)/100, dateAdded: Date().addingTimeInterval(-Double(i)*24*60*60)))
-//                }
-//                for _ in 0..<Int.random(in: 1..<3) {
-//                    let item = clothingItems[Int.random(in: 0..<clothingItems.count)]
-//                    addedItems.append(Entry(category: item.category, type: item.description, amount: round(Double.random(in: 0.05..<0.3)*100)/100, dateAdded: Date().addingTimeInterval(-Double(i)*24*60*60)))
-//                }
-//                for _ in 0..<Int.random(in: 1..<2) {
-//                    let item = homeItem
-//                    addedItems.append(Entry(category: item.category, type: item.description, amount: round(Double.random(in: 10..<40)*100)/100, dateAdded: Date().addingTimeInterval(-Double(i)*24*60*60)))
-//                }
-//            }
-
-            // MARK: Items show up in History
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 74, dateAdded: Date().addingTimeInterval(-1*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚌 Bus", amount: 70, dateAdded: Date().addingTimeInterval(-2*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚂 Train", amount: 110, dateAdded: Date().addingTimeInterval(-3*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 74, dateAdded: Date().addingTimeInterval(-4*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 155, dateAdded: Date().addingTimeInterval(-5*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 35, dateAdded: Date().addingTimeInterval(-6*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚌 Bus", amount: 20, dateAdded: Date().addingTimeInterval(-7*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 114, dateAdded: Date().addingTimeInterval(-8*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 64, dateAdded: Date().addingTimeInterval(-9*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 134, dateAdded: Date().addingTimeInterval(-10*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 114, dateAdded: Date().addingTimeInterval(-11*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 114, dateAdded: Date().addingTimeInterval(-12*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 114, dateAdded: Date().addingTimeInterval(-13*24*60*60)))
-//            addedItems.append(Entry(category: "Transport", type: "🚗 Car", amount: 114, dateAdded: Date().addingTimeInterval(-14*24*60*60)))
         }
         update()
     }
@@ -162,12 +99,9 @@ final class Co2State: ObservableObject {
                 continue
             }
         }
-        
         for (_, entry) in lastRecurrentEntries {
             // add seconds to Date() to fix timezone
-            
             var date = entry.dateAdded.addingTimeInterval(Double(TimeZone.current.secondsFromGMT()))
-            
             while date.dayDiff(Date().addingTimeInterval(Double(TimeZone.current.secondsFromGMT()))) >= 0 {
                 date = date.addingTimeInterval(24*60*60)
                 let newEntry = Entry(category: entry.category, type: entry.type, amount: entry.amount, dateAdded: date, recurrence: entry.recurrence, recurrenceID: entry.recurrenceID)
@@ -183,7 +117,7 @@ final class Co2State: ObservableObject {
     }
 
     func getCo2CategoryTotal() -> [String: Double] {
-        var catTotal: [String: Double] = ["Food": 0, "Transport": 0, "Clothes": 0, "Home": 0]
+        var catTotal: [String: Double] = ["Food": 0, "Gas": 0, "Clothes": 0, "Home": 0]
         for entry in addedItems {
             let item = listItemsDict[entry.type]!
             let cat = item.topCategory
@@ -222,10 +156,6 @@ final class Co2State: ObservableObject {
         }.map { (listItem) -> Double in
             listItem.CO2eqkg
         }
-        // mean calculation
-        //let catMin = catItems.min()!
-        //let catMax = catItems.max()!
-        //let score = (item.CO2eqkg - catMin) / (catMax - catMin)
         var n_higher: Double = 0
         for catItem in catItems {
             if item.CO2eqkg < catItem {
@@ -255,7 +185,7 @@ final class Co2State: ObservableObject {
     func addEntry(item: ListItem, amount: Double, dateAdded: Date, recurrence: String) {
         let recurrenceID = UserDefaults.standard.integer(forKey: "recurrenceID")
         UserDefaults.standard.setValue(recurrenceID+1, forKey: "recurrenceID")
-        let dailyAmount = amount / Co2State.recurrenceToDays(recurrence)  // 60/30
+        let dailyAmount = amount / Co2Model.recurrenceToDays(recurrence)  // 60/30
         let entry = Entry(category: item.category, type: item.description, amount: dailyAmount, dateAdded: dateAdded, recurrence: recurrence, recurrenceID: recurrenceID)
         addedItems.append(entry)
         update()
@@ -263,23 +193,6 @@ final class Co2State: ObservableObject {
     
     static func recurrenceToDays(_ recurrence: String) -> Double {
         return recurrence == "y" ? 365 : recurrence == "m" ? 30 : recurrence == "w" ? 7 : 1
-    }
-
-    static func strToDouble(_ s: String) -> Double {
-//        Deprecated
-        print("using deprecated strToDouble function")
-//        var str = s
-//        let parts = s.split(separator: ".")
-//        var val: String = ""
-//        if parts.count > 2 {
-//            val += parts[0] + "."
-//            for i in 1..<parts.count {
-//                val += parts[i]
-//            }
-//            str = val
-//        }
-//        return Double(str) ?? 0
-        return s.numericString(allowDecimalSeparator: true).parseDouble()
     }
 
     static func readJSONFromFile(fileName: String) -> Any? {
@@ -317,21 +230,6 @@ final class Co2State: ObservableObject {
             filteredArray = filteredArray.filter { $0.description.localizedCaseInsensitiveContains(searchQuery)}
         }        
         return filteredArray
-        
-
-//        let fuse = Fuse()
-//        for item in items {
-//            let result = fuse.search(query!, in: item.description)
-//            item.searchScore = result?.score ?? 2
-//        }
-//
-//        let results = items.sorted { (a, b) -> Bool in
-//            return a.searchScore < b.searchScore
-//        }
-//
-//        return results.filter { (item) -> Bool in
-//            return item.searchScore <= 0.5
-//        }
     }
 }
 

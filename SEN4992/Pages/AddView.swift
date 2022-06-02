@@ -19,14 +19,16 @@ struct AddView: View {
     @State var selectedDate: Date = Date()
     @State var selectedRecurrence: String = "1"
     
-    @EnvironmentObject var co2State: Co2State
+    @EnvironmentObject var co2Model: Co2Model
     
     enum Fields {
         case amount
     }
     @FocusState private var focusedField: Fields?
     
-    
+    init() {
+//        UITableView.appearance().backgroundColor = UIColor.clear
+    }
     //MARK: - BODY
     var body: some View {
         VStack {
@@ -69,10 +71,10 @@ struct AddView: View {
                 Spacer()
                 
             }else if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                AddListView(items: co2State.getSearchResults(query: self.searchText.trimmingCharacters(in: .whitespacesAndNewlines), category: self.selectedCategory), selectedItem: $selectedItem)
+                AddListView(items: co2Model.getSearchResults(query: self.searchText.trimmingCharacters(in: .whitespacesAndNewlines), category: self.selectedCategory), selectedItem: $selectedItem)
             }else if !selectedCategory.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                AddListView(items: co2State.getSearchResults(query: nil, category: self.selectedCategory), selectedItem: $selectedItem)
-                    .environmentObject(co2State)
+                AddListView(items: co2Model.getSearchResults(query: nil, category: self.selectedCategory), selectedItem: $selectedItem)
+                    .environmentObject(co2Model)
             }else{
                 categoryView
                 Spacer()
@@ -89,7 +91,7 @@ struct AddView: View {
     
     private var addView: some View {
         VStack(alignment: .center, spacing: 20) {
-            Text("Electricity")
+            Text(selectedItem?.description ?? "Empty")
                 .font(.title)
                 .multilineTextAlignment(.center)
                 .padding(.top)
@@ -105,7 +107,7 @@ struct AddView: View {
                         self.enteredCo2 = newValue.numericString(allowDecimalSeparator: true)
                     }
                 
-                Text("kwH")
+                Text(selectedItem?.unit ?? "Unit")
                     .font(.title2)
             }//: hstack
             .padding(.top)
@@ -113,7 +115,7 @@ struct AddView: View {
             let co2Amount: Double = self.enteredCo2.parseDouble()
             let fotmattedCO2: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg).getFormatted(digits: 3)
             //            let fotmattedCO2: String = "10.0"
-            let formattedPercent: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg / co2State.co2max * 100).getFormatted(digits: 1)
+            let formattedPercent: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg / co2Model.co2max * 100).getFormatted(digits: 1)
             //            let formattedPercent: String = "50"
             
             Text("\(fotmattedCO2) kg CO2 (\(formattedPercent)%)")
@@ -140,7 +142,8 @@ struct AddView: View {
                     guard let addingItem = selectedItem else {
                         return
                     }
-                    addCo2Entry(entryItem: addingItem)
+                    addCo2Entry(entryItem: addingItem, amountStr: enteredCo2)
+                    
                     closeAddingView()
                     
                 } label: {
@@ -173,13 +176,13 @@ struct AddView: View {
         }//: Vstack
         .padding()
         .background(
-            Color(uiColor: .secondarySystemGroupedBackground)
+            Color("CardViewDynamicColor")
                 .onTapGesture {
                     focusedField = nil
                 }
         )
         .cornerRadius(16)
-        .shadow(color: .gray, radius: 3, x: 0, y: 0)
+        .shadow(color: .white, radius: 3, x: 0, y: 0)
         .padding(.horizontal, 28)
     }
     
@@ -208,7 +211,7 @@ struct AddView: View {
                 
                 Button {
                     withAnimation {
-                        self.selectedCategory = "Transport"
+                        self.selectedCategory = "Gas"
                     }
                 } label: {
                     VStack {
@@ -300,11 +303,13 @@ struct AddView: View {
     }
     
     
-    private func addCo2Entry(entryItem: ListItem) {
-        let amount = enteredCo2.numericString(allowDecimalSeparator: true).parseDouble()
+    private func addCo2Entry(entryItem: ListItem, amountStr: String) {
+        let amount = amountStr.numericString(allowDecimalSeparator: true).parseDouble()
+        print("amount: \(amount)")
         
-        if amount > 0.0 && !amount.isFinite {
-            co2State.addEntry(
+        if amount > 0.0 || !amount.isFinite {
+            print("entry adding...")
+            co2Model.addEntry(
                 item: entryItem,
                 amount: amount,
                 dateAdded: selectedDate,
@@ -316,6 +321,7 @@ struct AddView: View {
             searchText = ""
             enteredCo2 = ""
             selectedItem = nil
+            focusedField = nil
         }
     }
     
@@ -325,7 +331,7 @@ struct AddView: View {
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         AddView()
-            .environmentObject(Co2State(currentCo2State: 30))
+            .environmentObject(Co2Model(currentCo2State: 30))
             .preferredColorScheme(.light)
     }
 }

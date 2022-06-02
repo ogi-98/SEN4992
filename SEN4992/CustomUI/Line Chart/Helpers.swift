@@ -69,8 +69,8 @@ public struct Styles {
         backgroundColor: Color("customDynamicLightBlue"),
         accentColor: Color.green,
         secondGradientColor: Color.red,
-        textColor: Color.white,
-        legendTextColor: Color.white,
+        textColor: Color(uiColor: .label),
+        legendTextColor: Color(uiColor: .label),
         dropShadowColor: Color.white)
 
     public static let barChartStyleOrangeLight = ChartStyle(
@@ -133,8 +133,8 @@ public struct Styles {
         backgroundColor: Color("customDynamicLightBlue"),
         accentColor: Colors.DarkPurple,
         secondGradientColor: Colors.OrangeStart,
-        textColor: Color.white,
-        legendTextColor: Color.white,
+        textColor: Color(uiColor: .label),
+        legendTextColor: Color(uiColor: .label),
         dropShadowColor: Color.white)
 
     public static let lineViewDarkMode = ChartStyle(

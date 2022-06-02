@@ -23,7 +23,6 @@ struct SearchBar: View {
                 .padding(.horizontal,20)
                 .foregroundColor(.white)
                 .background(
-//                    Color(uiColor: .systemGray6)
                     Color("customDynamicLightBlue")
                 )
                 .cornerRadius(8)
@@ -42,7 +41,6 @@ struct SearchBar: View {
                                 Image(systemName: "multiply.circle.fill")
                                     .foregroundColor(
                                         Color.white
-//                                        Color(uiColor: .opaqueSeparator)
                                     )
                                     .padding(.trailing, 8)
                             }

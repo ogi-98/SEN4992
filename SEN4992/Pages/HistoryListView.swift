@@ -9,11 +9,11 @@ import SwiftUI
 
 struct HistoryListView: View {
     //MARK: - PROPERTIES
-    @EnvironmentObject var co2State : Co2State
+    @EnvironmentObject var co2Model : Co2Model
     
     var items: [Entry]
     @Binding var selectedItem: Entry?
-    @Binding var co2entered: String
+    @Binding var enteredCo2: String
     @Binding var selectedRecurrence: String
     @Binding var selectedDate: Date
     
@@ -22,7 +22,7 @@ struct HistoryListView: View {
     //MARK: - BODY
     var body: some View {
         List {
-            let groupItems = Dictionary(grouping: self.items) {
+            let groupItems = Dictionary(grouping: items) {
                 Date.getFormattedDate(date: $0.dateAdded, format: "YYYYMMdd")
             }.map {
                 ($0.key,$0.value)
@@ -36,7 +36,9 @@ struct HistoryListView: View {
                     ForEach(group.1) { item in
 
                         Button {
-
+                            withAnimation {
+                                selectedItem(item: item)
+                            }
                         } label: {
                             VStack {
                                 HStack{
@@ -45,25 +47,42 @@ struct HistoryListView: View {
                                     Spacer()
 
                                     VStack(alignment: .trailing) {
-                                        Text(item.amount.getFormatted(digits: 1) + " \(co2State.listItemsDict[item.type]!.unit)")
-                                        Text((item.amount * co2State.listItemsDict[item.type]!.CO2eqkg / co2State.listItemsDict[item.type]!.unitPerKg).getFormatted(digits: 1) + " kg Co2")
-                                            .foregroundColor(co2State.getColorForEntry(entry: item))
+                                        Text(item.amount.getFormatted(digits: 1) + " \(co2Model.listItemsDict[item.type]!.unit)")
+                                        Text((item.amount * co2Model.listItemsDict[item.type]!.CO2eqkg / co2Model.listItemsDict[item.type]!.unitPerKg).getFormatted(digits: 1) + " kg Co2")
+                                            .foregroundColor(co2Model.getColorForEntry(entry: item))
                                     }
                                 }
                                 RecommendLabel(userkWh: item.amount, category: item.category)
-                            }
+                            }//: vstack
+                            
                         }//: buttonLabel
-
+                        .listRowBackground(Color("CardViewDynamicColor"))
                     }//: foreach for items
 
                 } header: {
                     Text(Date.getFormattedDateStyle(date: group.1[0].dateAdded, format: .medium))
+                        .foregroundColor(Color.white)
                 }
 
             }//: group foreach
 
-
         }//: List
+    }
+    //MARK: - Funcs
+    
+    private func selectedItem(item: Entry) {
+        selectedItem = item
+        selectedRecurrence = item.recurrence
+        enteredCo2 = (item.amount * Co2Model.recurrenceToDays(item.recurrence)).getFormatted(digits: 1)
+        
+        selectedDate = item.dateAdded
+        if item.recurrence != "1" {
+            for entry in co2Model.addedItems {
+                if entry.recurrenceID == item.recurrenceID && entry.dateAdded < selectedDate {
+                    selectedDate = entry.dateAdded
+                }
+            }
+        }
     }
 }
 

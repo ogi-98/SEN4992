@@ -10,28 +10,29 @@ import SwiftUI
 struct MainView: View {
     //MARK: - PROPERTIES
     
-    private var userCo2State: Co2State = Co2State(currentCo2State: 20.0)
+    private var userCo2Model: Co2Model = Co2Model(currentCo2State: 20.0)
     
     init() {
+        UITableView.appearance().backgroundColor = UIColor.clear
         UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance()
     }
     //MARK: - BODY
     var body: some View {
         TabView {
                 TodayView()
-                .environmentObject(userCo2State)
+                .environmentObject(userCo2Model)
                     .tabItem {
                         Image(systemName: "house")
                         Text("Today")
                 }
                 AddView()
-                .environmentObject(userCo2State)
+                .environmentObject(userCo2Model)
                     .tabItem {
                         Image(systemName: "plus.circle")
                         Text("Add")
                 }
                 HistoryView()
-                .environmentObject(userCo2State)
+                .environmentObject(userCo2Model)
                     .tabItem {
                         Image(systemName: "list.bullet.rectangle")
                         Text("History")
