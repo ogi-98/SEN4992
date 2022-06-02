@@ -24,6 +24,9 @@ struct HistoryView: View {
     @State private var showingDialogAdd = false
     
     
+    init() {
+//        UITableView.appearance().backgroundColor = UIColor.clear
+    }
     //MARK: - Body
     var body: some View {
         VStack {

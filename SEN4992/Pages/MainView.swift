@@ -13,6 +13,7 @@ struct MainView: View {
     private var userCo2Model: Co2Model = Co2Model(currentCo2State: 20.0)
     
     init() {
+        UITableView.appearance().backgroundColor = UIColor.clear
         UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance()
     }
     //MARK: - BODY

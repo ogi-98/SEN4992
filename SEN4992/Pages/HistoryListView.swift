@@ -61,6 +61,7 @@ struct HistoryListView: View {
 
                 } header: {
                     Text(Date.getFormattedDateStyle(date: group.1[0].dateAdded, format: .medium))
+                        .foregroundColor(Color.white)
                 }
 
             }//: group foreach

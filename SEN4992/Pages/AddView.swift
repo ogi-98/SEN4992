@@ -26,7 +26,9 @@ struct AddView: View {
     }
     @FocusState private var focusedField: Fields?
     
-    
+    init() {
+//        UITableView.appearance().backgroundColor = UIColor.clear
+    }
     //MARK: - BODY
     var body: some View {
         VStack {
