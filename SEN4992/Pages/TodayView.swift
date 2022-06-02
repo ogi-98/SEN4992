@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodayView: View {
     //MARK: - PROPERTIES
-    @EnvironmentObject var co2State: Co2State
+    @EnvironmentObject var co2Model: Co2Model
     @State private var name = ""
     @State private var timeMessage = ""
     private var userApi = UserApi()
@@ -122,7 +122,7 @@ struct TodayView: View {
 struct TodayView_Previews: PreviewProvider {
     static var previews: some View {
         TodayView()
-            .environmentObject(Co2State(currentCo2State: 30))
+            .environmentObject(Co2Model(currentCo2State: 30))
             .preferredColorScheme(.light)
     }
 }

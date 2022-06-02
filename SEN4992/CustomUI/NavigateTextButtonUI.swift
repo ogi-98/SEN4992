@@ -13,7 +13,6 @@ struct NavigateTextButtonUI: View {
     @State var bttnText: String? = ""
     @State var destination: AnyView?
     @State var color: Color = Color("AlternateButtonColor")
-//    AnyView = {Text("Fail")}()
     var body: some View {
         
         HStack(spacing:5) {

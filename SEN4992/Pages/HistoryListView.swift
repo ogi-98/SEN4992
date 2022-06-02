@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoryListView: View {
     //MARK: - PROPERTIES
-    @EnvironmentObject var co2State : Co2State
+    @EnvironmentObject var co2Model : Co2Model
     
     var items: [Entry]
     @Binding var selectedItem: Entry?
@@ -47,9 +47,9 @@ struct HistoryListView: View {
                                     Spacer()
 
                                     VStack(alignment: .trailing) {
-                                        Text(item.amount.getFormatted(digits: 1) + " \(co2State.listItemsDict[item.type]!.unit)")
-                                        Text((item.amount * co2State.listItemsDict[item.type]!.CO2eqkg / co2State.listItemsDict[item.type]!.unitPerKg).getFormatted(digits: 1) + " kg Co2")
-                                            .foregroundColor(co2State.getColorForEntry(entry: item))
+                                        Text(item.amount.getFormatted(digits: 1) + " \(co2Model.listItemsDict[item.type]!.unit)")
+                                        Text((item.amount * co2Model.listItemsDict[item.type]!.CO2eqkg / co2Model.listItemsDict[item.type]!.unitPerKg).getFormatted(digits: 1) + " kg Co2")
+                                            .foregroundColor(co2Model.getColorForEntry(entry: item))
                                     }
                                 }
                                 RecommendLabel(userkWh: item.amount, category: item.category)
@@ -72,11 +72,11 @@ struct HistoryListView: View {
     private func selectedItem(item: Entry) {
         selectedItem = item
         selectedRecurrence = item.recurrence
-        enteredCo2 = (item.amount * Co2State.recurrenceToDays(item.recurrence)).getFormatted(digits: 1)
+        enteredCo2 = (item.amount * Co2Model.recurrenceToDays(item.recurrence)).getFormatted(digits: 1)
         
         selectedDate = item.dateAdded
         if item.recurrence != "1" {
-            for entry in co2State.addedItems {
+            for entry in co2Model.addedItems {
                 if entry.recurrenceID == item.recurrenceID && entry.dateAdded < selectedDate {
                     selectedDate = entry.dateAdded
                 }

@@ -69,8 +69,6 @@ public struct PieChartView : View {
             HStack {
                 PieChartRow(data: data, backgroundColor: style.backgroundColor, accentColor: self.style.accentColor, colors: colors, labels: labels, showValue: $showValue, currentValue: $currentValue, currentLabel: $currentLabel)
                     .foregroundColor(self.style.accentColor)
-                //                        .padding(self.legend != nil ? 0 : 12)
-                //                        .offset(y:self.legend != nil ? 0 : -10)
                 
                 VStack(alignment: .leading) {
                     ForEach((0..<data.count), id: \.self) {
@@ -89,7 +87,6 @@ public struct PieChartView : View {
                     }
                 }
                 Spacer()
-                //.padding()
             }
             if(self.legend != nil) {
                 Text(self.legend!)
@@ -102,13 +99,9 @@ public struct PieChartView : View {
         .padding()
         .background(
             style.backgroundColor
-//            Color(uiColor: .secondarySystemGroupedBackground)
         )
         .cornerRadius(20)
         .shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 4 : 0)
-//        .padding()
-        
-        //        .frame(width: self.formSize.width, height: self.formSize.height)
     }
 }
 

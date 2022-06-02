@@ -101,7 +101,6 @@ public struct LineChartViewCustom: View {
             .padding()
             .background(
                 self.style.backgroundColor
-//                Color(uiColor: .secondarySystemGroupedBackground)
             )
             .cornerRadius(20)
             .shadow(color: self.style.dropShadowColor, radius: self.dropShadow ? 5 : 0)
@@ -140,7 +139,6 @@ public struct LineChartViewCustom: View {
                     }
                     Text("\(self.rateValue!) kg CO2 today")
                         .font(.system(.callout))
-//                        .foregroundColor(self.colorScheme == .dark ? self.darkModeStyle.textColor : self.style.textColor)
                 }
             }
             .foregroundColor(self.style.textColor)

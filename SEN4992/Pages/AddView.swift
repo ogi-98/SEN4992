@@ -19,7 +19,7 @@ struct AddView: View {
     @State var selectedDate: Date = Date()
     @State var selectedRecurrence: String = "1"
     
-    @EnvironmentObject var co2State: Co2State
+    @EnvironmentObject var co2Model: Co2Model
     
     enum Fields {
         case amount
@@ -69,10 +69,10 @@ struct AddView: View {
                 Spacer()
                 
             }else if !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                AddListView(items: co2State.getSearchResults(query: self.searchText.trimmingCharacters(in: .whitespacesAndNewlines), category: self.selectedCategory), selectedItem: $selectedItem)
+                AddListView(items: co2Model.getSearchResults(query: self.searchText.trimmingCharacters(in: .whitespacesAndNewlines), category: self.selectedCategory), selectedItem: $selectedItem)
             }else if !selectedCategory.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                AddListView(items: co2State.getSearchResults(query: nil, category: self.selectedCategory), selectedItem: $selectedItem)
-                    .environmentObject(co2State)
+                AddListView(items: co2Model.getSearchResults(query: nil, category: self.selectedCategory), selectedItem: $selectedItem)
+                    .environmentObject(co2Model)
             }else{
                 categoryView
                 Spacer()
@@ -113,7 +113,7 @@ struct AddView: View {
             let co2Amount: Double = self.enteredCo2.parseDouble()
             let fotmattedCO2: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg).getFormatted(digits: 3)
             //            let fotmattedCO2: String = "10.0"
-            let formattedPercent: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg / co2State.co2max * 100).getFormatted(digits: 1)
+            let formattedPercent: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg / co2Model.co2max * 100).getFormatted(digits: 1)
             //            let formattedPercent: String = "50"
             
             Text("\(fotmattedCO2) kg CO2 (\(formattedPercent)%)")
@@ -307,7 +307,7 @@ struct AddView: View {
         
         if amount > 0.0 || !amount.isFinite {
             print("entry adding...")
-            co2State.addEntry(
+            co2Model.addEntry(
                 item: entryItem,
                 amount: amount,
                 dateAdded: selectedDate,
@@ -329,7 +329,7 @@ struct AddView: View {
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         AddView()
-            .environmentObject(Co2State(currentCo2State: 30))
+            .environmentObject(Co2Model(currentCo2State: 30))
             .preferredColorScheme(.light)
     }
 }

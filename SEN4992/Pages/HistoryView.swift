@@ -10,7 +10,7 @@ import Combine
 
 struct HistoryView: View {
     //MARK: - PROPERTIES
-    @EnvironmentObject var co2State : Co2State
+    @EnvironmentObject var co2Model : Co2Model
     
     @State var selectedItem: Entry?
     @State var enteredCo2: String = ""
@@ -42,8 +42,8 @@ struct HistoryView: View {
                     .padding(.top)
                     .foregroundColor(.white)
                 
-                HistoryListView(items: co2State.addedItems.reversed(), selectedItem: $selectedItem, enteredCo2: $enteredCo2, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
-                    .environmentObject(co2State)
+                HistoryListView(items: co2Model.addedItems.reversed(), selectedItem: $selectedItem, enteredCo2: $enteredCo2, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
+                    .environmentObject(co2Model)
                     
             }
         }
@@ -72,15 +72,15 @@ struct HistoryView: View {
                         self.enteredCo2 = newValue.numericString(allowDecimalSeparator: true)
                     }
                 
-                Text(co2State.listItemsDict[selectedItem!.type]?.unit ?? "Unit")
+                Text(co2Model.listItemsDict[selectedItem!.type]?.unit ?? "Unit")
                     .font(.title2)
             }//: hstack
             .padding(.top)
             
             let co2Amount: Double = self.enteredCo2.parseDouble()
-            let fotmattedCO2: String = (co2Amount * (co2State.listItemsDict[selectedItem!.type]!.CO2eqkg) / co2State.listItemsDict[selectedItem!.type]!.unitPerKg).getFormatted(digits: 3)
+            let fotmattedCO2: String = (co2Amount * (co2Model.listItemsDict[selectedItem!.type]!.CO2eqkg) / co2Model.listItemsDict[selectedItem!.type]!.unitPerKg).getFormatted(digits: 3)
             //            let fotmattedCO2: String = "10.0"
-            let formattedPercent: String = (co2Amount * co2State.listItemsDict[selectedItem!.type]!.CO2eqkg / co2State.listItemsDict[selectedItem!.type]!.unitPerKg / co2State.co2max * 100).getFormatted(digits: 1)
+            let formattedPercent: String = (co2Amount * co2Model.listItemsDict[selectedItem!.type]!.CO2eqkg / co2Model.listItemsDict[selectedItem!.type]!.unitPerKg / co2Model.co2max * 100).getFormatted(digits: 1)
             //            let formattedPercent: String = "50"
             
             Text("\(fotmattedCO2) kg CO2 (\(formattedPercent)%)")
@@ -173,24 +173,24 @@ struct HistoryView: View {
             item.dateAdded = selectedDate
         } else {
             // remove all
-            co2State.addedItems.removeAll { (e: Entry) -> Bool in
+            co2Model.addedItems.removeAll { (e: Entry) -> Bool in
                 return e.recurrenceID == item.recurrenceID
             }
             // add again
-            self.co2State.addEntry(item: self.co2State.listItemsDict[item.type]!, amount: self.enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(), dateAdded: selectedDate, recurrence: selectedRecurrence)
+            self.co2Model.addEntry(item: self.co2Model.listItemsDict[item.type]!, amount: self.enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(), dateAdded: selectedDate, recurrence: selectedRecurrence)
         }
         self.selectedItem = nil
         self.enteredCo2 = ""
-        co2State.update()
+        co2Model.update()
     }
     
     private func deleteItem(item: Entry){
-        co2State.addedItems.removeAll { (e: Entry) -> Bool in
+        co2Model.addedItems.removeAll { (e: Entry) -> Bool in
             return e.recurrenceID != -1 ? item.recurrenceID == e.recurrenceID : item.id == e.id
         }
         selectedItem = nil
         self.enteredCo2 = ""
-        co2State.update()
+        co2Model.update()
     }
     
     private func closeEditView() {

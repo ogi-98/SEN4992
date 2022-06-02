@@ -9,13 +9,13 @@ import SwiftUI
 
 struct DailyGraphUI: View {
     //MARK: - PROPERTIES
-    @EnvironmentObject var co2State: Co2State
+    @EnvironmentObject var co2Model: Co2Model
     
     
     //MARK: - BODY
     var body: some View {
         VStack {
-            LineChartViewCustom(data: co2State.co2HistoryData, title: "Your History",legend: "Basic", style: Styles.lineChartStyleMain, form: ChartForm.large, rateValue: Int(co2State.currentCo2State))
+            LineChartViewCustom(data: co2Model.co2HistoryData, title: "Your History",legend: "Basic", style: Styles.lineChartStyleMain, form: ChartForm.large, rateValue: Int(co2Model.currentCo2State))
         }
     }
 }
@@ -24,7 +24,7 @@ struct DailyGraphUI: View {
 struct DailyGraphUI_Previews: PreviewProvider {
     static var previews: some View {
         DailyGraphUI()
-            .environmentObject(Co2State(currentCo2State: 10.0))
+            .environmentObject(Co2Model(currentCo2State: 10.0))
     }
 }
 
