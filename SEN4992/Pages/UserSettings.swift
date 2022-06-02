@@ -143,6 +143,9 @@ struct UserSettings: View {
             } label: {
                 HStack{
                     Button {
+                        withAnimation {
+                            selectedPage = .settings
+                        }
                     } label: {
                         Image(systemName: "person.crop.circle.fill")
                             .font(.title)
@@ -167,6 +170,7 @@ struct UserSettings: View {
             } label: {
                 HStack{
                     Button {
+                        showingDialog = true
                     } label: {
                         Image(systemName: "rectangle.portrait.and.arrow.right")
                             .font(.title2)
