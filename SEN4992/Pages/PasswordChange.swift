@@ -13,6 +13,11 @@ struct PasswordChange: View {
     @State private var newPassword: String = ""
     @State private var newRePassword: String = ""
     
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
+    @State private var alertShow = false
+    
+    private var userApi = UserApi()
     
     
     
@@ -48,7 +53,7 @@ struct PasswordChange: View {
                             .padding(.top,60)
                             
                             Button {
-                                
+                                passwordUpdate()
                             } label: {
                                 HStack {
                                     Image(systemName: "arrow.triangle.2.circlepath")
@@ -83,12 +88,65 @@ struct PasswordChange: View {
                 
                 
             }
-        }
+        }//: vstack
         .frame(maxWidth:.infinity,maxHeight: .infinity, alignment: .top)
         .background(Color("MainColor"))
+        .alert(alertTitle, isPresented: $alertShow) {
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("\(alertMessage)")
+        }
     }
     
     //MARK: - FUNCS
+    private func passwordUpdate() {
+        let passwordOld = oldPassword.trimmingCharacters(in: .whitespacesAndNewlines)
+        let passwordNew = newPassword.trimmingCharacters(in: .whitespacesAndNewlines)
+        let passwordReNew = newRePassword.trimmingCharacters(in: .whitespacesAndNewlines)
+        let userMail = userApi.currentUserMail.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if passwordOld.isEmpty || passwordNew.isEmpty || passwordReNew.isEmpty {
+            // bosluklari doldur
+            showAlert(title: "Empty Fields!", message: "Make sure all fields are not empty")
+        }else if passwordNew == passwordOld {
+            // eski pass yeni pass olamaz
+            print("eski pass yeni pass olamaz")
+            showAlert(title: "Same Password", message: "Your new password does not be the same with old password")
+        }else if passwordNew != passwordReNew {
+            // yeni passler eslesmiyor
+            print("Passler eslesmiyor")
+            showAlert(title: "Passwords Does not Match", message: "New Passwords does not match")
+        }else {
+            // basarili
+            userApi.userReAuth(mail: userMail, password: passwordOld) {
+                // succes reauth
+                
+                userApi.userUpdatePassword(password: passwordNew) {
+                    // basarili update
+                    print("Basarili update")
+                } onError: { errorMessage in
+                    // basarisiz update
+                    print("Basarisiz update: \(errorMessage)")
+                }
+
+                
+            } onError: { errorMessage in
+                // error reAuth
+                print("Error ReAuth: \(errorMessage)")
+            }
+
+        }
+        
+    }
+    
+    
+    private func showAlert(title: String,message:String){
+        alertTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        alertMessage = message.trimmingCharacters(in: .whitespacesAndNewlines)
+        alertShow = true
+    }
+    
+    
 }
 
 struct PasswordChange_Previews: PreviewProvider {

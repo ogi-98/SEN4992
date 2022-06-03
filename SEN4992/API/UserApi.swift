@@ -27,6 +27,11 @@ class UserApi: ObservableObject {
         return Auth.auth().currentUser != nil ? Auth.auth().currentUser!.email ?? "" : ""
     }
     
+    var currentUser: User? {
+        return Auth.auth().currentUser
+    }
+    
+    
     func createUser(name: String = "", mail: String, password: String, onSuccess: @escaping() -> Void,onError: @escaping(_ errorMessage: String) -> Void) {
         Auth.auth().createUser(withEmail: mail, password: password) { authResult, err in
             if err == nil {
@@ -109,6 +114,33 @@ class UserApi: ObservableObject {
                 onError(errorMessage)
             }
         }
+        
+    }
+    
+    func userReAuth(mail: String, password: String,onSuccess: @escaping() -> Void,onError: @escaping(_ errorMessage: String) -> Void) {
+        let credential: AuthCredential = EmailAuthProvider.credential(withEmail: mail, password: password)
+        currentUser?.reauthenticate(with: credential, completion: { auth, error in
+            if let error = error {
+                // error happened
+                let errorMessage = error.localizedDescription
+                onError(errorMessage)
+            }else{
+                onSuccess()
+            }
+        })
+        
+    }
+    
+    func userUpdatePassword(password: String,onSuccess: @escaping() -> Void,onError: @escaping(_ errorMessage: String) -> Void) {
+        currentUser?.updatePassword(to: password, completion: { error in
+            if let error = error {
+                // error happened
+                let errorMessage = error.localizedDescription
+                onError(errorMessage)
+            }else {
+                onSuccess()
+            }
+        })
         
     }
     
