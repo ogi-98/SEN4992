@@ -112,6 +112,9 @@ struct PasswordChange: View {
                         .background(Color(uiColor: .tertiarySystemBackground))
                         .cornerRadius(30, corners: [.topLeft,.topRight])
                         .edgesIgnoringSafeArea(.bottom)
+                        .onTapGesture {
+                            focusedField = nil
+                        }
                     }
                     
                     Image("PasswordUpdate")
@@ -124,9 +127,7 @@ struct PasswordChange: View {
                         .shadow(color: Color(uiColor: .lightGray).opacity(0.3), radius: 2, x: 0, y: 3)
                     
                 }
-                .onTapGesture {
-                    focusedField = nil
-                }
+                
                 
                 
             }
