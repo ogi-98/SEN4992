@@ -35,7 +35,7 @@ struct CustomLabelUI: View {
             Text(userApi.currentUserName == "" ? title:userApi.currentUserName)
                 .fontWeight(.light)
         case .email:
-            Text(userApi.currentUserName == "" ? title:userApi.currentUserMail)
+            Text(userApi.currentUserMail == "" ? title:userApi.currentUserMail)
                 .fontWeight(.light)
         default:
             Text(userApi.currentUserName == "" ? title:userApi.currentUserName)
