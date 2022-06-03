@@ -108,10 +108,6 @@ struct PasswordChange: View {
         if passwordOld.isEmpty || passwordNew.isEmpty || passwordReNew.isEmpty {
             // bosluklari doldur
             showAlert(title: "Empty Fields!", message: "Make sure all fields are not empty")
-        }else if passwordNew == passwordOld {
-            // eski pass yeni pass olamaz
-            print("eski pass yeni pass olamaz")
-            showAlert(title: "Same Password", message: "Your new password does not be the same with old password")
         }else if passwordNew != passwordReNew {
             // yeni passler eslesmiyor
             print("Passler eslesmiyor")
@@ -121,18 +117,27 @@ struct PasswordChange: View {
             userApi.userReAuth(mail: userMail, password: passwordOld) {
                 // succes reauth
                 
-                userApi.userUpdatePassword(password: passwordNew) {
-                    // basarili update
-                    print("Basarili update")
-                } onError: { errorMessage in
-                    // basarisiz update
-                    print("Basarisiz update: \(errorMessage)")
+                if passwordNew == passwordOld {
+                    // eski pass yeni pass olamaz
+                    print("eski pass yeni pass olamaz")
+                    showAlert(title: "Same Password", message: "Your old password cannot be the same as your new password.")
+                }else {
+                    userApi.userUpdatePassword(password: passwordNew) {
+                        // basarili update
+                        print("Basarili update")
+                        showAlert(title: "Successful Update", message: "Your password has been successfully updated. Now your account is more secure 😄")
+                    } onError: { errorMessage in
+                        // basarisiz update
+                        print("Basarisiz update: \(errorMessage)")
+                        showAlert(title: "Error!", message: errorMessage)
+                    }
                 }
 
                 
             } onError: { errorMessage in
                 // error reAuth
                 print("Error ReAuth: \(errorMessage)")
+                showAlert(title: "Error!", message: errorMessage)
             }
 
         }
