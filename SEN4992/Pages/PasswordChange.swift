@@ -17,6 +17,13 @@ struct PasswordChange: View {
     @State private var alertMessage = ""
     @State private var alertShow = false
     
+    enum Fields {
+        case oldPassword
+        case password
+        case rePassword
+    }
+    @FocusState private var focusedField: Fields?
+    
     private var userApi = UserApi()
     
     
@@ -45,12 +52,44 @@ struct PasswordChange: View {
                         VStack {
                             VStack {
                                 PasswordTextfieldCustomUI(pass: $oldPassword, plcholder: "Old Password", textContentType: .password)
+                                    .submitLabel(.next)
+                                    .focused($focusedField, equals: .oldPassword)
                                 PasswordTextfieldCustomUI(pass: $newPassword, plcholder: "New Password", textContentType: .newPassword)
+                                    .submitLabel(.next)
+                                    .focused($focusedField, equals: .password)
                                 PasswordTextfieldCustomUI(pass: $newRePassword, plcholder: "Confirm New Password", textContentType: .password)
+                                    .submitLabel(.go)
+                                    .focused($focusedField, equals: .rePassword)
                             }
                             .accentColor(.blue)
                             .padding(.horizontal)
                             .padding(.top,60)
+                            .onSubmit {
+                                switch focusedField {
+                                case .oldPassword:
+                                    focusedField = .password
+                                case .password:
+                                    focusedField = .rePassword
+                                case .rePassword:
+                                    passwordUpdate()
+                                default:
+                                    break
+                                }
+                            }//: on submit
+                            .toolbar {
+                                ToolbarItem(placement: .keyboard) {
+                                    HStack{
+                                        Spacer()
+                                        Button {
+                                            focusedField = nil
+                                        } label: {
+                                            Text("Done")
+                                        }
+                                        .tint(Color("AlternateButtonColor"))
+
+                                    }
+                                }
+                            }//: toolbar
                             
                             Button {
                                 passwordUpdate()
@@ -84,6 +123,9 @@ struct PasswordChange: View {
                         .clipShape(Circle())
                         .shadow(color: Color(uiColor: .lightGray).opacity(0.3), radius: 2, x: 0, y: 3)
                     
+                }
+                .onTapGesture {
+                    focusedField = nil
                 }
                 
                 
