@@ -23,38 +23,55 @@ struct HistoryView: View {
     @State private var showingDialogDelete = false
     @State private var showingDialogAdd = false
     
-    
-    init() {
-//        UITableView.appearance().backgroundColor = UIColor.clear
-    }
     //MARK: - Body
     var body: some View {
-        VStack {
-            if selectedItem != nil {
-                Text("Edit Entry")
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
-                    .foregroundColor(.white)
-                editView
-                    .padding(.top)
-                Spacer()
-            }else {
-                Text("Emission History")
-                    .font(.largeTitle)
-                    .padding(.top)
-                    .foregroundColor(.white)
-                
-                HistoryListView(items: co2Model.addedItems.reversed(), selectedItem: $selectedItem, enteredCo2: $enteredCo2, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
-                    .environmentObject(co2Model)
+        GeometryReader { geo in
+            
+            VStack {
+                if selectedItem != nil {
+                    Text("Edit Entry")
+                        .font(.largeTitle)
+                        .multilineTextAlignment(.center)
+                        .padding(.vertical)
+                        .foregroundColor(.white)
+                    editView
+                        .padding(.top)
+                    Spacer()
+                }else {
+                    Text("Emission History")
+                        .font(.largeTitle)
+                        .padding(.top)
+                        .foregroundColor(.white)
                     
+                    if !co2Model.addedItems.isEmpty {
+                        HistoryListView(items: co2Model.addedItems.reversed(), selectedItem: $selectedItem, enteredCo2: $enteredCo2, selectedRecurrence: $selectedRecurrence, selectedDate: $selectedDate)
+                            .environmentObject(co2Model)
+                    }else{
+                        Image("EmptyHistory")
+                            .resizable()
+                            .frame(width: geo.size.height * 0.4, height: geo.size.height * 0.4, alignment: .center)
+                            .aspectRatio(contentMode: .fit)
+                            .background(Color("CardViewDynamicColor"))
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            .padding(.top,50)
+                        Text("You haven't done any calculations yet!")
+                            .font(.title3)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                            .padding(.top)
+                        Spacer()
+                    }
+                        
+                }
             }
+            .frame(maxWidth:.infinity, maxHeight: .infinity,alignment: .center)
+            .background(Color("customDynamicDarkBlue").ignoresSafeArea().onTapGesture {
+                if selectedItem != nil {
+                    closeEditView()
+                }
+            })
+            
         }
-        .background(Color("customDynamicDarkBlue").ignoresSafeArea().onTapGesture {
-            if selectedItem != nil {
-                closeEditView()
-            }
-        })
     }
     
     private var editView: some View {
