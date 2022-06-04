@@ -47,7 +47,7 @@ struct SignUpPage: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text("Looks like you dont't have an account.\n Let's cretae a new account!")
+                Text("Looks like you dont't have an account.\n Let's create a new account!")
                     .font(.body)
                     .fontWeight(.light)
                     .multilineTextAlignment(.center)
@@ -152,13 +152,13 @@ struct SignUpPage: View {
         
         if sendingEmail != "" && sendingPassword != "" && rePassword != ""{
             if !isValidEmail(sendingEmail){
-                showAlert(title: "Invalid!", message: "Invalid Email")
+                showAlert(title: "Invalid email!", message: "Please check your email")
                 print("gecersiz mail")
                 return
             }
             
             if sendingPassword != rePassword {
-                showAlert(title: "Passwords are not match!", message: "Please check passwords")
+                showAlert(title: "Passwords did not match!", message: "Please check the passwords")
                 return
             }
             
