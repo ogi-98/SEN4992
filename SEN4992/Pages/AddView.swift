@@ -178,7 +178,9 @@ struct AddView: View {
         .background(
             Color("CardViewDynamicColor")
                 .onTapGesture {
-                    focusedField = nil
+                    if focusedField != nil {
+                        focusedField = nil
+                    }
                 }
         )
         .cornerRadius(16)
