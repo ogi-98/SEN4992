@@ -34,23 +34,23 @@ final class Co2Model: ObservableObject {
         // MARK: New Items to add to our Data
         
         //MARK: NATURAL GAS
-        listItems.append(ListItem(description: "🏭🇹🇷 TR Natural Gas", category: "Gas", CO2eqkg: 0.234, topCategory: "Gas", unit: "Sm3"))
-        listItems.append(ListItem(description: "🏭🇪🇺 EU Natural Gas", category: "Gas", CO2eqkg: 0.309, topCategory: "Gas", unit: "Sm3"))
-        listItems.append(ListItem(description: "🏭🇨🇭 CH Natural Gas", category: "Gas", CO2eqkg: 0.012, topCategory: "Gas", unit: "Sm3"))
-        listItems.append(ListItem(description: "🏭🇩🇪 DE Natural Gas", category: "Gas", CO2eqkg: 0.320, topCategory: "Gas", unit: "Sm3"))
-        listItems.append(ListItem(description: "🏭🇳🇴 N Natural Gas", category: "Gas", CO2eqkg: 0.004, topCategory: "Gas", unit: "Sm3"))
-        listItems.append(ListItem(description: "🏭🇦🇹 Ö Natural Gas", category: "Gas", CO2eqkg: 0.210, topCategory: "Gas", unit: "Sm3"))
-        listItems.append(ListItem(description: "🏭🇫🇷 FR Natural Gas", category: "Gas", CO2eqkg: 0.042, topCategory: "Gas", unit: "Sm3"))
-        listItems.append(ListItem(description: "🏭🇮🇹 IT Natural Gas", category: "Gas", CO2eqkg: 0.269, topCategory: "Gas", unit: "Sm3"))
+        listItems.append(ListItem(description: "🏭🇹🇷 TR Natural Gas", category: "Gas", CO2eqkg: 0.234, topCategory: "Gas", unit: "cm3"))
+        listItems.append(ListItem(description: "🏭🇪🇺 EU Natural Gas", category: "Gas", CO2eqkg: 0.309, topCategory: "Gas", unit: "cm3"))
+        listItems.append(ListItem(description: "🏭🇨🇭 CH Natural Gas", category: "Gas", CO2eqkg: 0.012, topCategory: "Gas", unit: "cm3"))
+        listItems.append(ListItem(description: "🏭🇩🇪 DE Natural Gas", category: "Gas", CO2eqkg: 0.320, topCategory: "Gas", unit: "cm3"))
+        listItems.append(ListItem(description: "🏭🇳🇴 N Natural Gas", category: "Gas", CO2eqkg: 0.004, topCategory: "Gas", unit: "cm3"))
+        listItems.append(ListItem(description: "🏭🇦🇹 Ö Natural Gas", category: "Gas", CO2eqkg: 0.210, topCategory: "Gas", unit: "cm3"))
+        listItems.append(ListItem(description: "🏭🇫🇷 FR Natural Gas", category: "Gas", CO2eqkg: 0.042, topCategory: "Gas", unit: "cm3"))
+        listItems.append(ListItem(description: "🏭🇮🇹 IT Natural Gas", category: "Gas", CO2eqkg: 0.269, topCategory: "Gas", unit: "cm3"))
         // MARK: HOME
-        listItems.append(ListItem(description: "⚡️🇹🇷 TR Electricity", category: "Power", CO2eqkg: 0.555, topCategory: "Home", unit: "kwH", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇪🇺 EU Electricity", category: "Power", CO2eqkg: 0.300, topCategory: "Home", unit: "kwH", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇨🇭 CH Electricity", category: "Power", CO2eqkg: 0.024, topCategory: "Home", unit: "kwH", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇩🇪 DE Electricity", category: "Power", CO2eqkg: 0.480, topCategory: "Home", unit: "kwH", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇳🇴 N Electricity", category: "Power", CO2eqkg: 0.008, topCategory: "Home", unit: "kwH", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇦🇹 Ö Electricity", category: "Power", CO2eqkg: 0.166, topCategory: "Home", unit: "kwH", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇫🇷 FR Electricity", category: "Power", CO2eqkg: 0.064, topCategory: "Home", unit: "kwH", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇮🇹 IT Electricity", category: "Power", CO2eqkg: 0.350, topCategory: "Home", unit: "kwH", sourceId: 1))
+        listItems.append(ListItem(description: "⚡️🇹🇷 TR Electricity", category: "Power", CO2eqkg: 0.555, topCategory: "Home", unit: "kWh", sourceId: 1))
+        listItems.append(ListItem(description: "⚡️🇪🇺 EU Electricity", category: "Power", CO2eqkg: 0.300, topCategory: "Home", unit: "kWh", sourceId: 1))
+        listItems.append(ListItem(description: "⚡️🇨🇭 CH Electricity", category: "Power", CO2eqkg: 0.024, topCategory: "Home", unit: "kWh", sourceId: 1))
+        listItems.append(ListItem(description: "⚡️🇩🇪 DE Electricity", category: "Power", CO2eqkg: 0.480, topCategory: "Home", unit: "kWh", sourceId: 1))
+        listItems.append(ListItem(description: "⚡️🇳🇴 N Electricity", category: "Power", CO2eqkg: 0.008, topCategory: "Home", unit: "kWh", sourceId: 1))
+        listItems.append(ListItem(description: "⚡️🇦🇹 Ö Electricity", category: "Power", CO2eqkg: 0.166, topCategory: "Home", unit: "kWh", sourceId: 1))
+        listItems.append(ListItem(description: "⚡️🇫🇷 FR Electricity", category: "Power", CO2eqkg: 0.064, topCategory: "Home", unit: "kWh", sourceId: 1))
+        listItems.append(ListItem(description: "⚡️🇮🇹 IT Electricity", category: "Power", CO2eqkg: 0.350, topCategory: "Home", unit: "kWh", sourceId: 1))
         
 
         

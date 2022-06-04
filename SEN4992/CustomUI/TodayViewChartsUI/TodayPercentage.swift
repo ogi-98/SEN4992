@@ -53,7 +53,7 @@ struct TodayPercentage: View {
                     Image(systemName: "cloud.fill")
                         .font(.system(size: 40))
                         .offset(y: -5)
-                    Text("Co2")
+                    Text("CO2")
                         .colorInvert()
                 }
             }
