@@ -48,7 +48,7 @@ struct HistoryListView: View {
 
                                     VStack(alignment: .trailing) {
                                         Text(item.amount.getFormatted(digits: 1) + " \(co2Model.listItemsDict[item.type]!.unit)")
-                                        Text((item.amount * co2Model.listItemsDict[item.type]!.CO2eqkg / co2Model.listItemsDict[item.type]!.unitPerKg).getFormatted(digits: 1) + " kg Co2")
+                                        Text((item.amount * co2Model.listItemsDict[item.type]!.CO2eqkg / co2Model.listItemsDict[item.type]!.unitPerKg).getFormatted(digits: 1) + " kg CO2")
                                             .foregroundColor(co2Model.getColorForEntry(entry: item))
                                     }
                                 }

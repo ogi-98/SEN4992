@@ -186,9 +186,9 @@ struct UserSettings: View {
             }
             .padding(.top)
             .padding(.horizontal)
-            .confirmationDialog("Are you sure to LogOut", isPresented: $showingDialog,titleVisibility: .visible) {
+            .confirmationDialog("Are you sure to log out?", isPresented: $showingDialog,titleVisibility: .visible) {
                 
-                Button("LogOut",role: .destructive) {
+                Button("Log Out",role: .destructive) {
                     userApi.logOut {
                         showingDialog = false
                             userApi.userLoginPageCheck()

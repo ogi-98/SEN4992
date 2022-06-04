@@ -24,7 +24,7 @@ struct AddListView: View {
                     Text(item.category)
                         .foregroundColor(Color.gray)
                         .multilineTextAlignment(.trailing)
-                    Text("\(item.CO2eqkg.getFormatted(digits: 2)) kgCo2/\(item.unit)")
+                    Text("\(item.CO2eqkg.getFormatted(digits: 2)) kgCO2/\(item.unit)")
                         .foregroundColor(co2Model.getColorForItem(item: item))
                         .multilineTextAlignment(.trailing)
                 }
