@@ -43,7 +43,7 @@ struct ForgotPasswordPage: View {
             sendSuccessful(sendEmail: sendEmail)
         }else{
             //alert
-            showAlert(title: "Invalid Email!", message: "Check the validity of the Email")
+            showAlert(title: "Invalid email!", message: "Check the validity of the email")
         }
     }
     private func showAlert(title: String,message:String){
@@ -127,7 +127,7 @@ struct ForgotPasswordPage: View {
                         }
                     }
                 
-                CustomTextButtonUI(text: "Remember password?", bttnText: "Login") {
+                CustomTextButtonUI(text: "Remember your password?", bttnText: "Login") {
                     presentationMode.wrappedValue.dismiss()
                 }//: remember password buton
                 

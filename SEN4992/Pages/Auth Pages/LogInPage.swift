@@ -65,7 +65,7 @@ struct LogInPage: View {
                     Button {
                         forgotBttnTouch()
                     } label: {
-                        Text("Recovery Password")
+                        Text("Forgot your password?")
                             .font(.footnote)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .foregroundColor(Color(uiColor: .secondaryLabel))
@@ -160,7 +160,7 @@ struct LogInPage: View {
         
         if sendingEmail != "" && sendingPassword != "" {
             if !isValidEmail(sendingEmail){
-                showAlert(title: "Invalid!", message: "Invalid Email")
+                showAlert(title: "Invalid email!", message: "Please check your email")
                 print("gecersiz mail")
                 return
             }
