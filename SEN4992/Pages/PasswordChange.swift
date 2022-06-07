@@ -109,12 +109,13 @@ struct PasswordChange: View {
                             
                         }//: Carview background
                         .frame(maxWidth:.infinity,alignment: .center)
-                        .background(Color(uiColor: .tertiarySystemBackground))
+                        .background(Color(uiColor: .tertiarySystemBackground)
+                                        .onTapGesture {
+                                            focusedField = nil
+                                        }
+                        )
                         .cornerRadius(30, corners: [.topLeft,.topRight])
                         .edgesIgnoringSafeArea(.bottom)
-                        .onTapGesture {
-                            focusedField = nil
-                        }
                     }
                     
                     Image("PasswordUpdate")
