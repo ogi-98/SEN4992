@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ListItem: Identifiable {
+class ItemList: Identifiable {
     let id = UUID()
     let description: String
     let category: String

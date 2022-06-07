@@ -10,12 +10,8 @@ import SwiftUI
 
 
 final class Co2Model: ObservableObject {
-    // MARK: ONBOARDING
-    @Published var onboardingCompleted = false
-
     // MARK: Gerneral Co2 model data
-    @Published var treeOffsetNum: Int = 0
-    @Published var currentCo2State: Double = 10.0
+    @Published var currentCo2: Double = 10.0
     @Published var co2max = 13.6
     @Published var co2HistoryData: [Double] = [] //[8, 23, 54, 32, 12, 37, 7, 23, 43]
     @Published var co2categoryTotal: [String: Double] = [:] //["Home": 8, "Gas" :23]
@@ -25,8 +21,8 @@ final class Co2Model: ObservableObject {
     
 
     var co2data: [String: Any]
-    var listItems: [ListItem] = []
-    var listItemsDict: [String: ListItem] = [:]
+    var itemsList: [ItemList] = []
+    var itemsListDict: [String: ItemList] = [:]
     
     // Top categories: Home Gas
 
@@ -34,43 +30,37 @@ final class Co2Model: ObservableObject {
         // MARK: New Items to add to our Data
         
         //MARK: NATURAL GAS
-        listItems.append(ListItem(description: "🏭🇹🇷 TR Natural Gas", category: "Gas", CO2eqkg: 0.234, topCategory: "Gas", unit: "cm3"))
-        listItems.append(ListItem(description: "🏭🇪🇺 EU Natural Gas", category: "Gas", CO2eqkg: 0.309, topCategory: "Gas", unit: "cm3"))
-        listItems.append(ListItem(description: "🏭🇨🇭 CH Natural Gas", category: "Gas", CO2eqkg: 0.012, topCategory: "Gas", unit: "cm3"))
-        listItems.append(ListItem(description: "🏭🇩🇪 DE Natural Gas", category: "Gas", CO2eqkg: 0.320, topCategory: "Gas", unit: "cm3"))
-        listItems.append(ListItem(description: "🏭🇳🇴 N Natural Gas", category: "Gas", CO2eqkg: 0.004, topCategory: "Gas", unit: "cm3"))
-        listItems.append(ListItem(description: "🏭🇦🇹 Ö Natural Gas", category: "Gas", CO2eqkg: 0.210, topCategory: "Gas", unit: "cm3"))
-        listItems.append(ListItem(description: "🏭🇫🇷 FR Natural Gas", category: "Gas", CO2eqkg: 0.042, topCategory: "Gas", unit: "cm3"))
-        listItems.append(ListItem(description: "🏭🇮🇹 IT Natural Gas", category: "Gas", CO2eqkg: 0.269, topCategory: "Gas", unit: "cm3"))
+        itemsList.append(ItemList(description: "🏭🇹🇷 TR Natural Gas", category: "Gas", CO2eqkg: 0.234, topCategory: "Gas", unit: "cm3"))
+        itemsList.append(ItemList(description: "🏭🇪🇺 EU Natural Gas", category: "Gas", CO2eqkg: 0.309, topCategory: "Gas", unit: "cm3"))
+        itemsList.append(ItemList(description: "🏭🇨🇭 CH Natural Gas", category: "Gas", CO2eqkg: 0.012, topCategory: "Gas", unit: "cm3"))
+        itemsList.append(ItemList(description: "🏭🇩🇪 DE Natural Gas", category: "Gas", CO2eqkg: 0.320, topCategory: "Gas", unit: "cm3"))
+        itemsList.append(ItemList(description: "🏭🇳🇴 N Natural Gas", category: "Gas", CO2eqkg: 0.004, topCategory: "Gas", unit: "cm3"))
+        itemsList.append(ItemList(description: "🏭🇦🇹 Ö Natural Gas", category: "Gas", CO2eqkg: 0.210, topCategory: "Gas", unit: "cm3"))
+        itemsList.append(ItemList(description: "🏭🇫🇷 FR Natural Gas", category: "Gas", CO2eqkg: 0.042, topCategory: "Gas", unit: "cm3"))
+        itemsList.append(ItemList(description: "🏭🇮🇹 IT Natural Gas", category: "Gas", CO2eqkg: 0.269, topCategory: "Gas", unit: "cm3"))
         // MARK: HOME
-        listItems.append(ListItem(description: "⚡️🇹🇷 TR Electricity", category: "Power", CO2eqkg: 0.555, topCategory: "Home", unit: "kWh", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇪🇺 EU Electricity", category: "Power", CO2eqkg: 0.300, topCategory: "Home", unit: "kWh", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇨🇭 CH Electricity", category: "Power", CO2eqkg: 0.024, topCategory: "Home", unit: "kWh", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇩🇪 DE Electricity", category: "Power", CO2eqkg: 0.480, topCategory: "Home", unit: "kWh", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇳🇴 N Electricity", category: "Power", CO2eqkg: 0.008, topCategory: "Home", unit: "kWh", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇦🇹 Ö Electricity", category: "Power", CO2eqkg: 0.166, topCategory: "Home", unit: "kWh", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇫🇷 FR Electricity", category: "Power", CO2eqkg: 0.064, topCategory: "Home", unit: "kWh", sourceId: 1))
-        listItems.append(ListItem(description: "⚡️🇮🇹 IT Electricity", category: "Power", CO2eqkg: 0.350, topCategory: "Home", unit: "kWh", sourceId: 1))
+        itemsList.append(ItemList(description: "⚡️🇹🇷 TR Electricity", category: "Power", CO2eqkg: 0.555, topCategory: "Home", unit: "kWh", sourceId: 1))
+        itemsList.append(ItemList(description: "⚡️🇪🇺 EU Electricity", category: "Power", CO2eqkg: 0.300, topCategory: "Home", unit: "kWh", sourceId: 1))
+        itemsList.append(ItemList(description: "⚡️🇨🇭 CH Electricity", category: "Power", CO2eqkg: 0.024, topCategory: "Home", unit: "kWh", sourceId: 1))
+        itemsList.append(ItemList(description: "⚡️🇩🇪 DE Electricity", category: "Power", CO2eqkg: 0.480, topCategory: "Home", unit: "kWh", sourceId: 1))
+        itemsList.append(ItemList(description: "⚡️🇳🇴 N Electricity", category: "Power", CO2eqkg: 0.008, topCategory: "Home", unit: "kWh", sourceId: 1))
+        itemsList.append(ItemList(description: "⚡️🇦🇹 Ö Electricity", category: "Power", CO2eqkg: 0.166, topCategory: "Home", unit: "kWh", sourceId: 1))
+        itemsList.append(ItemList(description: "⚡️🇫🇷 FR Electricity", category: "Power", CO2eqkg: 0.064, topCategory: "Home", unit: "kWh", sourceId: 1))
+        itemsList.append(ItemList(description: "⚡️🇮🇹 IT Electricity", category: "Power", CO2eqkg: 0.350, topCategory: "Home", unit: "kWh", sourceId: 1))
         
 
         
-        for item in listItems {
-            listItemsDict[item.description] = item
+        for item in itemsList {
+            itemsListDict[item.description] = item
         }
     }
     
     init(currentCo2State: Double = 0.0) {
-        self.currentCo2State = currentCo2State
-        co2data = Co2Model.readJSONFromFile(fileName: "Co2_data") as? [String: Any] ?? [:]
+        self.currentCo2 = currentCo2State
+        co2data = Co2Model.readJSONFromFile(fileName: "Co2") as? [String: Any] ?? [:]
         loadItems()
 
-        // MARK: Load onboardingCompleted
-        let value2 = UserDefaults.standard.object(forKey: "onboardingCompleted") as? Data
-        if value2 != nil {
-            onboardingCompleted = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(value2!) as? Bool ?? false
-        }
-
-        // MARK: Load added items from UserDefaults
+        // Load added items from UserDefaults
         let value = UserDefaults.standard.object(forKey: "addedItems") as? Data
         if value != nil {
             addedItems = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(value!) as? [Entry] ?? []
@@ -85,7 +75,6 @@ final class Co2Model: ObservableObject {
         updateCurrentCo2()
         co2HistoryData = getCo2PerDay()
         co2categoryTotal = getCo2CategoryTotal()
-        treeOffsetNum = updateTreeOffsetNum()
     }
     
     func updateRecurrentEntries() {
@@ -110,16 +99,11 @@ final class Co2Model: ObservableObject {
         }
     }
 
-    func updateTreeOffsetNum() -> Int {
-        var neededTreesToday: Int = 0
-        neededTreesToday = Int(currentCo2State / 0.0617) // ~22kgCO2 is accumulated per tree per year
-        return neededTreesToday
-    }
 
     func getCo2CategoryTotal() -> [String: Double] {
         var catTotal: [String: Double] = ["Food": 0, "Gas": 0, "Clothes": 0, "Home": 0]
         for entry in addedItems {
-            let item = listItemsDict[entry.type]!
+            let item = itemsListDict[entry.type]!
             let cat = item.topCategory
             catTotal[cat] = entry.amount * item.CO2eqkg / item.unitPerKg + (catTotal[cat] ?? 0)
         }
@@ -130,17 +114,17 @@ final class Co2Model: ObservableObject {
         var co2: Double = 0
         for item in addedItems {
             if item.dateAdded.dayDiff(Date()) == 0 {
-                co2 += listItemsDict[item.type]!.CO2eqkg * item.amount / listItemsDict[item.type]!.unitPerKg
+                co2 += itemsListDict[item.type]!.CO2eqkg * item.amount / itemsListDict[item.type]!.unitPerKg
             }
         }
-        currentCo2State = co2
+        currentCo2 = co2
     }
 
     func getCo2PerDay(category: String = "", n_days: Int = 10) -> [Double] {
         var co2Stats: [Int: Double] = [:]
         for item in addedItems {
             let daysDiff = item.dateAdded.dayDiff(Date())
-            co2Stats[daysDiff] = listItemsDict[item.type]!.CO2eqkg * item.amount / listItemsDict[item.type]!.unitPerKg + (co2Stats[daysDiff] ?? 0)
+            co2Stats[daysDiff] = itemsListDict[item.type]!.CO2eqkg * item.amount / itemsListDict[item.type]!.unitPerKg + (co2Stats[daysDiff] ?? 0)
         }
         var result: [Double] = []
         for i in 0..<n_days {
@@ -149,9 +133,9 @@ final class Co2Model: ObservableObject {
         return result
     }
 
-    func getColorForItem(item: ListItem) -> Color {
+    func getColorForItem(item: ItemList) -> Color {
         let colors = [Color.green, Color.green, Color.yellow, Color.orange, Color.red, Color(red: 0.85, green: 0, blue: 0)]
-        let catItems = listItems.filter { (listItem) -> Bool in
+        let catItems = itemsList.filter { (listItem) -> Bool in
             return listItem.topCategory == item.topCategory
         }.map { (listItem) -> Double in
             listItem.CO2eqkg
@@ -169,7 +153,7 @@ final class Co2Model: ObservableObject {
 
     func getColorForEntry(entry: Entry) -> Color {
         let colors = [Color.green, Color.yellow, Color.orange, Color.red, Color(red: 0.85, green: 0, blue: 0), Color(red: 0.7, green: 0, blue: 0)]
-        let score = min(entry.amount * listItemsDict[entry.type]!.CO2eqkg / listItemsDict[entry.type]!.unitPerKg / co2max, 1)
+        let score = min(entry.amount * itemsListDict[entry.type]!.CO2eqkg / itemsListDict[entry.type]!.unitPerKg / co2max, 1)
         let i = Int(min(score, 0.99) * Double(colors.count))
         return colors[i]
     }
@@ -178,11 +162,9 @@ final class Co2Model: ObservableObject {
         let encodedData = try! NSKeyedArchiver.archivedData(withRootObject: addedItems, requiringSecureCoding: false)
         UserDefaults.standard.set(encodedData, forKey: "addedItems")
 
-        let encodedData2 = try! NSKeyedArchiver.archivedData(withRootObject: onboardingCompleted, requiringSecureCoding: false)
-        UserDefaults.standard.set(encodedData2, forKey: "onboardingCompleted")
     }
 
-    func addEntry(item: ListItem, amount: Double, dateAdded: Date, recurrence: String) {
+    func addEntry(item: ItemList, amount: Double, dateAdded: Date, recurrence: String) {
         let recurrenceID = UserDefaults.standard.integer(forKey: "recurrenceID")
         UserDefaults.standard.setValue(recurrenceID+1, forKey: "recurrenceID")
         let dailyAmount = amount / Co2Model.recurrenceToDays(recurrence)  // 60/30
@@ -211,10 +193,9 @@ final class Co2Model: ObservableObject {
         return json
     }
 
-    func getSearchResults(query: String?, category: String) -> [ListItem] {
-        var items: [ListItem] = listItems
+    func getSearchResults(query: String?, category: String) -> [ItemList] {
+        var items: [ItemList] = itemsList
 
-        // only filter when not searching
         if query == nil && category != "" {
             items = items.filter({ (item) -> Bool in
                 item.topCategory == category

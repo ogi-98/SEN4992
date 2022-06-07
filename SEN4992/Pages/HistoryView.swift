@@ -92,16 +92,14 @@ struct HistoryView: View {
                         self.enteredCo2 = newValue.numericString(allowDecimalSeparator: true)
                     }
                 
-                Text(co2Model.listItemsDict[selectedItem!.type]?.unit ?? "Unit")
+                Text(co2Model.itemsListDict[selectedItem!.type]?.unit ?? "Unit")
                     .font(.title2)
             }//: hstack
             .padding(.top)
             
             let co2Amount: Double = self.enteredCo2.parseDouble()
-            let fotmattedCO2: String = (co2Amount * (co2Model.listItemsDict[selectedItem!.type]!.CO2eqkg) / co2Model.listItemsDict[selectedItem!.type]!.unitPerKg).getFormatted(digits: 3)
-            //            let fotmattedCO2: String = "10.0"
-            let formattedPercent: String = (co2Amount * co2Model.listItemsDict[selectedItem!.type]!.CO2eqkg / co2Model.listItemsDict[selectedItem!.type]!.unitPerKg / co2Model.co2max * 100).getFormatted(digits: 1)
-            //            let formattedPercent: String = "50"
+            let fotmattedCO2: String = (co2Amount * (co2Model.itemsListDict[selectedItem!.type]!.CO2eqkg) / co2Model.itemsListDict[selectedItem!.type]!.unitPerKg).getFormatted(digits: 2)
+            let formattedPercent: String = (co2Amount * co2Model.itemsListDict[selectedItem!.type]!.CO2eqkg / co2Model.itemsListDict[selectedItem!.type]!.unitPerKg / co2Model.co2max * 100).getFormatted(digits: 1)
             
             Text("\(fotmattedCO2) kg CO2 (\(formattedPercent)%)")
                 .foregroundColor(Color(uiColor: .systemGray2))
@@ -197,7 +195,7 @@ struct HistoryView: View {
                 return e.recurrenceID == item.recurrenceID
             }
             // add again
-            self.co2Model.addEntry(item: self.co2Model.listItemsDict[item.type]!, amount: self.enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(), dateAdded: selectedDate, recurrence: selectedRecurrence)
+            self.co2Model.addEntry(item: self.co2Model.itemsListDict[item.type]!, amount: self.enteredCo2.numericString(allowDecimalSeparator: true).parseDouble(), dateAdded: selectedDate, recurrence: selectedRecurrence)
         }
         self.selectedItem = nil
         self.enteredCo2 = ""
