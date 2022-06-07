@@ -12,10 +12,10 @@ struct AddView: View {
     //MARK: - PROPERTIES
     
     @State private var searchText = ""
-    @State var searchResults: [ListItem] = []
+    @State var searchResults: [ItemList] = []
     @State var enteredCo2: String = ""
     @State var selectedCategory: String = ""
-    @State var selectedItem: ListItem?
+    @State var selectedItem: ItemList?
     @State var selectedDate: Date = Date()
     @State var selectedRecurrence: String = "1"
     
@@ -113,10 +113,8 @@ struct AddView: View {
             .padding(.top)
             
             let co2Amount: Double = self.enteredCo2.parseDouble()
-            let fotmattedCO2: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg).getFormatted(digits: 3)
-            //            let fotmattedCO2: String = "10.0"
+            let fotmattedCO2: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg).getFormatted(digits: 2)
             let formattedPercent: String = (co2Amount * selectedItem!.CO2eqkg / selectedItem!.unitPerKg / co2Model.co2max * 100).getFormatted(digits: 1)
-            //            let formattedPercent: String = "50"
             
             Text("\(fotmattedCO2) kg CO2 (\(formattedPercent)%)")
                 .foregroundColor(Color(uiColor: .systemGray2))
@@ -305,7 +303,7 @@ struct AddView: View {
     }
     
     
-    private func addCo2Entry(entryItem: ListItem, amountStr: String) {
+    private func addCo2Entry(entryItem: ItemList, amountStr: String) {
         let amount = amountStr.numericString(allowDecimalSeparator: true).parseDouble()
         print("amount: \(amount)")
         

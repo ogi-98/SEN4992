@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AddListView: View {
-    var items: [ListItem]
-    @Binding var selectedItem: ListItem?
+    var items: [ItemList]
+    @Binding var selectedItem: ItemList?
     @EnvironmentObject var co2Model: Co2Model
     var body: some View {
         List(items) { item in

@@ -11,7 +11,7 @@
 		B40C031A280D95390048839C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40C0319280D95390048839C /* MainView.swift */; };
 		B40C031C280DA4090048839C /* NameTextFieldCustomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40C031B280DA4090048839C /* NameTextFieldCustomUI.swift */; };
 		B4135EDB28400FBB0087C45D /* HistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4135EDA28400FBB0087C45D /* HistoryListView.swift */; };
-		B41AEBCD2816D50300C1BCE6 /* Co2_data.json in Resources */ = {isa = PBXBuildFile; fileRef = B41AEBCC2816D50300C1BCE6 /* Co2_data.json */; };
+		B41AEBCD2816D50300C1BCE6 /* Co2.json in Resources */ = {isa = PBXBuildFile; fileRef = B41AEBCC2816D50300C1BCE6 /* Co2.json */; };
 		B4462E2E281AA81B00EECE42 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4462E2D281AA81B00EECE42 /* CategoryView.swift */; };
 		B4489C62281028B800B03771 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C61281028B800B03771 /* TodayView.swift */; };
 		B4489C642810290700B03771 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C632810290700B03771 /* AddView.swift */; };
@@ -37,7 +37,7 @@
 		B4489C8D2810469100B03771 /* DailyGraphUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C8C2810469100B03771 /* DailyGraphUI.swift */; };
 		B4489C8F2810487700B03771 /* Co2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C8E2810487700B03771 /* Co2Model.swift */; };
 		B4489C91281048B100B03771 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C90281048B100B03771 /* Entry.swift */; };
-		B4489C932810494400B03771 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C922810494400B03771 /* ListItem.swift */; };
+		B4489C932810494400B03771 /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4489C922810494400B03771 /* ItemList.swift */; };
 		B44DEAC5282906B70001337F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44DEAC4282906B70001337F /* SearchBar.swift */; };
 		B44DEAC72829311A0001337F /* AddListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44DEAC62829311A0001337F /* AddListView.swift */; };
 		B460C7F32844BC2600A3E1E3 /* CustomLabelUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B460C7F22844BC2600A3E1E3 /* CustomLabelUI.swift */; };
@@ -94,7 +94,7 @@
 		B40C0319280D95390048839C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B40C031B280DA4090048839C /* NameTextFieldCustomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTextFieldCustomUI.swift; sourceTree = "<group>"; };
 		B4135EDA28400FBB0087C45D /* HistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListView.swift; sourceTree = "<group>"; };
-		B41AEBCC2816D50300C1BCE6 /* Co2_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Co2_data.json; sourceTree = "<group>"; };
+		B41AEBCC2816D50300C1BCE6 /* Co2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Co2.json; sourceTree = "<group>"; };
 		B4462E2D281AA81B00EECE42 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		B4489C61281028B800B03771 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		B4489C632810290700B03771 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		B4489C8C2810469100B03771 /* DailyGraphUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyGraphUI.swift; sourceTree = "<group>"; };
 		B4489C8E2810487700B03771 /* Co2Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Co2Model.swift; sourceTree = "<group>"; };
 		B4489C90281048B100B03771 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
-		B4489C922810494400B03771 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		B4489C922810494400B03771 /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
 		B44DEAC4282906B70001337F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		B44DEAC62829311A0001337F /* AddListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListView.swift; sourceTree = "<group>"; };
 		B460C7F22844BC2600A3E1E3 /* CustomLabelUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelUI.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 			children = (
 				B4489C8E2810487700B03771 /* Co2Model.swift */,
 				B4489C90281048B100B03771 /* Entry.swift */,
-				B4489C922810494400B03771 /* ListItem.swift */,
+				B4489C922810494400B03771 /* ItemList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 				B4DD68ED27EB24DF002CACDF /* SEN4992.xcdatamodeld */,
 				B4DD68E827EB24DF002CACDF /* Preview Content */,
 				B4462E30281ACB6700EECE42 /* Models */,
-				B41AEBCC2816D50300C1BCE6 /* Co2_data.json */,
+				B41AEBCC2816D50300C1BCE6 /* Co2.json */,
 			);
 			path = SEN4992;
 			sourceTree = "<group>";
@@ -424,7 +424,7 @@
 			files = (
 				B4DD68EA27EB24DF002CACDF /* Preview Assets.xcassets in Resources */,
 				B4D84928280C625200423CBB /* GoogleService-Info.plist in Resources */,
-				B41AEBCD2816D50300C1BCE6 /* Co2_data.json in Resources */,
+				B41AEBCD2816D50300C1BCE6 /* Co2.json in Resources */,
 				B4DD68E727EB24DF002CACDF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -441,7 +441,7 @@
 				B4135EDB28400FBB0087C45D /* HistoryListView.swift in Sources */,
 				B48585A627FC8B1D007A4593 /* SignUpPage.swift in Sources */,
 				B4D84975280C6BE100423CBB /* Ref.swift in Sources */,
-				B4489C932810494400B03771 /* ListItem.swift in Sources */,
+				B4489C932810494400B03771 /* ItemList.swift in Sources */,
 				B4489C8B2810456000B03771 /* BarChartRow.swift in Sources */,
 				B4489C7F2810456000B03771 /* LineChartViewCustom.swift in Sources */,
 				B48585A027FB238E007A4593 /* CustomButtonUI.swift in Sources */,

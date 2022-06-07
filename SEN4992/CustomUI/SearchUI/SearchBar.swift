@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchBar: View {
     //MARK: - PROPERTIES
     @Binding var text: String
-    @Binding var selectedItem: ListItem?
+    @Binding var selectedItem: ItemList?
 
     @State private var isEditing = false
     

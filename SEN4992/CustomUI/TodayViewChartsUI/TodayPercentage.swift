@@ -16,7 +16,7 @@ struct TodayPercentage: View {
     @State var style: ChartStyle = Styles.lineChartStyleMain
     
         private var co2progress: Double {
-            get {return Double(self.co2Model.currentCo2State/self.co2Model.co2max)}
+            get {return Double(self.co2Model.currentCo2/self.co2Model.co2max)}
         }
     
         private var cappedCo2progress: Double {
